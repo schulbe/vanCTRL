@@ -5,7 +5,13 @@ from flask import (
 bp = Blueprint('main', __name__)
 
 
+# @bp.route('/')
+# def index():
+#     return render_template('main/index.html',
+#                            title='Flask-PWA')
+
 @bp.route('/')
 def index():
-    return render_template('main/index.html',
+    return render_template('_index.html',
                            title='Flask-PWA')
+

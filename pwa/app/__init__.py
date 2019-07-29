@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-
+from flask_bootstrap import Bootstrap
 
 def create_app():
     app = Flask(
@@ -33,4 +33,5 @@ def create_app():
     app.register_blueprint(main.bp)
     app.register_blueprint(pwa.bp)
 
+    Bootstrap(app)
     return app

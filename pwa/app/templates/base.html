@@ -2,31 +2,55 @@
 <html lang="en">
 
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel="stylesheet">
+  <script defer src="{{ url_for('static', filename='fontawesome/js/all.js') }}"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='mdbootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{{ url_for('static', filename='mdbootstrap/css/mdb.min.css') }}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
 
-  <title>{{ title }}</title>
-  <meta name="description" content="A bootstrap for my Flask projects">
-  <meta name="author" content="Luiz Lima">
-  <meta name="theme-color" content="transparent">
-  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="transparent">
-  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icons/icon-152x152.png') }}">
+  .navWrapper {
+      height: auto;
+      border: 1px solid black;
+      overflow: hidden; /* will contain if #first is longer than #second */
+  }
 
-  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-
+  .navDiv {
+      height: 20%;
+      float: bottom; /* add this */
+      border: 1px solid red;
+  }
+  .contentDiv {
+      border: 1px solid green;
+      overflow: hidden; /* if you don't want #second to wrap below #first */
+  }
+  </style>
 </head>
 
 <body>
 
+  <!-- Start your project here-->
   {% block body %}{% endblock %}
+  <!-- Start your project here-->
 
-  <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{{  url_for('static', filename='mdbootstrap/js/jquery-3.4.1.min.js') }}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static', filename='mdbootstrap/js/popper.min.js') }}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='mdbootstrap/js/bootstrap.min.js') }}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='mdbootstrap/js/mdb.min.js') }}"></script>
 </body>
 
 </html>
