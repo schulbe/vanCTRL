@@ -11,7 +11,30 @@ bp = Blueprint('main', __name__)
 #                            title='Flask-PWA')
 
 @bp.route('/')
-def index():
-    return render_template('_index.html',
-                           title='Flask-PWA')
+def root():
+    return render_template('layout.html',
+                           title='ctrl_van')
 
+
+@bp.route('/light')
+def ctrl_light():
+    return render_template('ctrl_light.html',
+                           title='lights')
+
+
+@bp.route('/battery')
+def ctrl_battery():
+    return render_template('layout.html',
+                           title='battery')
+
+
+@bp.route('/fridge')
+def ctrl_fridge():
+    return render_template('layout.html',
+                           title='fridge')
+
+
+@bp.route('/music')
+def ctrl_music():
+    return render_template('layout.html',
+                           title='music')

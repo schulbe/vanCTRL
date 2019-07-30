@@ -33,5 +33,5 @@ def create_app():
     app.register_blueprint(main.bp)
     app.register_blueprint(pwa.bp)
 
-    Bootstrap(app)
+    # Bootstrap(app)
     return app
