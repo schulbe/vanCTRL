@@ -1,14 +1,16 @@
-from flask import (
-    Blueprint, render_template, request
-)
-
+from flask import Blueprint, render_template, request
+from control_interface import Controller
 bp = Blueprint('main', __name__)
+
+controller = Controller()
 
 
 # @bp.route('/')
 # def index():
 #     return render_template('main/index.html',
 #                            title='Flask-PWA')
+
+
 
 @bp.route('/')
 def root():
@@ -18,11 +20,13 @@ def root():
 
 @bp.route('/light', methods=['GET', 'POST'])
 def ctrl_light():
-    if request.method == 'POST':
-        if "backLightSwitch" in request.form:
-            print('switch backlight!')
-        if "frontLightSwitch" in request.form:
-            print('switch frontlight!')
+    # if request.method == 'POST':
+    #     if "backLightSwitch" in request.form:
+    #         g.controller.switch_light('back')
+    #     if "frontLightSwitch" in request.form:
+    #         g.controller.switch_light('front')
+    #
+    # light_status = g.controller.get_light_status()
 
     return render_template('ctrl_light.html',
                            title='lights')

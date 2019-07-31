@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 Flask-SSLify = "*"
 flask-sslify = "*"
 flask-bootstrap = "*"
+requests = "*"
 
 [dev-packages]
 

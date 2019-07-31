@@ -8,7 +8,7 @@
             <div id="lightBackDiv" class="col-6">
                 <span class="row justify-content-center">Hinten</span>
                 <div class="row justify-content-center">
-                    <form action="{{ url_for('main.ctrl_light')}}" method="post">
+                    <form action="{{ url_for('ctrl_light')}}" method="post">
                         <button name="backLightSwitch" class="btn-floating btn-lg btn-default" type="submit">
                             <i class="fas fa-lightbulb"></i>
                         </button>
@@ -18,7 +18,7 @@
             <div id="lightFrontDiv" class="col-6">
                 <span class="row justify-content-center">Vorne</span>
                 <div class="row justify-content-center">
-                    <form action="{{ url_for('main.ctrl_light')}}" method="post">
+                    <form action="{{ url_for('ctrl_light')}}" method="post">
                         <button name="frontLightSwitch" class="btn-floating btn-lg btn-default" type="submit">
                             <i class="fas fa-lightbulb"></i>
                         </button>
