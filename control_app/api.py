@@ -1,22 +1,30 @@
 import os
 import configparser
 from flask import Flask, request, jsonify
-try:
-    from control_app.controller import Controller
-except ModuleNotFoundError:
-    from controller import Controller
+
+
+config = configparser.ConfigParser(os.environ)
+config.read('config.ini')
+
+if os.environ['USER'] == 'pi':
+    try:
+        from control_app.controller import Controller
+    except ModuleNotFoundError:
+        from controller import Controller
+
+else:
+    try:
+        from control_app.controller_STUMP import Controller
+    except ModuleNotFoundError:
+        from controller_STUMP import Controller
+
+controller = Controller()
 
 app = Flask(
     __name__,
     instance_relative_config=True,
     static_url_path=''
 )
-
-config = configparser.ConfigParser(os.environ)
-config.read('config.ini')
-
-controller = Controller()
-
 
 @app.route('/cmd', methods=['POST'])
 def command():
