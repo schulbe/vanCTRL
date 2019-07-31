@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template
+    Blueprint, render_template, request
 )
 
 bp = Blueprint('main', __name__)
@@ -16,8 +16,14 @@ def root():
                            title='ctrl_van')
 
 
-@bp.route('/light')
+@bp.route('/light', methods=['GET', 'POST'])
 def ctrl_light():
+    if request.method == 'POST':
+        if "backLightSwitch" in request.form:
+            print('switch backlight!')
+        if "frontLightSwitch" in request.form:
+            print('switch frontlight!')
+
     return render_template('ctrl_light.html',
                            title='lights')
 

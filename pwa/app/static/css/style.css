@@ -1,17 +1,50 @@
+.navBtn {
+  width: 2.5em;
+  height: 2.5em;
+  text-align: center;
+  position:fixed;
+  bottom: 0.3em;
+  flex-shrink: 0.5;
+  /*border: 1px solid black;*/
+}
 
-/*!* Landscape styles *!*/
-/*.navWrapper {*/
-    /*width: auto;*/
-     /*border: 1px solid black;*/
-    /*overflow: hidden; !* will contain if #first is longer than #second *!*/
-/*}*/
+.contentWrapper {
+  /*border: 1px solid black;*/
+  width: auto;
+  height: calc(100vh - 4em);
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
 
-/*.navDiv {*/
-    /*width: 20%;*/
-    /*float: left; !* add this *!*/
-    /*border: 1px solid red;*/
-/*}*/
-/*.contentDiv {*/
-     /*border: 1px solid green;*/
-     /*overflow: hidden; !* if you don't want #second to wrap below #first *!*/
-/*}*/
+.navWrapper {
+  /*border: 1px solid black;*/
+  background-color: lightgrey;
+  width: auto;
+  height: 4em;
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+
+#lightBackDiv {
+  /*border: 1px solid red;*/
+  width:50%;
+  float:left;
+}
+#lightFrontDiv {
+  /*border: 1px solid green;*/
+  width:50%;
+  float:right;
+}
+
+
+
+.leftDiv {
+  width: 50%;
+  height: 100%;
+  float: right; /* add this */
+  border: 1px solid red;
+}
+.rightDiv {
+  border: 1px solid green;
+
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}

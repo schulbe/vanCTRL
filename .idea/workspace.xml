@@ -2,150 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/controller/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/controller/pwa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/static/google58d5bdcfca43ffbe.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/static/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/static/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/static/sw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_app/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/css/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/License.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/Useful_Resources.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/datatables-select.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/datatables-select.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/datatables.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/datatables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/directives.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/directives.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/flag.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/flag.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/rating.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/rating.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/zmd.hierarchical-display.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/addons/zmd.hierarchical-display.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/mdb.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/mdb.lite.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/mdb.lite.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/mdb.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/modules/animations-extended.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/modules/animations-extended.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/flags.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/lightbox/default-skin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/lightbox/default-skin.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/lightbox/preloader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/07.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/08.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/overlays/09.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/sample.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/svg/arrow_left.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/svg/arrow_right.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/img/svg/flags.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/datatables-select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/datatables-select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/datatables.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/datatables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/imagesloaded.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/jquery.zmd.hierarchical-display.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/jquery.zmd.hierarchical-display.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/masonry.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/progressBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/progressBar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/rating.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/addons/rating.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/mdb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/mdb.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/bs-custom-file-input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/enhanced-modals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/forms-free.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/jquery.easing.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/scrolling-navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/treeview.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/velocity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/velocity.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/waves.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/modules/wow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/_custom-styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/_custom-variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/addons/_datatables-select.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/addons/_datatables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/addons/_directives.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/addons/_flags.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/addons/_hierarchical-display.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/addons/_rating.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_colors.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_global.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_helpers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_masks.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_typography.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/_waves.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/bootstrap/_functions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/bootstrap/_rfs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/core/bootstrap/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_animations-basic.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_badges.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_cards.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_carousels.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_depreciated.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_dropdowns.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_footers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_input-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_list-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_loader.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_modals.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_msc.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_navbars.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_steppers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_switch.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_treeview.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/modules/animations-extended/_module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/modules/animations-extended/animations-extended.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/mdb.lite.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/mdb.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pwa/app/templates/_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/pwa/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pwa/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/controller/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pwa/app/controller/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/pwa/app/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/flasks.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/flasks.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-128x128.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-128x128.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-152x152.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-152x152.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-192x192.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-192x192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-384x384.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-384x384.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-512x512.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-512x512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-72x72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/static/images/icons/icon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/_app/static/images/icons/icon-96x96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/pwa/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/_app/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pwa/app/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_app/templates/main/index.html" afterDir="false" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pwa/app/app.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pwa/app/controller/ctrl.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/vancontrol.iml" afterPath="$PROJECT_DIR$/.idea/vancontrol.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/pwa/Pipfile" afterPath="$PROJECT_DIR$/pwa/Pipfile" />
+      <change beforePath="$PROJECT_DIR$/pwa/Pipfile.lock" afterPath="$PROJECT_DIR$/pwa/Pipfile.lock" />
+      <change beforePath="$PROJECT_DIR$/pwa/app/controller/main.py" afterPath="$PROJECT_DIR$/pwa/app/controller/main.py" />
+      <change beforePath="$PROJECT_DIR$/pwa/app/run_server.py" afterPath="$PROJECT_DIR$/pwa/app/run_server.py" />
+      <change beforePath="$PROJECT_DIR$/pwa/app/static/css/style.css" afterPath="$PROJECT_DIR$/pwa/app/static/css/style.css" />
+      <change beforePath="$PROJECT_DIR$/pwa/app/templates/base.html" afterPath="$PROJECT_DIR$/pwa/app/templates/base.html" />
+      <change beforePath="$PROJECT_DIR$/pwa/app/templates/ctrl_light.html" afterPath="$PROJECT_DIR$/pwa/app/templates/ctrl_light.html" />
+      <change beforePath="$PROJECT_DIR$/pwa/app/templates/layout.html" afterPath="$PROJECT_DIR$/pwa/app/templates/layout.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -213,38 +85,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pwa/app/templates/base.html">
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pwa/app/templates/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="396">
+              <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pwa/app/controller/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="321">
+              <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pwa/Pipfile">
+      <file leaf-file-name="pwa.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pwa/app/controller/pwa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="162">
+              <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pwa/app/templates/_index.html">
+      <file leaf-file-name="ctrl.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pwa/app/controller/ctrl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+            <state relative-caret-position="108">
+              <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pwa/app/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ctrl_light.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pwa/app/templates/ctrl_light.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -255,6 +155,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -276,13 +177,18 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pwa/app/index.html" />
-        <option value="$PROJECT_DIR$/pwa/app/templates/base.html" />
-        <option value="$PROJECT_DIR$/pwa/app/static/css/style.css" />
-        <option value="$PROJECT_DIR$/pwa/Pipfile" />
         <option value="$PROJECT_DIR$/pwa/app/__init__.py" />
         <option value="$PROJECT_DIR$/pwa/app/templates/index.html" />
-        <option value="$PROJECT_DIR$/pwa/app/controller/main.py" />
         <option value="$PROJECT_DIR$/pwa/app/templates/_index.html" />
+        <option value="$PROJECT_DIR$/pwa/Pipfile" />
+        <option value="$PROJECT_DIR$/pwa/app/templates/base.html" />
+        <option value="$PROJECT_DIR$/pwa/app/app.py" />
+        <option value="$PROJECT_DIR$/pwa/app/run_server.py" />
+        <option value="$PROJECT_DIR$/pwa/app/controller/ctrl.py" />
+        <option value="$PROJECT_DIR$/pwa/app/controller/main.py" />
+        <option value="$PROJECT_DIR$/pwa/app/static/css/style.css" />
+        <option value="$PROJECT_DIR$/pwa/app/templates/ctrl_light.html" />
+        <option value="$PROJECT_DIR$/pwa/app/templates/layout.html" />
       </list>
     </option>
   </component>
@@ -292,17 +198,29 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="1613" />
     <option name="height" value="920" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -321,26 +239,11 @@
               <item name="pwa" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="pwa" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="pwa" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -354,7 +257,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -382,6 +285,9 @@
       </list>
     </option>
   </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -401,39 +307,40 @@
     <option name="totallyTimeSpent" value="13489000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1613" height="920" extended-state="6" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31078494" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Capture Tool" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info id="Designer" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Remote Host" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="right" id="SciView" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" id="Theme Preview" order="10" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31064162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,79 +349,64 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_app/controller/pwa.py">
+    <entry file="file://$PROJECT_DIR$/pwa/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_app/model.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/pwa/app/controller/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_app/controller/pwa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+          <caret line="33" column="34" lean-forward="false" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/images/icons/icon-72x72.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/images/icons/icon-384x384.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/images/flasks.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/js/app.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/manifest.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/google58d5bdcfca43ffbe.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/favicon.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/README.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_app/templates/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_app/controller/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_app/static/sw.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/controller/pwa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/Procfile" />
     <entry file="file://$PROJECT_DIR$/pwa/app/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -522,20 +414,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/google58d5bdcfca43ffbe.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pwa/app/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/sw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -548,55 +430,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_app/templates/main/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="27" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pwa/app/static/css/_fontawesome.css" />
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/css/style.min.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/mdb.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="1143" column="7" selection-start-line="1143" selection-start-column="1" selection-end-line="1143" selection-end-column="7" />
+          <caret line="1143" column="7" lean-forward="false" selection-start-line="1143" selection-start-column="1" selection-end-line="1143" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pwa/app/static/mdbootstrap/scss/free/_cards.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/fontawesome/webfonts/fa-solid-900.ttf">
-      <provider selected="true" editor-type-id="fontseditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/fontawesome/webfonts/fa-solid-900.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/fontawesome/webfonts/fa-regular-400.ttf">
-      <provider selected="true" editor-type-id="fontseditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18728">
-          <caret line="4585" selection-start-line="4585" selection-end-line="4585" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/Pipfile.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/fontawesome/webfonts/fa-solid-900.ttf" />
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/fontawesome/webfonts/fa-regular-400.ttf" />
     <entry file="file://$PROJECT_DIR$/pwa/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -604,41 +459,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/__init__.py">
+    <entry file="file://$PROJECT_DIR$/pwa/app/templates/_index.html" />
+    <entry file="file://$PROJECT_DIR$/pwa/Pipfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="198">
+          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/mdbootstrap/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82530">
+          <caret line="4585" column="0" lean-forward="false" selection-start-line="4585" selection-start-column="0" selection-end-line="4585" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/run_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="33" lean-forward="false" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/pwa/app/templates/ctrl_light.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="558">
+          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pwa/app/controller/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="321">
+          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/Pipfile">
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/sw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="320">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/app/templates/_index.html">
+    <entry file="file://$PROJECT_DIR$/pwa/app/static/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/controller/pwa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pwa/app/controller/ctrl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
