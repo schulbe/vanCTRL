@@ -18,7 +18,7 @@ else:
     except ModuleNotFoundError:
         from controller_STUMP import Controller
 
-controller = Controller()
+controller = Controller(config['GPIOS'])
 
 app = Flask(
     __name__,

@@ -1,13 +1,5 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
-while True: # Run forever
-    i = input("type 0 or 1")
-    if i == 0:
-        GPIO.output(7, GPIO.HIGH) # Turn on
-    elif i == 1:
-        GPIO.output(7, GPIO.LOW) # Turn off
-
-
 class Controller:
 
     def __init__(self, pin_numbers):
@@ -16,12 +8,11 @@ class Controller:
         GPIO.setwarnings(False) # Ignore warning for now
         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 
-        GPIO.setup(self.pins['light_front'], GPIO.OUT, initial=GPIO.HIGH)
-        GPIO.setup(self.pins['light_back'], GPIO.OUT, initial=GPIO.HIGH)
+        GPIO.setup(int(self.pins['light_front']), GPIO.OUT, initial=GPIO.HIGH)
+        GPIO.setup(int(self.pins['light_back']), GPIO.OUT, initial=GPIO.HIGH)
 
     def switch_light(self, light):
-        io_pin = self.pins[f'light_{light}']
-        print(f'Switched light: {light}')
+        io_pin = int(self.pins[f'light_{light}'])
         if GPIO.input(io_pin):
             GPIO.output(io_pin, GPIO.LOW)
         else:

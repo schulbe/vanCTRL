@@ -9,13 +9,14 @@ python-dotenv = "*"
 gunicorn = "*"
 Flask-SQLAlchemy = "*"
 Flask-Migrate = "*"
-psycopg2-binary = "*"
+#psycopg2-binary = "*"
 Flask-SSLify = "*"
 flask-sslify = "*"
 flask-bootstrap = "*"
 requests = "*"
+"RPi.GPIO" = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
