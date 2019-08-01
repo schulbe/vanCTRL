@@ -1,38 +1,55 @@
 package com.bjorn.vanctrl
 
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+    val REQUEST_ENABLE_BT: Int = 17
+    val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
+    val OWN_MAC_ADDR: String = "48:27:EA:0A:C5:14"
 
-//    private lateinit var textMessage: TextView
-    private lateinit var nav_ctrl: NavController
+    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+
+    private lateinit var navController: NavController
+    private lateinit var viewModel: VanViewModel
+    private lateinit var rasPi: RasPi
+
+    private var mIsInForeground: Boolean = true
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_battery -> {
-
+                navController.navigate(R.id.batteryFragment)
+                viewModel.setFragmentTitle("batteryFragment")
+                launchPowerMeasurementUpdateRoutine()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_light -> {
-//                changeLights()
-//                textMessage.setText(R.string.title_light)
+            R.id.navigation_switches -> {
+                navController.navigate(R.id.switchesFragment)
+                viewModel.setFragmentTitle("switchesFragment")
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_fridge -> {
-//                changeFridge()
-//                textMessage.setText(R.string.title_fridge)
+                navController.navigate(R.id.fridgeFragment)
+                viewModel.setFragmentTitle("fridgeFragment")
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_radio -> {
-//                textMessage.setText(R.string.title_radio)
+                navController.navigate(R.id.radioFragment)
+                viewModel.setFragmentTitle("radioFragment")
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -41,28 +58,85 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-//        textMessage = findViewById(R.id.message)
+        setContentView(R.layout.activity_main)
+
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        nav_ctrl = Navigation.findNavController(this, R.id.nav_host_fragment)//.navigate(R.id.lightSwitch)
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
+        viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
+        viewModel.getPowerMeasurements().observe(this, Observer<Map<String,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
+
+        setUpBluetooth()
+
+        rasPi = RasPi()
+
+        viewModel.setFragmentTitle("batteryFragment")
+        launchPowerMeasurementUpdateRoutine()
+
     }
 
-//    fun changeLights() {
-////        val editText = findViewById<EditText>(R.id.editText)
-//        val intent = Intent(this, ChangeLightsActivity::class.java)
-////        intent.putExtra(STUFF, value)
-//        startActivity(intent)
-//    }
-//
-//    fun changeFridge() {
-////        val editText = findViewById<EditText>(R.id.editText)
-////        val message = R.string.title_light
-//        val intent = Intent(this, MainActivity::class.java).apply {
-////            putExtra(EXTRA_MESSAGE, message)
+    override fun onPause() {
+        super.onPause()
+        mIsInForeground = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mIsInForeground = true
+        launchPowerMeasurementUpdateRoutine()
+    }
+
+    private fun setUpBluetooth() {
+        if (bluetoothAdapter == null) {
+            Toast.makeText(getApplicationContext(),"Device doesnt Support Bluetooth", Toast.LENGTH_SHORT).show();
+            println("NO BLUETOOTH ADAPTER FOUND")
+            // Device doesn't support Bluetooth
+        }
+        if (bluetoothAdapter?.isEnabled == false) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+        }
+    }
+
+    private fun connectToDevice() {
+
+    }
+
+    private fun sendMessage(message: String) {
+        
+    }
+
+//    private fun getDeviceFromPaired(): String {
+//        val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
+//        pairedDevices?.forEach { device ->
+//            val deviceName = device.name
+//            val deviceHardwareAddress = device.address // MAC address
 //        }
-//        startActivity(intent)
+//
+//        return "abc"
 //    }
+
+    private fun setPowerMeasurementsToUI(measurements: Map<String, Float>) {
+        val formattedVoltage = "%.2f V".format(measurements["vBat"])
+        findViewById<TextView>(R.id.batteryVoltageView)?.apply {
+            text = formattedVoltage
+        }
+    }
+
+    private fun launchPowerMeasurementUpdateRoutine() {
+        GlobalScope.launch {
+            delay(1000)
+            while (viewModel.getFragmentTitle().value == "batteryFragment" && mIsInForeground) {
+                val measurements = rasPi.getPowerMeasurements()
+                viewModel.setPowerStatistics(measurements)
+                delay(1000)
+            }
+        }
+    }
+
+
+
 
 }

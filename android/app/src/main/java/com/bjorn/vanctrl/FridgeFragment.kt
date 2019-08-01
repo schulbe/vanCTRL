@@ -1,23 +1,18 @@
 package com.bjorn.vanctrl
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 
 
-class BatteryFragment : Fragment() {
-
-    private lateinit var model: VanViewModel
+class FridgeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = activity?.run {
-            ViewModelProviders.of(this)[VanViewModel::class.java]
-        } ?: throw Exception("Invalid Activity")
-
     }
 
     override fun onCreateView(
@@ -25,6 +20,6 @@ class BatteryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_battery, container, false)
+        return inflater.inflate(R.layout.fragment_fridge, container, false)
     }
 }

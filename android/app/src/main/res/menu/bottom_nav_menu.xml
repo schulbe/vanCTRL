@@ -6,8 +6,8 @@
             android:title="@string/title_battery"/>
 
     <item
-            android:id="@+id/navigation_light"
-            android:icon="@drawable/ic_lightbulb"
+            android:id="@+id/navigation_switches"
+            android:icon="@drawable/ic_switch"
             android:title="@string/title_light"/>
 
     <item
