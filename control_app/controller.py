@@ -1,7 +1,8 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
-class Controller:
 
+# noinspection PyUnresolvedReferences
+class Controller:
     def __init__(self, pin_numbers):
         self.pins = pin_numbers
 
@@ -18,5 +19,5 @@ class Controller:
         else:
             GPIO.output(io_pin, GPIO.HIGH)
 
-    def get_light_status(self):
-        return self.light_status
+    # def get_light_status(self):
+

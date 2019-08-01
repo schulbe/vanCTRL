@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/batteryFragment">
+    <fragment android:id="@+id/batteryFragment" android:name="com.bjorn.vanctrl.BatteryFragment"
+              android:label="fragment_battery" tools:layout="@layout/fragment_battery">
+        <action android:id="@+id/action_batteryFragment_to_lightSwitch2" app:destination="@id/lightSwitch"/>
+    </fragment>
+    <fragment android:id="@+id/lightSwitch" android:name="com.bjorn.vanctrl.LightSwitch"
+              android:label="fragment_light_switch" tools:layout="@layout/fragment_light_switch"/>
+</navigation>
