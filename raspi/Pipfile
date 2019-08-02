@@ -4,18 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-#Flask = "*"
-#python-dotenv = "*"
-#gunicorn = "*"
-#Flask-SQLAlchemy = "*"
-#Flask-Migrate = "*"
-#psycopg2-binary = "*"
-#Flask-SSLify = "*"
-#flask-sslify = "*"
-#flask-bootstrap = "*"
-#requests = "*"
-
-
 "RPi.GPIO" = "*"
 PyBluez = '*'
 
@@ -23,7 +11,7 @@ PyBluez = '*'
 [dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3"
 
 # OTHER NEED RESSOURCES
 #
