@@ -1,6 +1,8 @@
 package com.bjorn.vanctrl
 
-class RasPi {
+class RasPi(
+    private val btService: BluetoothService
+) {
 
     fun getPowerMeasurements(): Map<String, Float> {
 
@@ -13,6 +15,17 @@ class RasPi {
             "aBat" to aBattery,
             "aSol" to aSolar
         )
+    }
 
+    fun sendCommand(cmd: RaspiCommands) {
+        val commandMessage = "\u0002${cmd.value}\u0002"
+        println("GOT MESSAGE:")
+        println(commandMessage)
+
+        if (!btService.isConnected()) {
+            btService.openConnection()
+        }
+
+        btService.write(commandMessage)
     }
 }

@@ -1,41 +1,52 @@
-from bluetooth import *
+from BluetoothController import BluetoothController
+from GpioController import GpioController
+import configparser
+import os
 
-server_sock=BluetoothSocket( RFCOMM )
-server_sock.bind(("",PORT_ANY))
-server_sock.listen(1)
 
-port = server_sock.getsockname()[1]
 
-uuid = "1e0ca4ea-299d-4335-93eb-27fcfe7fa848"
+if __name__ == '__main__':
+    config = configparser.ConfigParser(os.environ)
+    config.read('config.ini')
+    commands = config['COMMANDS']
 
-advertise_service( server_sock, "SampleServer",
-                   service_id = uuid,
-                   service_classes = [ uuid, SERIAL_PORT_CLASS ],
-                   profiles = [ SERIAL_PORT_PROFILE ],
-                   #                   protocols = [ OBEX_UUID ]
-                   )
+    print("Initializing GPIO Controll")
+    gpio_controller = GpioController(config['GPIOS'])
 
-print("Waiting for connection on RFCOMM channel %d" % port)
+    print("Initializing BT Controll")
+    bt_controller = BluetoothController(config['IDS']['UUID'])
 
-client_sock, client_info = server_sock.accept()
-print("Accepted connection from ", client_info)
-
-try:
-    #    data = client_sock.recv(1024)
-    #   if len(data) == 0:
-    #      raise TypeError
-    # print("received [%s]" % data)
-    #client_sock.send(data)
-    # client_sock.send(data)
     while True:
-        msg = input("What should we send?")
-        client_sock.send(bytes(msg, 'utf-8'))
-        print("SENT MOFO!")
-except IOError:
-    pass
 
-print("disconnected")
+        print("Waiting for connection...")
+        try:
+            bt_controller.wait_for_connection()
+        except KeyboardInterrupt:
+            break
+        except:
+            continue
 
-client_sock.close()
-server_sock.close()
-print("all done")
+        while True:
+            try:
+                cmd = bt_controller.wait_for_command()
+            except KeyboardInterrupt:
+                break
+            except Exception as e:
+                error_code = eval(str(e))[0]
+                if error_code == 104:
+                    bt_controller.close_connection()
+                    break
+
+            print(f'COMMAND: {cmd}')
+            if cmd == commands['SWITCH_FRONT_LIGHT_ON']:
+                gpio_controller.switch('LIGHT_FRONT', on=True)
+            elif cmd == commands['SWITCH_FRONT_LIGHT_OFF']:
+                gpio_controller.switch('LIGHT_FRONT', on=False)
+            elif cmd == commands['SWITCH_BACK_LIGHT_ON']:
+                gpio_controller.switch('LIGHT_BACK', on=True)
+            elif cmd == commands['SWITCH_BACK_LIGHT_OFF']:
+                gpio_controller.switch('LIGHT_BACK', on=False)
+            elif cmd == commands['SWITCH_BACK_LIGHT_OFF']:
+                bt_controller.close_connection()
+                break
+

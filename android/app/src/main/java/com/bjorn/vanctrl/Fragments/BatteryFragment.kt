@@ -1,4 +1,4 @@
-package com.bjorn.vanctrl
+package com.bjorn.vanctrl.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.bjorn.vanctrl.R
+import com.bjorn.vanctrl.VanViewModel
 
 
 class BatteryFragment : Fragment() {

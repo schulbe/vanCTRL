@@ -2,16 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_flash.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_fridge.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_lightbulb.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_speaker.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/raspi/BluetoothController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vancontrol.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vancontrol.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control_app/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_app/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/BatteryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/BatteryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/FridgeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/FridgeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/RadioFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/RadioFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/SwitchesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/SwitchesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/RasPi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/RasPi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_battery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_battery.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_fridge.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_fridge.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_radio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_radio.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,23 +65,24 @@
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564416436209" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/raspi" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/raspi" />
       <recent name="$PROJECT_DIR$/pwa/app/static/mdbootstrap" />
       <recent name="$PROJECT_DIR$/pwa/app/static/mdbootstrap/js" />
       <recent name="$PROJECT_DIR$/pwa/app/static/mdbootstrap/css" />
-      <recent name="$PROJECT_DIR$/pwa/app/templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/raspi" />
       <recent name="$PROJECT_DIR$/pwa/app/static/js" />
       <recent name="$PROJECT_DIR$/pwa/app/static" />
       <recent name="$PROJECT_DIR$/pwa/app" />
@@ -90,6 +100,35 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="server" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="vancontrol" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="sftp://pi@192.168.0.13:22/home/pi/.local/share/virtualenvs/raspi-o3thuDf6/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/raspi" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/raspi/server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.server" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -105,6 +144,8 @@
       <workItem from="1564593561112" duration="4244000" />
       <workItem from="1564604956038" duration="977000" />
       <workItem from="1564641055209" duration="2470000" />
+      <workItem from="1564744229295" duration="3543000" />
+      <workItem from="1564747905919" duration="7734000" />
     </task>
     <servers />
   </component>
@@ -123,5 +164,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/vancontrol$server.coverage" NAME="server Coverage Results" MODIFIED="1564758963192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/raspi" />
   </component>
 </project>

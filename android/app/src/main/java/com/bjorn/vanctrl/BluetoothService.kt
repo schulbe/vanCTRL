@@ -1,18 +1,12 @@
-package com.bjorn.vanctrl.bluetoothBjorn
+package com.bjorn.vanctrl
 
-import android.app.PendingIntent.getActivity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Intent
-import android.os.Bundle
-import android.os.Handler
-import android.os.Message
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.startActivityForResult
-import com.bjorn.vanctrl.MainActivity
-import com.bjorn.vanctrl.VanViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -65,7 +59,6 @@ class BluetoothService(
         try {
             mmSocket.connect()
         } catch (e: IOException) {
-            println(e)
             Toast.makeText(activity, "Connection via Socket failed", Toast.LENGTH_LONG).show()
             throw BluetoothException("Could not connect via given socket")
         }
@@ -76,9 +69,12 @@ class BluetoothService(
     }
 
     fun write(message: String) {
-        Thread{ConnectedThread().write(message.toByteArray())}
+        GlobalScope.launch{ConnectedThread().write(message.toByteArray())}
     }
 
+    fun isConnected(): Boolean {
+        return mmSocket.isConnected
+    }
     fun closeConnection() {
         try {
             mmSocket.close()

@@ -3,12 +3,12 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
             app:startDestination="@id/batteryFragment">
-    <fragment android:id="@+id/batteryFragment" android:name="com.bjorn.vanctrl.BatteryFragment"
+    <fragment android:id="@+id/batteryFragment" android:name="com.bjorn.vanctrl.Fragments.BatteryFragment"
               android:label="fragment_battery" tools:layout="@layout/fragment_battery"/>
-    <fragment android:id="@+id/switchesFragment" android:name="com.bjorn.vanctrl.SwitchesFragment"
+    <fragment android:id="@+id/switchesFragment" android:name="com.bjorn.vanctrl.Fragments.SwitchesFragment"
               android:label="fragment_light_switch" tools:layout="@layout/fragment_switches"/>
-    <fragment android:id="@+id/fridgeFragment" android:name="com.bjorn.vanctrl.FridgeFragment"
+    <fragment android:id="@+id/fridgeFragment" android:name="com.bjorn.vanctrl.Fragments.FridgeFragment"
               android:label="fragment_fridge" tools:layout="@layout/fragment_fridge"/>
-    <fragment android:id="@+id/radioFragment" android:name="com.bjorn.vanctrl.RadioFragment"
+    <fragment android:id="@+id/radioFragment" android:name="com.bjorn.vanctrl.Fragments.RadioFragment"
               android:label="fragment_radio" tools:layout="@layout/fragment_radio"/>
 </navigation>

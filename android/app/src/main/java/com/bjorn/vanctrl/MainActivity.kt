@@ -1,34 +1,33 @@
 package com.bjorn.vanctrl
 
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothSocket
-import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.bjorn.vanctrl.bluetoothBjorn.BTHandler
-import com.bjorn.vanctrl.bluetoothBjorn.BluetoothService
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import androidx.navigation.fragment.NavHostFragment
+import com.bjorn.vanctrl.Fragments.SwitchesFragment
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListener {
     val REQUEST_ENABLE_BT: Int = 17
 
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
     val PI_BT_NAME: String = "raspberrypi"
     val PI_UUID: UUID = UUID.fromString("1e0ca4ea-299d-4335-93eb-27fcfe7fa848")
 
-    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
-    private lateinit var piBtDevice: BluetoothDevice
+//    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+//    private lateinit var piBtDevice: BluetoothDevice
+    private lateinit var btService: BluetoothService
+
     private lateinit var navController: NavController
     private lateinit var viewModel: VanViewModel
     private lateinit var rasPi: RasPi
@@ -38,24 +37,24 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_battery -> {
-                navController.navigate(R.id.batteryFragment)
                 viewModel.setFragmentTitle("batteryFragment")
                 launchPowerMeasurementUpdateRoutine()
+                navController.navigate(R.id.batteryFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_switches -> {
-                navController.navigate(R.id.switchesFragment)
                 viewModel.setFragmentTitle("switchesFragment")
+                navController.navigate(R.id.switchesFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_fridge -> {
-                navController.navigate(R.id.fridgeFragment)
                 viewModel.setFragmentTitle("fridgeFragment")
+                navController.navigate(R.id.fridgeFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_radio -> {
-                navController.navigate(R.id.radioFragment)
                 viewModel.setFragmentTitle("radioFragment")
+                navController.navigate(R.id.radioFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -74,35 +73,11 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.getPowerMeasurements().observe(this, Observer<Map<String,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
 
-        // BLUETOOTH TEST
-        setUpBluetooth()
-        val btHandler = BTHandler()
-        val btService = BluetoothService(btHandler)
-
-        val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
-        pairedDevices?.forEach { device ->
-            val deviceName = device.name
-            val deviceHardwareAddress = device.address // MAC address
-
-            if (deviceName == PI_BT_NAME && deviceHardwareAddress == PI_MAC_ADDR) {
-                piBtDevice = device
-                println("YEAH IM FUCKING CONNECTED")
-            }
-        }
+        btService = BluetoothService(PI_UUID, this, RaspiMessageProcessor(viewModel))
+        btService.initiateBluetoothConnection(PI_MAC_ADDR, PI_BT_NAME)
 
 
-        val mmSocket: BluetoothSocket = piBtDevice.createRfcommSocketToServiceRecord(PI_UUID)
-        mmSocket.connect()
-
-
-        btService.setUp(mmSocket)
-        Thread.sleep(1000)
-//        btService.sendMessage("Hallo hallo?")
-        btService.waitForMessages()
-
-        // BLUETOOTH TEST END
-
-        rasPi = RasPi()
+        rasPi = RasPi(btService)
 
         viewModel.setFragmentTitle("batteryFragment")
         launchPowerMeasurementUpdateRoutine()
@@ -112,47 +87,44 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         mIsInForeground = false
+//        btService.closeConnection()
     }
 
     override fun onResume() {
         super.onResume()
         mIsInForeground = true
+//        try {btService.openConnection()}
+//        catch (e: BluetoothException){ Toast.makeText(this, "Closing Socket failed", Toast.LENGTH_LONG).show()}
         launchPowerMeasurementUpdateRoutine()
     }
 
-    private fun setUpBluetooth() {
-        if (bluetoothAdapter == null) {
-            Toast.makeText(getApplicationContext(),"Device doesnt Support Bluetooth", Toast.LENGTH_SHORT).show();
-            println("NO BLUETOOTH ADAPTER FOUND")
-            // Device doesn't support Bluetooth
+    override fun onStart() {
+        super.onStart()
+        try {
+            btService.openConnection()
+            btService.openReader()
+        } catch (e: BluetoothException){ Toast.makeText(this, "Socket openening and reading failed", Toast.LENGTH_LONG).show()}
+    }
+
+    override fun onStop() {
+        super.onStop()
+        rasPi.sendCommand(RaspiCommands.CLOSE_CONNECTION)
+        btService.closeConnection()
+    }
+
+    override fun switch(what: String, on:Boolean) {
+        println("SWITCH CALLED")
+        when(what) {
+            "FRONT_LIGHT" -> when(on) {
+                true  -> rasPi.sendCommand(RaspiCommands.SWITCH_FRONT_LIGHT_ON)
+                false -> rasPi.sendCommand(RaspiCommands.SWITCH_FRONT_LIGHT_OFF)
+            }
+            "BACK_LIGHT" -> when(on) {
+                true  -> rasPi.sendCommand(RaspiCommands.SWITCH_BACK_LIGHT_ON)
+                false -> rasPi.sendCommand(RaspiCommands.SWITCH_BACK_LIGHT_OFF)
+            }
         }
-        if (bluetoothAdapter?.isEnabled == false) {
-            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
-        }
     }
-
-    private fun connectToDevice() {
-
-    }
-
-    private fun sendMessage(message: String) {
-        
-    }
-
-    private fun testBT() {
-
-    }
-
-//    private fun getDeviceFromPaired(): String {
-//        val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
-//        pairedDevices?.forEach { device ->
-//            val deviceName = device.name
-//            val deviceHardwareAddress = device.address // MAC address
-//        }
-//
-//        return "abc"
-//    }
 
     private fun setPowerMeasurementsToUI(measurements: Map<String, Float>) {
         val formattedVoltage = "%.2f V".format(measurements["vBat"])
@@ -162,17 +134,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchPowerMeasurementUpdateRoutine() {
-        GlobalScope.launch {
-            delay(1000)
-            while (viewModel.getFragmentTitle().value == "batteryFragment" && mIsInForeground) {
-                val measurements = rasPi.getPowerMeasurements()
-                viewModel.setPowerStatistics(measurements)
-                delay(1000)
-            }
-        }
+//        GlobalScope.launch {
+////            delay(1000)
+////            while (viewModel.getFragmentTitle().value == "batteryFragment" && mIsInForeground) {
+////                val measurements = rasPi.getPowerMeasurements()
+////                viewModel.setPowerStatistics(measurements)
+////                delay(1000)
+////            }
+////            btService.o
+//        }
     }
-
-
-
 
 }

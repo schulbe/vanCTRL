@@ -4,36 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-#Flask = "*"
-#python-dotenv = "*"
-#gunicorn = "*"
-#Flask-SQLAlchemy = "*"
-#Flask-Migrate = "*"
-#psycopg2-binary = "*"
-#Flask-SSLify = "*"
-#flask-sslify = "*"
-#flask-bootstrap = "*"
-#requests = "*"
-
-
+Flask = "*"
+python-dotenv = "*"
+gunicorn = "*"
+Flask-SQLAlchemy = "*"
+Flask-Migrate = "*"
+psycopg2-binary = "*"
+Flask-SSLify = "*"
+flask-sslify = "*"
+flask-bootstrap = "*"
+requests = "*"
 "RPi.GPIO" = "*"
-PyBluez = '*'
-
 
 [dev-packages]
 
 [requires]
 python_version = "3.7"
-
-# OTHER NEED RESSOURCES
-#
-# Necessary Headers etc:
-# sudo apt-get install libbluetooth-dev
-#
-# bluetooth Profile not found error see:
-# https://stackoverflow.com/questions/36675931/bluetooth-btcommon-bluetootherror-2-no-such-file-or-directory
-#
-# bluetooth permission denied error see:
-# https://stackoverflow.com/questions/34599703/rfcomm-bluetooth-permission-denied-error-raspberry-pi
-#
-#
