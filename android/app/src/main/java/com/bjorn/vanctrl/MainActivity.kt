@@ -2,6 +2,7 @@ package com.bjorn.vanctrl
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -12,17 +13,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bjorn.vanctrl.bluetoothBjorn.BTHandler
+import com.bjorn.vanctrl.bluetoothBjorn.BluetoothService
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val REQUEST_ENABLE_BT: Int = 17
+
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
-    val OWN_MAC_ADDR: String = "48:27:EA:0A:C5:14"
+    val PI_BT_NAME: String = "raspberrypi"
+    val PI_UUID: UUID = UUID.fromString("1e0ca4ea-299d-4335-93eb-27fcfe7fa848")
 
     private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
-
+    private lateinit var piBtDevice: BluetoothDevice
     private lateinit var navController: NavController
     private lateinit var viewModel: VanViewModel
     private lateinit var rasPi: RasPi
@@ -68,7 +74,33 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.getPowerMeasurements().observe(this, Observer<Map<String,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
 
+        // BLUETOOTH TEST
         setUpBluetooth()
+        val btHandler = BTHandler()
+        val btService = BluetoothService(btHandler)
+
+        val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
+        pairedDevices?.forEach { device ->
+            val deviceName = device.name
+            val deviceHardwareAddress = device.address // MAC address
+
+            if (deviceName == PI_BT_NAME && deviceHardwareAddress == PI_MAC_ADDR) {
+                piBtDevice = device
+                println("YEAH IM FUCKING CONNECTED")
+            }
+        }
+
+
+        val mmSocket: BluetoothSocket = piBtDevice.createRfcommSocketToServiceRecord(PI_UUID)
+        mmSocket.connect()
+
+
+        btService.setUp(mmSocket)
+        Thread.sleep(1000)
+//        btService.sendMessage("Hallo hallo?")
+        btService.waitForMessages()
+
+        // BLUETOOTH TEST END
 
         rasPi = RasPi()
 
@@ -106,6 +138,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun sendMessage(message: String) {
         
+    }
+
+    private fun testBT() {
+
     }
 
 //    private fun getDeviceFromPaired(): String {
