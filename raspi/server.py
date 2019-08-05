@@ -2,64 +2,68 @@ from BluetoothController import BluetoothController
 from GpioController import GpioController
 import configparser
 import os
+import logging
+import time
 
 
-def process_command(cmd, gpio_controller):
-    if cmd == commands['SWITCH_FRONT_LIGHT_ON']:
-        gpio_controller.switch('LIGHT_FRONT', on=True)
-    elif cmd == commands['SWITCH_FRONT_LIGHT_OFF']:
-        gpio_controller.switch('LIGHT_FRONT', on=False)
-    elif cmd == commands['SWITCH_BACK_LIGHT_ON']:
-        gpio_controller.switch('LIGHT_BACK', on=True)
-    elif cmd == commands['SWITCH_BACK_LIGHT_OFF']:
-        gpio_controller.switch('LIGHT_BACK', on=False)
-    elif cmd == commands['CLOSE_CONNECTION']:
-        bt_controller.close_connection()
+send_statistics = False
+
+
+class Processor:
+    def __init__(self, conf):
+        self.config = conf
+        self.commands = config['COMMANDS']
+
+        self.dt = 1/conf['GENERAL']['updates_per_sec']
+
+        logging.info("Initializing GPIO Controll")
+        self.gpio_controller = GpioController(pin_numbers=config['GPIOS'])
+
+        logging.info("Initializing BT Controll")
+        self.bt_controller = BluetoothController(uuid=config['IDS']['UUID'])
+
+    def run_main_loop(self):
+        logging.info("Starting connect_and_listen loop...")
+        self.bt_controller.connect_and_listen(callback=self.process_command)
+
+    def process_command(self, cmd, lock):
+        if cmd == self.commands['SWITCH_FRONT_LIGHT_ON']:
+            with lock:
+                self.gpio_controller.switch('LIGHT_FRONT', on=True)
+
+        elif cmd == self.commands['SWITCH_FRONT_LIGHT_OFF']:
+            with lock:
+                self.gpio_controller.switch('LIGHT_FRONT', on=False)
+
+        elif cmd == self.commands['SWITCH_BACK_LIGHT_ON']:
+            with lock:
+                self.gpio_controller.switch('LIGHT_BACK', on=True)
+
+        elif cmd == self.commands['SWITCH_BACK_LIGHT_OFF']:
+            with lock:
+                self.gpio_controller.switch('LIGHT_BACK', on=False)
+
+        elif cmd == self.commands['SEND_STATISTICS_START']:
+            global send_statistics
+            send_statistics = True
+
+            while send_statistics:
+                s = self.gpio_controller.get_statistics()
+                msg = f'\u0003{"|".join([str(k)+"-"+str(v) for k,v in s.items()])}\u0003'
+                with lock:
+                    self.bt_controller.send(msg)
+                time.sleep(self.dt)
+
+        elif cmd == self.commands['SEND_STATISTICS_STOP']:
+            global send_statistics
+            send_statistics = False
 
 
 if __name__ == '__main__':
     config = configparser.ConfigParser(os.environ)
     config.read('config.ini')
-    commands = config['COMMANDS']
 
-    print("Initializing GPIO Controll")
-    gpio_controller = GpioController(config['GPIOS'])
+    #TODO: LOGGING
 
-    print("Initializing BT Controll")
-    bt_controller = BluetoothController(config['IDS']['UUID'])
-
-
-    while True:
-
-        print("Waiting for connection...")
-        try:
-            bt_controller._wait_for_connection()
-        except KeyboardInterrupt:
-            break
-        except:
-            continue
-
-        while True:
-            try:
-                cmd = bt_controller.wait_for_command()
-            except KeyboardInterrupt:
-                break
-            except Exception as e:
-                error_code = eval(str(e))[0]
-                if error_code == 104:
-                    bt_controller.close_connection()
-                    break
-
-            print(f'COMMAND: {cmd}')
-            if cmd == commands['SWITCH_FRONT_LIGHT_ON']:
-                gpio_controller.switch('LIGHT_FRONT', on=True)
-            elif cmd == commands['SWITCH_FRONT_LIGHT_OFF']:
-                gpio_controller.switch('LIGHT_FRONT', on=False)
-            elif cmd == commands['SWITCH_BACK_LIGHT_ON']:
-                gpio_controller.switch('LIGHT_BACK', on=True)
-            elif cmd == commands['SWITCH_BACK_LIGHT_OFF']:
-                gpio_controller.switch('LIGHT_BACK', on=False)
-            elif cmd == commands['CLOSE_CONNECTION']:
-                bt_controller.close_connection()
-                break
-
+    processor = Processor(config)
+    processor.run_main_loop()

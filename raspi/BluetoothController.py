@@ -40,11 +40,12 @@ class BluetoothController:
             logging.error(f'BluetoothError occured while trying to send message: {e}', exc_info=True, extra={'message': msg})
             self._handle_error(e)
 
-    def listen(self, callback):
+    def connect_and_listen(self, callback):
         self.callback = callback
 
         t = threading.Thread(target=self._listen)
         t.start()
+        t.join()
 
     def _wait_for_connection(self):
         logging.info(f'Waiting for connection')
@@ -71,8 +72,7 @@ class BluetoothController:
         data = data.decode("utf-8")
 
         if data.startswith("\u0002") and data.endswith("\u0002"):
-            with self._lock:
-                self.callback(data.replace('\u0002', ''))
+            self.callback(data.replace('\u0002', ''), self._lock)
         else:
             logging.error(f"Did not understand command: {data}")
 
