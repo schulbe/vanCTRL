@@ -1,23 +1,24 @@
 package com.bjorn.vanctrl
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Switch
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
+import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
-class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListener {
+class MainActivity : AppCompatActivity(),
+    SwitchesFragment.OnSwitchChangedListener,
+    SettingsFragment.OnBluetoothButtonClickedListener {
     val REQUEST_ENABLE_BT: Int = 17
 
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
@@ -36,10 +37,10 @@ class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListen
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_battery -> {
-                viewModel.setFragmentTitle("batteryFragment")
+            R.id.navigation_overview -> {
+                viewModel.setFragmentTitle("overviewFragment")
                 launchPowerMeasurementUpdateRoutine()
-                navController.navigate(R.id.batteryFragment)
+                navController.navigate(R.id.overviewFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_switches -> {
@@ -47,9 +48,9 @@ class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListen
                 navController.navigate(R.id.switchesFragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_fridge -> {
+            R.id.navigation_settings -> {
                 viewModel.setFragmentTitle("fridgeFragment")
-                navController.navigate(R.id.fridgeFragment)
+                navController.navigate(R.id.settingsFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_radio -> {
@@ -68,18 +69,18 @@ class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListen
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.getPowerMeasurements().observe(this, Observer<Map<String,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
 
         btService = BluetoothService(PI_UUID, this, RaspiMessageProcessor(viewModel))
-        btService.initiateBluetoothConnection(PI_MAC_ADDR, PI_BT_NAME)
-
+        btService.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
 
         rasPi = RasPi(btService)
 
-        viewModel.setFragmentTitle("batteryFragment")
+//        viewModel.setFragmentTitle("batteryFragment")
         launchPowerMeasurementUpdateRoutine()
 
     }
@@ -98,22 +99,21 @@ class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListen
         launchPowerMeasurementUpdateRoutine()
     }
 
-    override fun onStart() {
-        super.onStart()
-        try {
-            btService.openConnection()
-            btService.openReader()
-        } catch (e: BluetoothException){ Toast.makeText(this, "Socket openening and reading failed", Toast.LENGTH_LONG).show()}
-    }
-
-    override fun onStop() {
-        super.onStop()
-        rasPi.sendCommand(RaspiCommands.CLOSE_CONNECTION)
-        btService.closeConnection()
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        try {
+//            btService.openConnection()
+//            btService.openReader()
+//        } catch (e: BluetoothException){ Toast.makeText(this, "Socket openening and reading failed", Toast.LENGTH_LONG).show()}
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        rasPi.sendCommand(RaspiCommands.CLOSE_CONNECTION)
+//        btService.closeConnection()
+//    }
 
     override fun switch(what: String, on:Boolean) {
-        println("SWITCH CALLED")
         when(what) {
             "FRONT_LIGHT" -> when(on) {
                 true  -> rasPi.sendCommand(RaspiCommands.SWITCH_FRONT_LIGHT_ON)
@@ -126,6 +126,12 @@ class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListen
         }
     }
 
+    override fun connectBluetoothDevice() {
+        btService.initiateBluetoothConnection(PI_MAC_ADDR, PI_BT_NAME)
+        btService.openConnection()
+        btService.openReader()
+    }
+
     private fun setPowerMeasurementsToUI(measurements: Map<String, Float>) {
         val formattedVoltage = "%.2f V".format(measurements["vBat"])
         findViewById<TextView>(R.id.batteryVoltageView)?.apply {
@@ -133,15 +139,27 @@ class MainActivity : AppCompatActivity(), SwitchesFragment.OnSwitchChangedListen
         }
     }
 
+    private fun setConnectionBanner(isConnected: Boolean) {
+        if (isConnected) {
+            findViewById<TextView>(R.id.noBtConnectionView)?.apply{
+                visibility = View.INVISIBLE
+            }
+        } else {
+            findViewById<TextView>(R.id.noBtConnectionView)?.apply{
+                visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun launchPowerMeasurementUpdateRoutine() {
 //        GlobalScope.launch {
-////            delay(1000)
-////            while (viewModel.getFragmentTitle().value == "batteryFragment" && mIsInForeground) {
-////                val measurements = rasPi.getPowerMeasurements()
-////                viewModel.setPowerStatistics(measurements)
-////                delay(1000)
-////            }
-////            btService.o
+//            delay(1000)
+//            while (viewModel.getFragmentTitle().value == "overviewFragment" && mIsInForeground) {
+//                val measurements = rasPi.getPowerMeasurements()
+//                viewModel.setPowerStatistics(measurements)
+//                delay(1000)
+//            }
+//            btService.o
 //        }
     }
 

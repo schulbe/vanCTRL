@@ -22,10 +22,6 @@ class RasPi(
         println("GOT MESSAGE:")
         println(commandMessage)
 
-        if (!btService.isConnected()) {
-            btService.openConnection()
-        }
-
         btService.write(commandMessage)
     }
 }

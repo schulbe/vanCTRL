@@ -20,10 +20,20 @@
             app:layout_constraintHorizontal_bias="0.0"/>
     <fragment
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="395dp"
-            android:layout_height="659dp" app:navGraph="@navigation/nav_graph" app:defaultNavHost="true"
+            android:layout_width="393dp"
+            android:layout_height="624dp" app:navGraph="@navigation/nav_graph" app:defaultNavHost="true"
             android:id="@+id/nav_host_fragment"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/noBtConnectionView" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
+    <TextView
+            android:text="@string/noBtConnectionWarning"
+            android:layout_width="397dp"
+            android:layout_height="42dp"
+            android:gravity="center"
+            android:id="@+id/noBtConnectionView" android:layout_marginTop="4dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:background="#00D80909"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

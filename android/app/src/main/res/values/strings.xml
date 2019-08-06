@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Vancontrol</string>
-    <string name="title_battery">Batterie</string>
-    <string name="title_fridge">Kühlung</string>
+    <string name="title_overview">Übersicht</string>
+    <string name="title_settings">Einstellungen</string>
     <string name="title_radio">Radio</string>
-    <string name="title_light">Licht</string>
+    <string name="title_light">Schalter</string>
     <string name="title_activity_change_lights">ChangeLightsActivity</string>
     <string name="front_light_switch">Licht vorne</string>
     <string name="back_light_switch">Licht hinten</string>
     <string name="title_activity_bluetooth_connection">BluetoothConnectionActivity</string>
+    <string name="overview_battery_title">Batterie</string>
+    <string name="noBtConnectionWarning">Keine Bluetoothverbindung hergestellt!</string>
 </resources>

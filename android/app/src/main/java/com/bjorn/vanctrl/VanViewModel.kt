@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class VanViewModel : ViewModel() {
     private val powerMeasurements = MutableLiveData<Map<String, Float>>()
     private val fragmentTitle = MutableLiveData<String>()
-
+    private val btConnected = MutableLiveData<Boolean>()
 
     fun setPowerStatistics(vBattery: Float, aBattery: Float, aSolar: Float) {
         powerMeasurements.postValue(mapOf<String, Float>(
@@ -33,4 +33,11 @@ class VanViewModel : ViewModel() {
         return fragmentTitle
     }
 
+    fun getBtConnected(): LiveData<Boolean> {
+        return btConnected
+    }
+
+    fun setBtConnected(connected: Boolean) {
+        btConnected.postValue(connected)
+    }
 }

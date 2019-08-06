@@ -14,10 +14,6 @@ class SwitchesFragment : Fragment() {
 
     private lateinit var callback: OnSwitchChangedListener
 
-    fun setOnSwitchChangedListener(callback: OnSwitchChangedListener) {
-        this.callback = callback
-    }
-
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is OnSwitchChangedListener) {

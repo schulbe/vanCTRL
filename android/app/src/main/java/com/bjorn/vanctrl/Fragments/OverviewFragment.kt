@@ -5,13 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import com.bjorn.vanctrl.R
+import com.bjorn.vanctrl.VanViewModel
 
 
-class FridgeFragment : Fragment() {
+class OverviewFragment : Fragment() {
+
+    private lateinit var model: VanViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        model = activity?.run {
+            ViewModelProviders.of(this)[VanViewModel::class.java]
+        } ?: throw Exception("Invalid Activity")
+
     }
 
     override fun onCreateView(
@@ -19,6 +27,6 @@ class FridgeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fridge, container, false)
+        return inflater.inflate(R.layout.fragment_overview, container, false)
     }
 }

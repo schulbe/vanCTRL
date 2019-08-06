@@ -7,6 +7,8 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -25,8 +27,10 @@ class BluetoothService(
     private val messageProcessor: MessageProcessor
 ) {
     private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+    private var mmSocket: BluetoothSocket? = null
+    private val isConnected = MutableLiveData<Boolean>()
+
     private lateinit var piBtDevice: BluetoothDevice
-    private lateinit var mmSocket: BluetoothSocket
 
     private val REQUEST_ENABLE_BT = 17
 
@@ -57,10 +61,13 @@ class BluetoothService(
 
     fun openConnection() {
         try {
-            mmSocket.connect()
+            mmSocket?.connect()
         } catch (e: IOException) {
-            Toast.makeText(activity, "Connection via Socket failed", Toast.LENGTH_LONG).show()
-            throw BluetoothException("Could not connect via given socket")
+            if (isConnected().value == true) {
+                Toast.makeText(activity, "Already Connected!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(activity, "Connection via Socket failed", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -69,29 +76,34 @@ class BluetoothService(
     }
 
     fun write(message: String) {
-        GlobalScope.launch{ConnectedThread().write(message.toByteArray())}
+        GlobalScope.launch {ConnectedThread().write(message.toByteArray())}
     }
 
-    fun isConnected(): Boolean {
-        return mmSocket.isConnected
+    fun isConnected(): LiveData<Boolean> {
+        isConnected.postValue( mmSocket?.isConnected?: false)
+        return isConnected
     }
+
     fun closeConnection() {
         try {
-            mmSocket.close()
+            mmSocket?.close()
         } catch (e: IOException) {
-            println(e)
-
-            throw BluetoothException("Could not close the connect socket")
+            Toast.makeText(activity, "IOException in closeConnection()", Toast.LENGTH_LONG).show()
         }
     }
 
     private inner class ConnectedThread {
 
-        private val mmInStream: InputStream = mmSocket.inputStream
-        private val mmOutStream: OutputStream = mmSocket.outputStream
+        private val mmInStream: InputStream? = mmSocket?.inputStream
+        private val mmOutStream: OutputStream? = mmSocket?.outputStream
         private val mmBuffer: ByteArray = ByteArray(1024) // mmBuffer store for the stream
 
         fun read() {
+            if (mmInStream == null) {
+                Toast.makeText(activity, "Could not write data because no output stream is available", Toast.LENGTH_LONG).show()
+                return
+            }
+
             var numBytes: Int // bytes returned from read()
 
             // Keep listening to the InputStream until an exception occurs.
@@ -100,8 +112,13 @@ class BluetoothService(
                 numBytes = try {
                     mmInStream.read(mmBuffer)
                 } catch (e: IOException) {
+                    Toast.makeText(activity, "Inputstream was diconnected", Toast.LENGTH_LONG).show()
                     Log.d(TAG, "Input stream was disconnected", e)
                     break
+                }
+                if (numBytes == 0) {
+                    Toast.makeText(activity, "Received Message of zero length", Toast.LENGTH_LONG).show()
+                    continue
                 }
                 // Send the obtained bytes to the UI activity.
                 val receivedString = String(mmBuffer.sliceArray(0 until numBytes))
@@ -112,9 +129,15 @@ class BluetoothService(
 
         // Call this from the main activity to send data to the remote device.
         fun write(bytes: ByteArray) {
+            if (mmOutStream == null) {
+                Toast.makeText(activity, "Could not write data because no output stream is available", Toast.LENGTH_LONG).show()
+                return
+            }
+
             try {
                 mmOutStream.write(bytes)
             } catch (e: IOException) {
+                Toast.makeText(activity, "Could not write data", Toast.LENGTH_LONG).show()
                 Log.e(TAG, "Error occurred when sending data", e)
                 return
             }
