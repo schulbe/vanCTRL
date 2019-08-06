@@ -63,7 +63,6 @@ if __name__ == '__main__':
     config = configparser.ConfigParser(os.environ)
     config.read('/home/pi/repos/vancontrol/raspi/config.ini')
 
-    #TODO: LOGGING
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     fileHandler = logging.FileHandler(f'/home/pi/logs/{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log')
