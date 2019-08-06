@@ -7,7 +7,7 @@ import os
 
 if __name__ == '__main__':
     config = configparser.ConfigParser(os.environ)
-    config.read('config.ini')
+    config.read('/home/pi/repos/vancontrol/raspi/config.ini')
     commands = config['COMMANDS']
 
     print("Initializing GPIO Controll")
