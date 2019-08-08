@@ -5,32 +5,52 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class VanViewModel : ViewModel() {
-    private val powerMeasurements = MutableLiveData<Map<String, Float>>()
-    private val fragmentTitle = MutableLiveData<String>()
+    private val statistics = MutableLiveData<Map<RaspiCodes, Float>>()
+    private val activeFragment = MutableLiveData<Int>()
     private val btConnected = MutableLiveData<Boolean>()
+    private val switchStatus = MutableLiveData<Map<String, Boolean>>()
 
-    fun setPowerStatistics(vBattery: Float, aBattery: Float, aSolar: Float) {
-        powerMeasurements.postValue(mapOf<String, Float>(
-            "vBat" to vBattery,
-            "aBat" to aBattery,
-            "aSol" to aSolar
+//    fun setStatistics(vBattery: Float, aBattery: Float, aSolar: Float) {
+//        statistics.postValue(mapOf(
+//            RaspiCodes.STAT_BATTERY_VOLT to vBattery,
+//            RaspiCodes.STAT_BATTERY_AMP to aBattery,
+//            RaspiCodes.STAT_SOLAR_AMP to aSolar
+//        ))
+//    }
+
+    fun setSwitchStatus(bedLight:Boolean, kitchenLight:Boolean, fridge:Boolean, radio:Boolean) {
+        switchStatus.postValue(mapOf(
+            "bedLight" to bedLight,
+            "kitchenLight" to kitchenLight,
+            "fridge" to fridge,
+            "radio" to radio
         ))
     }
 
-    fun setPowerStatistics(measurements: Map<String, Float>) {
-        powerMeasurements.postValue(measurements)
+    fun toggleSwitchStatus(what: String) {
+        val current = switchStatus.value!!.toMutableMap()
+        current[what] = !(current[what]?: true)
+        switchStatus.postValue(current.toMap())
     }
 
-    fun getPowerMeasurements(): LiveData<Map<String, Float>>{
-        return powerMeasurements
+    fun getSwitchStatus(): LiveData<Map<String, Boolean>>{
+        return switchStatus
     }
 
-    fun setFragmentTitle(title:String) {
-        fragmentTitle.postValue(title)
+    fun setStatistics(measurements: Map<RaspiCodes, Float>) {
+        statistics.postValue(measurements)
     }
 
-    fun getFragmentTitle(): LiveData<String> {
-        return fragmentTitle
+    fun getStatistics(): LiveData<Map<RaspiCodes, Float>>{
+        return statistics
+    }
+
+    fun setActiveFragment(fragmentId:Int) {
+        activeFragment.postValue(fragmentId)
+    }
+
+    fun getFragmentTitle(): LiveData<Int> {
+        return activeFragment
     }
 
     fun getBtConnected(): LiveData<Boolean> {

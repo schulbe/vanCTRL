@@ -1,25 +1,26 @@
 package com.bjorn.vanctrl
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
     SwitchesFragment.OnSwitchChangedListener,
     SettingsFragment.OnBluetoothButtonClickedListener {
-    val REQUEST_ENABLE_BT: Int = 17
 
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
     val PI_BT_NAME: String = "raspberrypi"
@@ -27,34 +28,33 @@ class MainActivity : AppCompatActivity(),
 
 //    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
 //    private lateinit var piBtDevice: BluetoothDevice
-    private lateinit var btService: BluetoothService
+    private lateinit var rasPi: BluetoothService
 
     private lateinit var navController: NavController
     private lateinit var viewModel: VanViewModel
-    private lateinit var rasPi: RasPi
+//    private lateinit var rasPi: RasPi
 
     private var mIsInForeground: Boolean = true
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_overview -> {
-                viewModel.setFragmentTitle("overviewFragment")
-                launchPowerMeasurementUpdateRoutine()
+                viewModel.setActiveFragment(R.id.overviewFragment)
                 navController.navigate(R.id.overviewFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_switches -> {
-                viewModel.setFragmentTitle("switchesFragment")
+                viewModel.setActiveFragment(R.id.switchesFragment)
                 navController.navigate(R.id.switchesFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
-                viewModel.setFragmentTitle("fridgeFragment")
+                viewModel.setActiveFragment(R.id.settingsFragment)
                 navController.navigate(R.id.settingsFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_radio -> {
-                viewModel.setFragmentTitle("radioFragment")
+                viewModel.setActiveFragment(R.id.radioFragment)
                 navController.navigate(R.id.radioFragment)
                 return@OnNavigationItemSelectedListener true
             }
@@ -73,16 +73,17 @@ class MainActivity : AppCompatActivity(),
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
-        viewModel.getPowerMeasurements().observe(this, Observer<Map<String,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
 
-        btService = BluetoothService(PI_UUID, this, RaspiMessageProcessor(viewModel))
-        btService.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
+        rasPi = BluetoothService(PI_UUID, this, MessageProcessor(viewModel))
 
-        rasPi = RasPi(btService)
+//        rasPi = RasPi(btService)
 
-//        viewModel.setFragmentTitle("batteryFragment")
-        launchPowerMeasurementUpdateRoutine()
+        setObservers()
 
+        //TODO: REMOVE - only test
+//        viewModel.setSwitchStatus(false, false, false, false)
+
+        viewModel.setActiveFragment(R.id.overviewFragment)
     }
 
     override fun onPause() {
@@ -96,44 +97,69 @@ class MainActivity : AppCompatActivity(),
         mIsInForeground = true
 //        try {btService.openConnection()}
 //        catch (e: BluetoothException){ Toast.makeText(this, "Closing Socket failed", Toast.LENGTH_LONG).show()}
-        launchPowerMeasurementUpdateRoutine()
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        try {
-//            btService.openConnection()
-//            btService.openReader()
-//        } catch (e: BluetoothException){ Toast.makeText(this, "Socket openening and reading failed", Toast.LENGTH_LONG).show()}
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        rasPi.sendCommand(RaspiCommands.CLOSE_CONNECTION)
-//        btService.closeConnection()
-//    }
-
-    override fun switch(what: String, on:Boolean) {
-        when(what) {
-            "FRONT_LIGHT" -> when(on) {
-                true  -> rasPi.sendCommand(RaspiCommands.SWITCH_FRONT_LIGHT_ON)
-                false -> rasPi.sendCommand(RaspiCommands.SWITCH_FRONT_LIGHT_OFF)
-            }
-            "BACK_LIGHT" -> when(on) {
-                true  -> rasPi.sendCommand(RaspiCommands.SWITCH_BACK_LIGHT_ON)
-                false -> rasPi.sendCommand(RaspiCommands.SWITCH_BACK_LIGHT_OFF)
-            }
+    override fun onSwitchClicked(switchId: Int) {
+        when(switchId) {
+            R.id.kitchenlightButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_FRONT_LIGHT_TOGGLE)
+                                        viewModel.toggleSwitchStatus("kitchenLight") }
+            R.id.bedlightButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_BACK_LIGHT_TOGGLE)
+                                    viewModel.toggleSwitchStatus("bedLight")}
+            R.id.fridgeButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_FRIDGE_TOGGLE)
+                                  viewModel.toggleSwitchStatus("fridge")}
+            R.id.radioButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_RADIO_TOGGLE)
+                                 viewModel.toggleSwitchStatus("radio") }
         }
+
+        rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
+
     }
 
-    override fun connectBluetoothDevice() {
-        btService.initiateBluetoothConnection(PI_MAC_ADDR, PI_BT_NAME)
-        btService.openConnection()
-        btService.openReader()
+
+    override fun onConnectBtButtonClick() {
+        //TODO why isnt this working
+
+        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE }
+        rasPi.tryConnection(PI_MAC_ADDR, PI_BT_NAME)
+        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE }
+//        if (rasPi.isConnected().value == true) rasPi.setIsConnectedTest(false) else rasPi.setIsConnectedTest(true)
+
+
     }
 
-    private fun setPowerMeasurementsToUI(measurements: Map<String, Float>) {
-        val formattedVoltage = "%.2f V".format(measurements["vBat"])
+    private fun setObservers() {
+        viewModel.getStatistics().observe(this, Observer<Map<RaspiCodes,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
+        viewModel.getSwitchStatus().observe(this, Observer<Map<String, Boolean>>{ status -> setButtonImages(status)})
+        viewModel.getFragmentTitle().observe(this, Observer<Int> {fragmentId -> onFragmentChange(fragmentId)})
+
+        rasPi.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
+
+    }
+
+    private fun setButtonImages(status: Map<String, Boolean>) {
+        val kitchenlightButton = findViewById<ImageButton>(R.id.kitchenlightButton)
+        if (status["kitchenLight"] == true){
+            kitchenlightButton?.setImageResource(R.drawable.ic_kitchenlight_on)
+        } else kitchenlightButton?.setImageResource(R.drawable.ic_kitchenlight_off)
+
+        val bedlightButton = findViewById<ImageButton>(R.id.bedlightButton)
+        if (status["bedLight"] == true){
+            bedlightButton?.setImageResource(R.drawable.ic_bedlight_on)
+        } else bedlightButton?.setImageResource(R.drawable.ic_bedlight_off)
+
+        val fridgeButton = findViewById<ImageButton>(R.id.fridgeButton)
+        if (status["fridge"] == true){
+            fridgeButton?.setImageResource(R.drawable.ic_fridge_on)
+        } else fridgeButton?.setImageResource(R.drawable.ic_fridge_off)
+
+        val radioButton = findViewById<ImageButton>(R.id.radioButton)
+        if (status["radio"] == true){
+            radioButton?.setImageResource(R.drawable.ic_radio_on)
+        } else radioButton?.setImageResource(R.drawable.ic_radio_off)
+    }
+
+    private fun setPowerMeasurementsToUI(measurements: Map<RaspiCodes, Float>) {
+        val formattedVoltage = "%.2f V".format(measurements[RaspiCodes.STAT_BATTERY_VOLT])
         findViewById<TextView>(R.id.batteryVoltageView)?.apply {
             text = formattedVoltage
         }
@@ -141,26 +167,33 @@ class MainActivity : AppCompatActivity(),
 
     private fun setConnectionBanner(isConnected: Boolean) {
         if (isConnected) {
+            println("SET CONNECTION BANNER RECEIVED IS_CONNECTED")
             findViewById<TextView>(R.id.noBtConnectionView)?.apply{
-                visibility = View.INVISIBLE
+                visibility = View.GONE
             }
         } else {
+            println("SET CONNECTION BANNER RECEIVED IS_NOT_CONNECTED")
             findViewById<TextView>(R.id.noBtConnectionView)?.apply{
                 visibility = View.VISIBLE
             }
         }
     }
 
-    private fun launchPowerMeasurementUpdateRoutine() {
-//        GlobalScope.launch {
-//            delay(1000)
-//            while (viewModel.getFragmentTitle().value == "overviewFragment" && mIsInForeground) {
-//                val measurements = rasPi.getPowerMeasurements()
-//                viewModel.setPowerStatistics(measurements)
-//                delay(1000)
-//            }
-//            btService.o
-//        }
+    private fun onFragmentChange(fragmentId: Int) {
+        when (fragmentId) {
+            R.id.overviewFragment -> {
+                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_START)
+            }
+            R.id.switchesFragment -> {
+                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
+            }
+            R.id.radioFragment -> {
+                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
+            }
+            R.id.settingsFragment -> {
+                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
+            }
+        }
     }
 
 }

@@ -4,14 +4,30 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".Fragments.SettingsFragment">
+
     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:orientation="vertical"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonConnectBt"
+                android:layout_width="match_parent"
+                android:layout_height="69dp"
+                android:text="Bluetooth Connect" />
+        </LinearLayout>
     </ScrollView>
-    <Button
-            android:text="Bluetooth Connect"
-            android:layout_width="match_parent"
-            android:layout_height="69dp" android:id="@+id/buttonConnectBt" android:background="#00ECD2D2"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarSettings"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
 </FrameLayout>

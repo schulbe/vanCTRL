@@ -1,5 +1,6 @@
 package com.bjorn.vanctrl
 
+import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
@@ -34,8 +35,40 @@ class BluetoothService(
 
     private val REQUEST_ENABLE_BT = 17
 
+    fun sendCommand(cmd: RaspiCodes) {
+        write(messageProcessor.createCommandMessage(cmd))
+    }
 
-    fun initiateBluetoothConnection(deviceMac: String, deviceDisplayName: String) {
+    fun tryConnection(deviceMac: String, deviceDisplayName: String, timeout: Int = 10) {
+        try {
+            initiateBluetoothConnection(deviceMac, deviceDisplayName)
+        } catch (e: Exception) {
+            val txt = "Error in inital Connection Process: $e"
+            println(txt)
+            Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+        }
+
+        try {
+            openConnection()
+        } catch (e: Exception) {
+            val txt = "Error in openConnection(): $e"
+            println(txt)
+            Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+        }
+
+        // TODO REINCLUDE!
+        setIsConnected()
+
+        try {
+            openReader()
+        } catch (e: Exception) {
+            val txt = "Error in openReader(): $e"
+            println(txt)
+            Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun initiateBluetoothConnection(deviceMac: String, deviceDisplayName: String) {
         if (bluetoothAdapter == null) {
 //            Toast.makeText(getApplicationContext(),"Device doesnt Support Bluetooth", Toast.LENGTH_SHORT).show();
             throw BluetoothException("No Bluetooth Adapter Found in Device")
@@ -59,36 +92,59 @@ class BluetoothService(
 
     }
 
-    fun openConnection() {
+    private fun openConnection() {
         try {
             mmSocket?.connect()
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             if (isConnected().value == true) {
-                Toast.makeText(activity, "Already Connected!", Toast.LENGTH_LONG).show()
+                println("openConnection() was invoked although connection is already open")
             } else {
-                Toast.makeText(activity, "Connection via Socket failed", Toast.LENGTH_LONG).show()
+                throw e
             }
         }
     }
 
-    fun openReader() {
-        GlobalScope.launch{ConnectedThread().read()}
+    private fun openReader() {
+        GlobalScope.launch{
+            try {
+                ConnectedThread().read()
+            } catch (e: Exception) {
+                val txt = "Error in Reading Process: $e"
+                println(txt)
+//                Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
-    fun write(message: String) {
-        GlobalScope.launch {ConnectedThread().write(message.toByteArray())}
+    private fun write(message: String) {
+        GlobalScope.launch {
+            try {
+                ConnectedThread().write(message.toByteArray())
+            } catch (e: Exception) {
+                val txt = "Error in Writing Process: $e"
+                println(txt)
+//                Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+            }}
     }
+
+    private fun setIsConnected() {
+        isConnected.postValue( mmSocket?.isConnected?: false)
+    }
+
+    // TODO: REMOVE
+//    fun setIsConnectedTest(isconnected: Boolean) {
+//        isConnected.postValue( isconnected)
+//    }
 
     fun isConnected(): LiveData<Boolean> {
-        isConnected.postValue( mmSocket?.isConnected?: false)
         return isConnected
     }
 
-    fun closeConnection() {
+    private fun closeConnection() {
         try {
             mmSocket?.close()
         } catch (e: IOException) {
-            Toast.makeText(activity, "IOException in closeConnection()", Toast.LENGTH_LONG).show()
+//            Toast.makeText(activity, "IOException in closeConnection()", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -100,7 +156,7 @@ class BluetoothService(
 
         fun read() {
             if (mmInStream == null) {
-                Toast.makeText(activity, "Could not write data because no output stream is available", Toast.LENGTH_LONG).show()
+//                Toast.makeText(activity, "Could not write data because no output stream is available", Toast.LENGTH_LONG).show()
                 return
             }
 
@@ -112,17 +168,17 @@ class BluetoothService(
                 numBytes = try {
                     mmInStream.read(mmBuffer)
                 } catch (e: IOException) {
-                    Toast.makeText(activity, "Inputstream was diconnected", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(activity, "Inputstream was diconnected", Toast.LENGTH_LONG).show()
                     Log.d(TAG, "Input stream was disconnected", e)
                     break
                 }
                 if (numBytes == 0) {
-                    Toast.makeText(activity, "Received Message of zero length", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(activity, "Received Message of zero length", Toast.LENGTH_LONG).show()
                     continue
                 }
                 // Send the obtained bytes to the UI activity.
                 val receivedString = String(mmBuffer.sliceArray(0 until numBytes))
-                messageProcessor.process(receivedString)
+                messageProcessor.processReceivedMessage(receivedString)
 
             }
         }
@@ -130,18 +186,9 @@ class BluetoothService(
         // Call this from the main activity to send data to the remote device.
         fun write(bytes: ByteArray) {
             if (mmOutStream == null) {
-                Toast.makeText(activity, "Could not write data because no output stream is available", Toast.LENGTH_LONG).show()
-                return
+                throw BluetoothException("mmOutStream is not available")
             }
-
-            try {
-                mmOutStream.write(bytes)
-            } catch (e: IOException) {
-                Toast.makeText(activity, "Could not write data", Toast.LENGTH_LONG).show()
-                Log.e(TAG, "Error occurred when sending data", e)
-                return
-            }
-
+            mmOutStream.write(bytes)
         }
 
     }
@@ -149,18 +196,45 @@ class BluetoothService(
 
 class BluetoothException(message: String) : Exception(message)
 
-open class MessageProcessor() {
-    open fun process(message: String){}
-}
 
-class RaspiMessageProcessor(private val viewModel: VanViewModel): MessageProcessor() {
-    override fun process(message: String) {
-        println(message)
 
-        try {
-            val voltage = message.toFloat()
-            viewModel.setPowerStatistics(voltage, 1f, 1f)
-        } catch (e:  NumberFormatException) {println(e)}
+class MessageProcessor(private val viewModel: VanViewModel) {
+    fun createCommandMessage(cmd:RaspiCodes): String {
+        return "\u0002${cmd.code}\u0002"
+    }
+
+    fun processReceivedMessage(msg: String) {
+        println(msg)
+
+        if (!(msg.startsWith("\u0002") and msg.endsWith("\u0002"))) {
+//            Toast.makeText(activity, "Received message without propper start or end byte", Toast.LENGTH_LONG).show()
+        }
+
+        val message = msg.removeSurrounding("\u0002")
+
+        if (message.startsWith(RaspiCodes.PFX_STATISTICS.code.toString())) {
+            processReceivedStatistics(message.removePrefix(RaspiCodes.PFX_STATISTICS.code.toString()))
+        }
+        else if (message.startsWith(RaspiCodes.PFX_SWITCH_STATUS.code.toString())) {
+            processReceivedSwitchStatus(message.removePrefix(RaspiCodes.PFX_SWITCH_STATUS.code.toString()))
+        }
+    }
+
+    private fun processReceivedSwitchStatus(message: String) {
+
+    }
+
+    private fun processReceivedStatistics(message: String) {
+
+        val statistics = mutableMapOf<RaspiCodes, Float>()
+        message.split("|").map{
+            {
+                val s = it.split("-")
+                if (s.size == 2) {
+                    statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toFloat()
+                }
+            }
+        }
     }
 }
 

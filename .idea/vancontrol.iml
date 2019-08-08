@@ -6,6 +6,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Pipenv (vancontrol)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="jetbot" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

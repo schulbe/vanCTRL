@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Switch
 import com.bjorn.vanctrl.R
 
@@ -23,11 +24,12 @@ class SwitchesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val frontSwitch = getView()?.findViewById<Switch>(R.id.frontLightSwitch)
-        frontSwitch?.setOnCheckedChangeListener {_, isChecked -> callback.switch("FRONT_LIGHT", isChecked)}
 
-        val backSwitch = getView()?.findViewById<Switch>(R.id.backLightSwitch)
-        backSwitch?.setOnCheckedChangeListener {_, isChecked -> callback.switch("BACK_LIGHT", isChecked)}
+        getView()?.findViewById<ImageButton>(R.id.bedlightButton)?.setOnClickListener {callback.onSwitchClicked(R.id.bedlightButton)}
+        getView()?.findViewById<ImageButton>(R.id.kitchenlightButton)?.setOnClickListener {callback.onSwitchClicked(R.id.kitchenlightButton)}
+        getView()?.findViewById<ImageButton>(R.id.fridgeButton)?.setOnClickListener {callback.onSwitchClicked(R.id.fridgeButton)}
+        getView()?.findViewById<ImageButton>(R.id.radioButton)?.setOnClickListener {callback.onSwitchClicked(R.id.radioButton)}
+
     }
 
     override fun onCreateView(
@@ -39,7 +41,7 @@ class SwitchesFragment : Fragment() {
     }
 
     interface OnSwitchChangedListener {
-        fun switch(what: String, on:Boolean)
+        fun onSwitchClicked(switchId: Int)
     }
 
 }

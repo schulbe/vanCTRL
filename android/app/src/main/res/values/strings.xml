@@ -9,5 +9,9 @@
     <string name="back_light_switch">Licht hinten</string>
     <string name="title_activity_bluetooth_connection">BluetoothConnectionActivity</string>
     <string name="overview_battery_title">Batterie</string>
-    <string name="noBtConnectionWarning">Keine Bluetoothverbindung hergestellt!</string>
+    <string name="noBtConnectionWarning">Keine Bluetoothverbindung!</string>
+    <string name="desc_radio_switch">Radio Schalter</string>
+    <string name="desc_fridge_switch">Kühlschrank Schalter</string>
+    <string name="desc_kitchenlight_switch">Küchenlicht Schalter</string>
+    <string name="desc_bedlight_switch">Schlafzimmerlicht Schalter</string>
 </resources>

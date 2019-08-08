@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import androidx.appcompat.widget.AppCompatButton
 import com.bjorn.vanctrl.R
 
@@ -27,7 +26,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val buttonConnectBt = getView()?.findViewById<AppCompatButton>(R.id.buttonConnectBt)
-        buttonConnectBt?.setOnClickListener {_ -> callback.connectBluetoothDevice()}
+        buttonConnectBt?.setOnClickListener {_ -> callback.onConnectBtButtonClick()}
 
     }
 
@@ -44,6 +43,6 @@ class SettingsFragment : Fragment() {
     }
 
     interface OnBluetoothButtonClickedListener {
-        fun connectBluetoothDevice()
+        fun onConnectBtButtonClick()
     }
 }
