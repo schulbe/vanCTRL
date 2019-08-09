@@ -85,7 +85,11 @@ class BluetoothController:
         try:
             error_code = eval(str(e))[0]
             if error_code == 104:
-                logging.error('Connection reset by peer')
+                logging.error('Connection reset by peer. Closing Connection.')
+                with self._lock:
+                    self.close_connection()
+            elif error_code == 110:
+                logging.error('Connection timed out. Closing Connection.')
                 with self._lock:
                     self.close_connection()
         except Exception as e2:
