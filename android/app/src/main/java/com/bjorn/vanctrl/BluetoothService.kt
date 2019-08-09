@@ -91,9 +91,11 @@ class BluetoothService(
             }
         }
 
-        mmSocket = piBtDevice.createRfcommSocketToServiceRecord(CONFIG_UUID)
-        println("MMSOCKET:")
-        println(mmSocket)
+        if (mmSocket == null) {
+            mmSocket = piBtDevice.createRfcommSocketToServiceRecord(CONFIG_UUID)
+            println("MMSOCKET:")
+            println(mmSocket)
+        }
 
     }
 
@@ -133,7 +135,6 @@ class BluetoothService(
     }
 
     private fun setIsConnected() {
-        println("SETTING IS CONNECTED")
         isConnected.postValue( mmSocket?.isConnected?: false)
 
     }
@@ -212,7 +213,6 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     }
 
     fun processReceivedMessage(msg: String) {
-        println(msg)
 
         if (!(msg.startsWith("\u0002") and msg.endsWith("\u0002"))) {
 //            Toast.makeText(activity, "Received message without propper start or end byte", Toast.LENGTH_LONG).show()
@@ -229,19 +229,14 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     }
 
     private fun processReceivedSwitchStatus(message: String) {
-        println("PROCESSING SWITCHSTATUS: $message")
         val statistics = mutableMapOf<RaspiCodes, Boolean>()
-        println(message.split("|"))
         message.split("|").forEach{
-               println(it)
                 val s = it.split("-")
-                println("s: $s // size: ${s.size}")
                 if (s.size == 2) {
                     statistics[RaspiCodes.fromCode(s[0].toInt())] = (s[1] == "1")
                 }
             }
 
-        println("statistics: $statistics")
         viewModel.setSwitchStatus(statistics.toMap())
     }
 
