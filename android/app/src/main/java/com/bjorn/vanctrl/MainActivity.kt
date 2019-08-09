@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity(),
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
+        viewModel.initalizeLiveData()
 
         rasPi = BluetoothService(PI_UUID, this, MessageProcessor(viewModel))
 

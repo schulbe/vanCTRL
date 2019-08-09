@@ -10,6 +10,16 @@ class VanViewModel : ViewModel() {
     private val btConnected = MutableLiveData<Boolean>()
     private val switchStatus = MutableLiveData<Map<RaspiCodes, Boolean>>()
 
+    fun initalizeLiveData() {
+        switchStatus.postValue(mapOf(
+            RaspiCodes.FRONT_LIGHT_SWITCH to false,
+            RaspiCodes.BACK_LIGHT_SWITCH to false,
+            RaspiCodes.FRIDGE_SWITCH to false,
+            RaspiCodes.RADIO_SWITCH to false
+        ))
+
+    }
+
 //    fun setStatistics(vBattery: Float, aBattery: Float, aSolar: Float) {
 //        statistics.postValue(mapOf(
 //            RaspiCodes.STAT_BATTERY_VOLT to vBattery,

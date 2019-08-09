@@ -188,6 +188,7 @@ class BluetoothService(
             if (mmOutStream == null) {
                 throw BluetoothException("mmOutStream is not available")
             }
+            println("TRYING TO WRITE $bytes")
             mmOutStream.write(bytes)
         }
 
