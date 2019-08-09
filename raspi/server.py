@@ -119,7 +119,7 @@ class Processor:
 
 
 if __name__ == '__main__':
-    config = configparser.ConfigParser(os.environ)
+    config = configparser.ConfigParser()
     config.read('/home/pi/repos/vancontrol/raspi/config.ini')
 
     logger = logging.getLogger()
