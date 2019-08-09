@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/BluetoothController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/BluetoothController.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,7 +97,7 @@
       <workItem from="1564990403445" duration="15202000" />
       <workItem from="1565112461017" duration="1475000" />
       <workItem from="1565117150400" duration="714000" />
-      <workItem from="1565340482910" duration="6044000" />
+      <workItem from="1565340482910" duration="6108000" />
     </task>
     <task id="LOCAL-00001" summary="merged">
       <created>1565117413318</created>
@@ -115,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565349483802</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed port">
+      <created>1565350826054</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1565350826054</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +141,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merged" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged" />
+    <MESSAGE value="fixed port" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed port" />
   </component>
   <component name="WindowStateProjectService">
     <state x="547" y="168" key="CommitChangelistDialog2" />
