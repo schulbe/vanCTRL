@@ -13,7 +13,7 @@ class BluetoothController:
         self._client_sock = None
 
         self._server_sock = bt.BluetoothSocket(bt.RFCOMM)
-        self._port = bt.PORT_ANY
+        self._port = "1"
         self._server_sock.bind(("", self._port))
         self._server_sock.listen(1)
 

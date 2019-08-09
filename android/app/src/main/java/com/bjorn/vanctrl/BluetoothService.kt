@@ -41,6 +41,7 @@ class BluetoothService(
 
     fun tryConnection(deviceMac: String, deviceDisplayName: String, timeout: Int = 10) {
         try {
+            println("INITIALIZE")
             initiateBluetoothConnection(deviceMac, deviceDisplayName)
         } catch (e: Exception) {
             val txt = "Error in inital Connection Process: $e"
@@ -49,6 +50,7 @@ class BluetoothService(
         }
 
         try {
+            println("OPENCONNECTION")
             openConnection()
         } catch (e: Exception) {
             val txt = "Error in openConnection(): $e"
@@ -88,7 +90,10 @@ class BluetoothService(
                 piBtDevice = device
             }
         }
+
         mmSocket = piBtDevice.createRfcommSocketToServiceRecord(CONFIG_UUID)
+        println("MMSOCKET:")
+        println(mmSocket)
 
     }
 
@@ -121,14 +126,16 @@ class BluetoothService(
             try {
                 ConnectedThread().write(message.toByteArray())
             } catch (e: Exception) {
-                val txt = "Error in Writing Process: $e"
+                val txt = "Error in Writing Process (msg= $message): $e"
                 println(txt)
 //                Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
             }}
     }
 
     private fun setIsConnected() {
+        println("SETTING IS CONNECTED")
         isConnected.postValue( mmSocket?.isConnected?: false)
+
     }
 
     // TODO: REMOVE
