@@ -38,7 +38,7 @@ class BluetoothController:
                 self._client_sock.send(bytes(msg, 'utf-8'))
                 logging.debug(f'Sent message: {msg}')
         except bt.btcommon.BluetoothError as e:
-            logging.error(f'BluetoothError occured while trying to send message: {e}', exc_info=True, extra={'msg': msg})
+            logging.error(f'BluetoothError occured while trying to send message: {e}', exc_info=True)
             self._handle_error(e)
 
     def connect_and_listen(self, callback):
