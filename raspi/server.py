@@ -114,8 +114,8 @@ class Processor:
 
             s = {self.config.get('SWITCHES', k): int(v) for k, v in self.gpio_controller.get_switch_status().items()}
             msg = f'\u0002{self.config.get("PREFIXES", "PFX_SWITCH_STATUS")}{"|".join([str(k)+"-"+str(v) for k,v in s.items()])}\u0002'
-            with lock:
-                self.bt_controller.send(msg)
+            # with lock:
+            self.bt_controller.send(msg)
 
 
 if __name__ == '__main__':

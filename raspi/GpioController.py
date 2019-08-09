@@ -33,7 +33,6 @@ class GpioController:
         stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(300, 500)/100
         # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
         # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
-        logging.debug(f"returning stats to BTController: {stats}")
         return stats
 
     def get_switch_status(self):

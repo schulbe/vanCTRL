@@ -112,7 +112,8 @@ class MainActivity : AppCompatActivity(),
             R.id.radioButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_RADIO_TOGGLE)
                                  viewModel.toggleSwitchStatus(RaspiCodes.RADIO_SWITCH) }
         }
-
+//        // TODO: Trigger return on switch status change on serverside
+        Thread.sleep(500)
         rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
 
     }
