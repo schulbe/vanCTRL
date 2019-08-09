@@ -109,6 +109,12 @@ class Processor:
         elif cmd == self.commands['SEND_STATISTICS_STOP']:
             send_statistics = False
 
+        elif cmd == self.commands['SEND_STATISTICS']:
+            s = self.gpio_controller.get_statistics()
+            msg = f'\u0002{self.config.get("PREFIXES", "PFX_STATISTICS")}{"|".join([str(k)+"-"+str(v) for k,v in s.items()])}\u0002'
+            with lock:
+                self.bt_controller.send(msg)
+
         # SEND STATUS
         elif cmd == self.commands['SEND_SWITCH_STATUS']:
 

@@ -16,7 +16,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
@@ -113,8 +115,10 @@ class MainActivity : AppCompatActivity(),
                                  viewModel.toggleSwitchStatus(RaspiCodes.RADIO_SWITCH) }
         }
 //        // TODO: Trigger return on switch status change on serverside
-        Thread.sleep(500)
-        rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
+        GlobalScope.launch{
+            delay(500)
+            rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
+        }
 
     }
 
@@ -182,20 +186,25 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
+    private fun launchUpdateStatistics() {
+        GlobalScope.launch {
+            while (viewModel.getFragmentTitle().value == R.id.overviewFragment){
+                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS)
+                delay(1500)
+            }
+        }
+    }
     private fun onFragmentChange(fragmentId: Int) {
         when (fragmentId) {
             R.id.overviewFragment -> {
-                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_START)
+                launchUpdateStatistics()
             }
             R.id.switchesFragment -> {
-                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
                 rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
             }
             R.id.radioFragment -> {
-                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
             }
             R.id.settingsFragment -> {
-                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
             }
         }
     }
