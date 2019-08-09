@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(),
 
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
     val PI_BT_NAME: String = "raspberrypi"
-    val PI_UUID: UUID = UUID.fromString("1e0ca4ea-299d-4335-93eb-27fcfe7fa848")
+    val PI_UUID: UUID = UUID.fromString("1e0ca4ea-299d-4335-93eb-27fcfe7fa849")
 
 //    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
 //    private lateinit var piBtDevice: BluetoothDevice
@@ -121,10 +121,9 @@ class MainActivity : AppCompatActivity(),
     override fun onConnectBtButtonClick() {
         //TODO why isnt this working
 
-        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE }
-        Thread.sleep(500)
+//        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE }
         rasPi.tryConnection(PI_MAC_ADDR, PI_BT_NAME)
-        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE }
+//        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE }
 //        if (rasPi.isConnected().value == true) rasPi.setIsConnectedTest(false) else rasPi.setIsConnectedTest(true)
 
 

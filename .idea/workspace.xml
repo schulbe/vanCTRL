@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565350826054</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="removed os.envoiron from config to iterate over keys">
+      <created>1565354537926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1565354537926</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,7 +151,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merged" />
     <MESSAGE value="fixed port" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed port" />
+    <MESSAGE value="removed os.envoiron from config to iterate over keys" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed os.envoiron from config to iterate over keys" />
   </component>
   <component name="WindowStateProjectService">
     <state x="547" y="168" key="CommitChangelistDialog2" />

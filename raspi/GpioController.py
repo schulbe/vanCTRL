@@ -27,10 +27,10 @@ class GpioController:
     def get_statistics(self):
         stats = dict()
 
-        stats[self.measurement_names['BATTERY_VOLT']] = random.randint(1220, 1360)/100
-        stats[self.measurement_names['BATTERY_AMP']] = random.randint(200, 350)/100
-        stats[self.measurement_names['SOLAR_VOLT']] = random.randint(2500, 3500)/100
-        stats[self.measurement_names['BATTERY_VOLT']] = random.randint(300, 500)/100
+        stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(1220, 1360)/100
+        stats[self.measurement_names['STAT_BATTERY_AMP']] = random.randint(200, 350)/100
+        stats[self.measurement_names['STAT_SOLAR_VOLT']] = random.randint(2500, 3500)/100
+        stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(300, 500)/100
         # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
         # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
         logging.debug(f"returning stats to BTController: {stats}")
