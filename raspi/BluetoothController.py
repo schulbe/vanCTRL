@@ -13,7 +13,7 @@ class BluetoothController:
         self._client_sock = None
 
         self._server_sock = bt.BluetoothSocket(bt.RFCOMM)
-        self._port = 1
+        self._port = bt.PORT_ANY
         self._server_sock.bind(("", self._port))
         self._server_sock.listen(1)
 
@@ -36,6 +36,7 @@ class BluetoothController:
         try:
             with self._lock:
                 self._client_sock.send(bytes(msg, 'utf-8'))
+                logging.debug(f'Sent message: {msg}')
         except bt.btcommon.BluetoothError as e:
             logging.error(f'BluetoothError occured while trying to send message: {e}', exc_info=True, extra={'message': msg})
             self._handle_error(e)
@@ -70,9 +71,13 @@ class BluetoothController:
 
     def _process_received_data(self, data):
         data = data.decode("utf-8")
-
+        logging.debug(f'Processing Received Data: {data}')
         if data.startswith("\u0002") and data.endswith("\u0002"):
-            self.callback(data.replace('\u0002', ''), self._lock)
+            for cmd in data.split("\u0002"):
+                if cmd:
+                   t = threading.Thread(target=self.callback(cmd, self._lock))
+                   t.setDaemon(True)
+                   t.start()
         else:
             logging.error(f"Did not understand command: {data}")
 

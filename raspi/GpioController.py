@@ -20,9 +20,9 @@ class GpioController:
     def switch(self, switch, on=True):
         io_pin = int(self.pins[switch])
         if on:
-            GPIO.output(io_pin, GPIO.LOW)
-        else:
             GPIO.output(io_pin, GPIO.HIGH)
+        else:
+            GPIO.output(io_pin, GPIO.LOW)
 
     def get_statistics(self):
         stats = dict()
@@ -33,11 +33,11 @@ class GpioController:
         stats[self.measurement_names['BATTERY_VOLT']] = random.randint(300, 500)/100
         # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
         # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
-
+        logging.debug(f"returning stats to BTController: {stats}")
         return stats
 
     def get_switch_status(self):
-        return {switch: switch_is_on(switch) for switch in self.pins.keys()}
+        return {switch: self.switch_is_on(switch) for switch in self.pins.keys()}
 
     def switch_is_on(self, switch):
         io_pin = int(self.pins[switch])

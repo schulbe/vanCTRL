@@ -28,6 +28,7 @@ class Processor:
 
     def process_command(self, cmd, lock):
         global send_statistics
+        logging.debug(f'Received Command {cmd} (type{type(cmd)})')
 
         # FRONT_LIGHT
         if cmd == self.commands['SWITCH_FRONT_LIGHT_ON']:
@@ -39,6 +40,7 @@ class Processor:
                 self.gpio_controller.switch('FRONT_LIGHT_SWITCH', on=False)
 
         elif cmd == self.commands['SWITCH_FRONT_LIGHT_TOGGLE']:
+            logging.debug("SWITCH_FRONT_LIGHT_TOGGLE!")
             with lock:
                 if self.gpio_controller.switch_is_on('FRONT_LIGHT_SWITCH'):
                     self.gpio_controller.switch('FRONT_LIGHT_SWITCH', on=False)
@@ -108,13 +110,12 @@ class Processor:
             send_statistics = False
 
         # SEND STATUS
-        elif cmd == self.commands['SEND_STATISTICS_START']:
+        elif cmd == self.commands['SEND_SWITCH_STATUS']:
 
-            while send_statistics:
-                s = {self.config.get('SWITCHES', k): int(v) for k, v in self.gpio_controller.get_switch_status().items()}
-                msg = f'\u0002{self.config.get("PREFIXES", "PFX_SWITCH_STATUS")}{"|".join([str(k)+"-"+str(v) for k,v in s.items()])}\u0002'
-                with lock:
-                    self.bt_controller.send(msg)
+            s = {self.config.get('SWITCHES', k): int(v) for k, v in self.gpio_controller.get_switch_status().items()}
+            msg = f'\u0002{self.config.get("PREFIXES", "PFX_SWITCH_STATUS")}{"|".join([str(k)+"-"+str(v) for k,v in s.items()])}\u0002'
+            with lock:
+                self.bt_controller.send(msg)
 
 
 if __name__ == '__main__':
