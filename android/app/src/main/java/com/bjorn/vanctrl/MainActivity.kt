@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
+import kotlinx.coroutines.delay
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
@@ -102,13 +103,13 @@ class MainActivity : AppCompatActivity(),
     override fun onSwitchClicked(switchId: Int) {
         when(switchId) {
             R.id.kitchenlightButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_FRONT_LIGHT_TOGGLE)
-                                        viewModel.toggleSwitchStatus("kitchenLight") }
+                                        viewModel.toggleSwitchStatus(RaspiCodes.FRONT_LIGHT_SWITCH) }
             R.id.bedlightButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_BACK_LIGHT_TOGGLE)
-                                    viewModel.toggleSwitchStatus("bedLight")}
+                                    viewModel.toggleSwitchStatus(RaspiCodes.BACK_LIGHT_SWITCH)}
             R.id.fridgeButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_FRIDGE_TOGGLE)
-                                  viewModel.toggleSwitchStatus("fridge")}
+                                  viewModel.toggleSwitchStatus(RaspiCodes.FRIDGE_SWITCH)}
             R.id.radioButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_RADIO_TOGGLE)
-                                 viewModel.toggleSwitchStatus("radio") }
+                                 viewModel.toggleSwitchStatus(RaspiCodes.RADIO_SWITCH) }
         }
 
         rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
@@ -120,6 +121,7 @@ class MainActivity : AppCompatActivity(),
         //TODO why isnt this working
 
         findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE }
+        Thread.sleep(500)
         rasPi.tryConnection(PI_MAC_ADDR, PI_BT_NAME)
         findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE }
 //        if (rasPi.isConnected().value == true) rasPi.setIsConnectedTest(false) else rasPi.setIsConnectedTest(true)
@@ -129,31 +131,31 @@ class MainActivity : AppCompatActivity(),
 
     private fun setObservers() {
         viewModel.getStatistics().observe(this, Observer<Map<RaspiCodes,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
-        viewModel.getSwitchStatus().observe(this, Observer<Map<String, Boolean>>{ status -> setButtonImages(status)})
+        viewModel.getSwitchStatus().observe(this, Observer<Map<RaspiCodes, Boolean>>{ status -> setButtonImages(status)})
         viewModel.getFragmentTitle().observe(this, Observer<Int> {fragmentId -> onFragmentChange(fragmentId)})
 
         rasPi.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
 
     }
 
-    private fun setButtonImages(status: Map<String, Boolean>) {
+    private fun setButtonImages(status: Map<RaspiCodes, Boolean>) {
         val kitchenlightButton = findViewById<ImageButton>(R.id.kitchenlightButton)
-        if (status["kitchenLight"] == true){
+        if (status[RaspiCodes.FRONT_LIGHT_SWITCH] == true){
             kitchenlightButton?.setImageResource(R.drawable.ic_kitchenlight_on)
         } else kitchenlightButton?.setImageResource(R.drawable.ic_kitchenlight_off)
 
         val bedlightButton = findViewById<ImageButton>(R.id.bedlightButton)
-        if (status["bedLight"] == true){
+        if (status[RaspiCodes.BACK_LIGHT_SWITCH] == true){
             bedlightButton?.setImageResource(R.drawable.ic_bedlight_on)
         } else bedlightButton?.setImageResource(R.drawable.ic_bedlight_off)
 
         val fridgeButton = findViewById<ImageButton>(R.id.fridgeButton)
-        if (status["fridge"] == true){
+        if (status[RaspiCodes.FRIDGE_SWITCH] == true){
             fridgeButton?.setImageResource(R.drawable.ic_fridge_on)
         } else fridgeButton?.setImageResource(R.drawable.ic_fridge_off)
 
         val radioButton = findViewById<ImageButton>(R.id.radioButton)
-        if (status["radio"] == true){
+        if (status[RaspiCodes.RADIO_SWITCH] == true){
             radioButton?.setImageResource(R.drawable.ic_radio_on)
         } else radioButton?.setImageResource(R.drawable.ic_radio_off)
     }
@@ -186,6 +188,7 @@ class MainActivity : AppCompatActivity(),
             }
             R.id.switchesFragment -> {
                 rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)
+                rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
             }
             R.id.radioFragment -> {
                 rasPi.sendCommand(RaspiCodes.SEND_STATISTICS_STOP)

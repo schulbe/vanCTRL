@@ -222,6 +222,17 @@ class MessageProcessor(private val viewModel: VanViewModel) {
 
     private fun processReceivedSwitchStatus(message: String) {
 
+        val statistics = mutableMapOf<RaspiCodes, Boolean>()
+        message.split("|").map{
+            {
+                val s = it.split("-")
+                if (s.size == 2) {
+                    statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toBoolean()
+                }
+            }
+        }
+
+        viewModel.setSwitchStatus(statistics)
     }
 
     private fun processReceivedStatistics(message: String) {
@@ -235,6 +246,9 @@ class MessageProcessor(private val viewModel: VanViewModel) {
                 }
             }
         }
+
+        viewModel.setStatistics(statistics)
+
     }
 }
 

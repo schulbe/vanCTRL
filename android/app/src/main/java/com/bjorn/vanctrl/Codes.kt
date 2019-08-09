@@ -27,6 +27,11 @@ enum class RaspiCodes(val code: Int) {
     STAT_SOLAR_VOLT(102),
     STAT_SOLAR_AMP(103),
 
+    FRONT_LIGHT_SWITCH(120),
+    BACK_LIGHT_SWITCH(121),
+    FRIDGE_SWITCH(122),
+    RADIO_SWITCH(123),
+
     UNKNOWN(1000);
 
 

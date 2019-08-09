@@ -2,39 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_bedlight_off.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_bedlight_on.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_fridge_off.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_fridge_on.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_kitchenlight_off.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_kitchenlight_on.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_radio_off.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_radio_on.xml" />
-      <change beforePath="$PROJECT_DIR$/../jetbot/notebooks/basic_motion/basic_motion.ipynb" afterPath="$PROJECT_DIR$/../jetbot/notebooks/basic_motion/basic_motion.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../jetbot/notebooks/collision_avoidance/data_collection.ipynb" afterPath="$PROJECT_DIR$/../jetbot/notebooks/collision_avoidance/data_collection.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../jetbot/notebooks/collision_avoidance/live_demo.ipynb" afterPath="$PROJECT_DIR$/../jetbot/notebooks/collision_avoidance/live_demo.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../jetbot/notebooks/collision_avoidance/train_model.ipynb" afterPath="$PROJECT_DIR$/../jetbot/notebooks/collision_avoidance/train_model.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../jetbot/notebooks/object_following/live_demo.ipynb" afterPath="$PROJECT_DIR$/../jetbot/notebooks/object_following/live_demo.ipynb" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vancontrol.iml" afterPath="$PROJECT_DIR$/.idea/vancontrol.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/codeStyles/Project.xml" afterPath="$PROJECT_DIR$/android/.idea/codeStyles/Project.xml" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" afterPath="$PROJECT_DIR$/android/app/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/SwitchesFragment.kt" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Fragments/SwitchesFragment.kt" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/RasPi.kt" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/RasPi.kt" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/VanViewModel.kt" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/VanViewModel.kt" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_overview.xml" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_overview.xml" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_switches.xml" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_switches.xml" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" />
-      <change beforePath="$PROJECT_DIR$/raspi/config.ini" afterPath="$PROJECT_DIR$/raspi/config.ini" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,9 +83,6 @@
       </list>
     </option>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -129,6 +99,7 @@
       <workItem from="1564990403445" duration="15202000" />
       <workItem from="1565112461017" duration="1475000" />
       <workItem from="1565117150400" duration="714000" />
+      <workItem from="1565340482910" duration="4130000" />
     </task>
     <task id="LOCAL-00001" summary="merged">
       <created>1565117413318</created>
@@ -140,28 +111,6 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1301" height="744" extended-state="6" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -171,12 +120,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -184,15 +127,12 @@
       </map>
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merged" />
     <option name="LAST_COMMIT_MESSAGE" value="merged" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+  <component name="WindowStateProjectService">
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" />
   </component>
 </project>
