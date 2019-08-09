@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import random
+import logging
 
 
-# noinspection PyUnresolvedReferences
 class GpioController:
     def __init__(self, pin_numbers, measurement_names):
 

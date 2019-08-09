@@ -229,17 +229,18 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     }
 
     private fun processReceivedSwitchStatus(message: String) {
-        println("PROCESSING SWITCHSTATUS")
+        println("PROCESSING SWITCHSTATUS: $message")
         val statistics = mutableMapOf<RaspiCodes, Boolean>()
-        message.split("|").map{
-            {
+        println(message.split("|"))
+        message.split("|").forEach{
+               println(it)
                 val s = it.split("-")
                 println("s: $s // size: ${s.size}")
                 if (s.size == 2) {
-                    statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toBoolean()
+                    statistics[RaspiCodes.fromCode(s[0].toInt())] = (s[1] == "1")
                 }
             }
-        }
+
         println("statistics: $statistics")
         viewModel.setSwitchStatus(statistics.toMap())
     }
@@ -247,12 +248,10 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     private fun processReceivedStatistics(message: String) {
 
         val statistics = mutableMapOf<RaspiCodes, Float>()
-        message.split("|").map{
-            {
+        message.split("|").forEach{
                 val s = it.split("-")
                 if (s.size == 2) {
                     statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toFloat()
-                }
             }
         }
 
