@@ -74,7 +74,7 @@ class Processor:
 
         elif cmd == self.commands['SWITCH_FRIDGE_TOGGLE']:
             with lock:
-                if self.gpio_controller.switch_is_on('FRIDGE'):
+                if self.gpio_controller.switch_is_on('FRIDGE_SWITCH'):
                     self.gpio_controller.switch('FRIDGE_SWITCH', on=False)
                 else:
                     self.gpio_controller.switch('FRIDGE_SWITCH', on=True)
