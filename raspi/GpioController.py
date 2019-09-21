@@ -10,11 +10,10 @@ class GpioController:
 
         self.pins = pin_numbers
         self.measurement_names = measurement_names
-#         try:
+        try:
         self.ads_measurements = own_ADS(shunt_mv=50, shunt_a=100, address=int(s2i_addresses['ADS_MEASUREMENT'], 16))
-#         except Exception as e:
-#             print(e)
-#             self.ads_measurements = None
+        except Exception as e:
+            self.ads_measurements = None
 
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
@@ -63,7 +62,7 @@ class own_ADS:
     VOLT_PER_BIT = 4.096/GAIN/(2**15)
 
     def __init__(self, shunt_mv=50, shunt_a=100, address=0x48):
-        self.ads = Adafruit_ADS1x15(address=address)
+        self.ads = Adafruit_ADS1x15.ADS1115(address=address)
         self.a_per_bit = self.VOLT_PER_BIT * (shunt_mv/1000)*shunt_a
 
     def get_current(self):
