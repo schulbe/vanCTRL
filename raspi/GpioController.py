@@ -66,4 +66,8 @@ class own_ADS:
         self.a_per_bit = self.VOLT_PER_BIT * (shunt_mv/1000)*shunt_a
 
     def get_current(self):
-        return self.ads.read_adc_difference(0, gain=self.GAIN) * self.a_per_bit
+        read_diff = self.ads.read_adc_difference(0, gain=self.GAIN)
+        current = self.ads.read_adc_difference(0, gain=self.GAIN) * self.a_per_bit
+        print(f'abs: {read_diff}; amp: {current}')
+
+        return current
