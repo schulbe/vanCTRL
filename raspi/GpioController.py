@@ -57,13 +57,13 @@ class GpioController:
             return True
         return False
 
-class ADS(Adafruit_ADS1x15):
+class ADS:
     GAIN = 16
     VOLT_PER_BIT = 4.096/GAIN/(2**15)
 
-    def __init__(self, shunt_mv=50, shunt_a=100, *args, **kwargs):
-        super(ADS).__init__(*args, **kwargs)
+    def __init__(self, shunt_mv=50, shunt_a=100, address=0x48:
+        self.ads = Adafruit_ADS1x15(address=address)
         self.a_per_bit = self.VOLT_PER_BIT * (shunt_mv/1000)*shunt_a
 
     def get_current(self):
-        return self.read_adc_difference(0, gain=self.GAIN) * self.a_per_bit
+        return self.ads.read_adc_difference(0, gain=self.GAIN) * self.a_per_bit
