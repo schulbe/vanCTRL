@@ -12,7 +12,8 @@ class GpioController:
         self.measurement_names = measurement_names
         try:
             self.ads_measurements = ADS(shunt_mv=50, shunt_a=100, address=int(s2i_addresses['ADS_MEASUREMENT'], 16))
-        except:
+        except Exception as e:
+            print(e)
             self.ads_measurements = None
 
         GPIO.setwarnings(False)  # Ignore warning for now
