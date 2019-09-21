@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="changed frige switch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/BluetoothController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/BluetoothController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="improve_app_layout" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -30,6 +36,11 @@
   </component>
   <component name="ProjectId" id="1P3p6cdssBiRkxMrUIJfrclg0Rd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ChangesTree.GroupingKeys" value="module" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -38,6 +49,12 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565023089406" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -200,18 +217,25 @@
     <MESSAGE value="changed names" />
     <MESSAGE value="added logging import" />
     <MESSAGE value="changed frige switch" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed frige switch" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="547" y="168" key="CommitChangelistDialog2" />
-    <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" />
-    <state x="780" y="142" key="FileChooserDialogImpl" />
-    <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" />
-    <state x="675" y="307" key="Vcs.Push.Dialog" />
-    <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" />
-    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog" />
-    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog/1920.1200" />
+    <state x="547" y="168" key="CommitChangelistDialog2" timestamp="1569062052333" />
+    <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" timestamp="1569062052334" />
+    <state x="780" y="142" key="FileChooserDialogImpl" timestamp="1569062052334" />
+    <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" timestamp="1569062052334" />
+    <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569062052334" />
+    <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569062052334" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1569062052334" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569062052334" />
+    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog" timestamp="1569062149922">
+      <screen x="63" y="27" width="1857" height="1173" />
+    </state>
+    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog/1920.1200" timestamp="1569062052334" />
+    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569062149922" />
+    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog" timestamp="1569062163631">
+      <screen x="63" y="27" width="1857" height="1173" />
+    </state>
+    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569062163631" />
   </component>
 </project>
