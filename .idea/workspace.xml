@@ -237,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569064366091</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="bugfix">
+      <created>1569064421540</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1569064421540</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,10 +281,10 @@
     <state x="780" y="142" key="FileChooserDialogImpl" timestamp="1569062052334" />
     <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" timestamp="1569062052334" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569062052334" />
-    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569064367062">
+    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569064422478">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569064367062" />
+    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569064422478" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569062052334" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1569062052334" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569062052334" />
