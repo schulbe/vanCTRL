@@ -40,7 +40,7 @@ class GpioController:
 
         stats = dict()
 
-        stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(12202, 13602)/1000
+        stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(1220, 1360)/100
         stats[self.measurement_names['STAT_BATTERY_AMP']] = bat_amp
         stats[self.measurement_names['STAT_SOLAR_VOLT']] = random.randint(2500, 3500)/100
         stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(300, 500)/100
