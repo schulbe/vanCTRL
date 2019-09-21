@@ -17,7 +17,9 @@ class Processor:
         self.dt = 1/int(conf['GENERAL']['updates_per_second'])
 
         logging.info("Initializing GPIO Controll")
-        self.gpio_controller = GpioController(pin_numbers=config['GPIOS'], measurement_names=conf['MEASUREMENT_NAMES'])
+        self.gpio_controller = GpioController(pin_numbers=config['GPIOS'],
+                                              measurement_names=conf['MEASUREMENT_NAMES'],
+                                              s2i_addresses=conf['S2I_ADDRESS'])
 
         logging.info("Initializing BT Controll")
         self.bt_controller = BluetoothController(uuid=config['GENERAL']['UUID'])
