@@ -63,7 +63,7 @@ class own_ADS:
 
     def __init__(self, shunt_mv=50, shunt_a=100, address=0x48):
         self.ads = Adafruit_ADS1x15.ADS1115(address=address)
-        self.a_per_bit = self.VOLT_PER_BIT * (shunt_mv/1000)*shunt_a
+        self.a_per_bit = self.VOLT_PER_BIT / (shunt_mv/1000)*shunt_a
 
     def get_current(self):
         read_diff = self.ads.read_adc_difference(0, gain=self.GAIN)

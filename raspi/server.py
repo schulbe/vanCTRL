@@ -103,7 +103,9 @@ class Processor:
 
             while send_statistics:
                 s = self.gpio_controller.get_statistics()
+                #TODO: '-' no good separator! use ONLY \u00...
                 msg = f'\u0002{self.config.get("PREFIXES", "PFX_STATISTICS")}{"|".join([f"{k}-{v:2.f}" for k,v in s.items()])}\u0002'
+                print(msg)
                 with lock:
                     self.bt_controller.send(msg)
                 time.sleep(self.dt)
