@@ -11,7 +11,7 @@ class GpioController:
         self.pins = pin_numbers
         self.measurement_names = measurement_names
         try:
-            self.ads_measurements = ADS(shunt_mv=50, shunt_a=100, address=int(s2i_addresses['ADS_MEASUREMENT'], 16))
+            self.ads_measurements = own_ADS(shunt_mv=50, shunt_a=100, address=int(s2i_addresses['ADS_MEASUREMENT'], 16))
         except Exception as e:
             print(e)
             self.ads_measurements = None
@@ -58,7 +58,7 @@ class GpioController:
             return True
         return False
 
-class ADS:
+class own_ADS:
     GAIN = 16
     VOLT_PER_BIT = 4.096/GAIN/(2**15)
 
