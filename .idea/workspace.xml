@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="changed frige switch">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
-    </list>
+    <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="changed frige switch" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565359476872</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added ADS to functionality">
+      <created>1569063829562</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1569063829562</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +219,8 @@
     <MESSAGE value="changed names" />
     <MESSAGE value="added logging import" />
     <MESSAGE value="changed frige switch" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="added ADS to functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ADS to functionality" />
   </component>
   <component name="WindowStateProjectService">
     <state x="547" y="168" key="CommitChangelistDialog2" timestamp="1569062052333" />
@@ -225,6 +228,10 @@
     <state x="780" y="142" key="FileChooserDialogImpl" timestamp="1569062052334" />
     <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" timestamp="1569062052334" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569062052334" />
+    <state x="586" y="349" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569063846477">
+      <screen x="63" y="27" width="1857" height="1173" />
+    </state>
+    <state x="586" y="349" width="800" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569063846477" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569062052334" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1569062052334" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569062052334" />
