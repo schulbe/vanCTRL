@@ -2,12 +2,90 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="changed frige switch">
+      <change afterPath="$PROJECT_DIR$/wiring_config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1023392830">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.merge" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="ini" value="1" />
+          <entry key="py" value="1" />
+          <entry key="wiring_config" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Ini" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="ini" value="206" />
+          <entry key="py" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Ini" value="206" />
+          <entry key="Python" value="7" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wiring_config.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/raspi/GpioController.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/raspi/config.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="35" column="20" lean-forward="true" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -18,21 +96,71 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="improve_app_layout" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/wiring_config.ini" />
+        <option value="$PROJECT_DIR$/raspi/GpioController.py" />
+        <option value="$PROJECT_DIR$/raspi/config.ini" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="1613" />
-    <option name="height" value="920" />
+    <option name="x" value="1680" />
+    <option name="y" value="-2" />
+    <option name="width" value="1680" />
+    <option name="height" value="947" />
   </component>
   <component name="ProjectId" id="1P3p6cdssBiRkxMrUIJfrclg0Rd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="control_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="raspi" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -44,7 +172,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565023089406" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569225701009" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -289,6 +417,45 @@
     <option name="localTasksCounter" value="27" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1457000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1680" y="-2" width="1680" height="947" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Capture Tool" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Designer" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23929009" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Remote Host" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -298,12 +465,21 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merged" />
@@ -322,26 +498,46 @@
     <option name="LAST_COMMIT_MESSAGE" value="small update - sends ampere!" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="547" y="168" key="CommitChangelistDialog2" timestamp="1569062052333" />
-    <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" timestamp="1569062052334" />
-    <state x="780" y="142" key="FileChooserDialogImpl" timestamp="1569062052334" />
-    <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" timestamp="1569062052334" />
-    <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569062052334" />
-    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569065269300">
-      <screen x="63" y="27" width="1857" height="1173" />
-    </state>
-    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569065269300" />
-    <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569062052334" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1569062052334" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569062052334" />
-    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog" timestamp="1569062149922">
-      <screen x="63" y="27" width="1857" height="1173" />
-    </state>
-    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog/1920.1200" timestamp="1569062052334" />
-    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569062149922" />
-    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog" timestamp="1569062163631">
-      <screen x="63" y="27" width="1857" height="1173" />
-    </state>
-    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569062163631" />
+    <state x="547" y="168" key="CommitChangelistDialog2" />
+    <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" />
+    <state x="780" y="142" key="FileChooserDialogImpl" />
+    <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" />
+    <state x="675" y="307" key="Vcs.Push.Dialog" />
+    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2" />
+    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" />
+    <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" />
+    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog" />
+    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog/1920.1200" />
+    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog/63.27.1857.1173@63.27.1857.1173" />
+    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog" />
+    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog/63.27.1857.1173@63.27.1857.1173" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/wiring_config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raspi/GpioController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raspi/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="20" lean-forward="true" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

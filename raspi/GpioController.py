@@ -18,6 +18,7 @@ class GpioController:
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 
+        for
         GPIO.setup(int(self.pins['FRONT_LIGHT_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(int(self.pins['BACK_LIGHT_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(int(self.pins['FRIDGE_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
