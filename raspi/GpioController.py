@@ -13,24 +13,25 @@ class GpioController:
     ads_gain = 16
 
 
-    def __init__(self, pin_numbers, measurement_names, adc_addresses, measurement_mapping, external_wiring_config):
+    def __init__(self, config):
 
-        self.pins = pin_numbers
-        self.measurement_names = measurement_names
-        self.measurement_mapping = measurement_mapping
+        # self.pins = pin_numbers
+        self.pins = dict([(v,k) for k, v in config.items('GPIOS')])
+        self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
+        self.measurement_mapping = dict(config.items('MEASUREMENT_MAPPINGS'))
 
         self.power_measurement_mapping = {
             input: {
-                'name': external_wiring_config.get('POWER_MEASUREMENTS', input),
+                'name': config.get('POWER_MEASUREMENTS', input),
                 'a_per_bit': 4.096/self.ads_gain/(2**15)
-                             /(external_wiring_config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_MV')/1000)
-                             *external_wiring_config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_A')
+                             /(config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_MV')/1000)
+                             *config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_A')
             } for input in ['IN_1', 'IN_2', 'IN_3']
         }
 
         with suppress(Exception):
-            self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(adc_addresses['ADS_1'], 16))
-            self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(adc_addresses['ADS_2'], 16))
+            self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
+            self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
 
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering

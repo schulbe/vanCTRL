@@ -209,6 +209,14 @@ class BluetoothException(message: String) : Exception(message)
 
 class MessageProcessor(private val viewModel: VanViewModel) {
     fun createCommandMessage(cmd:RaspiCodes): String {
+        if cmd.startsWitch("SWITCH_") {
+            var split = cmd.split('_')
+            var switch = split.slice((1..s.size-2)).joinToString(separator="_")
+            var action = split[split.size-1]
+            return "\u0002${cmd.code}\u0002"
+        }
+
+
         return "\u0002${cmd.code}\u0002"
     }
 
@@ -231,7 +239,7 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     private fun processReceivedSwitchStatus(message: String) {
         val statistics = mutableMapOf<RaspiCodes, Boolean>()
         message.split("|").forEach{
-                val s = it.split("-")
+                val s = it.split(":")
                 if (s.size == 2) {
                     statistics[RaspiCodes.fromCode(s[0].toInt())] = (s[1] == "1")
                 }
@@ -244,7 +252,7 @@ class MessageProcessor(private val viewModel: VanViewModel) {
 
         val statistics = mutableMapOf<RaspiCodes, Float>()
         message.split("|").forEach{
-                val s = it.split("-")
+                val s = it.split(":")
                 if (s.size == 2) {
                     statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toFloat()
             }
