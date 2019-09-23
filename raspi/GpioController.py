@@ -3,26 +3,41 @@ import Adafruit_ADS1x15
 
 import random
 import logging
+from contextlib import suppress
 
 
 class GpioController:
-    def __init__(self, pin_numbers, measurement_names, s2i_addresses):
+    ads_1 = None
+    ads_2 = None
+    mcp = None
+    ads_gain = 16
+
+
+    def __init__(self, pin_numbers, measurement_names, adc_addresses, measurement_mapping, external_wiring_config):
 
         self.pins = pin_numbers
         self.measurement_names = measurement_names
-        try:
-            self.ads_measurements = own_ADS(shunt_mv=50, shunt_a=100, address=int(s2i_addresses['ADS_MEASUREMENT'], 16))
-        except Exception as e:
-            self.ads_measurements = None
+        self.measurement_mapping = measurement_mapping
+
+        self.power_measurement_mapping = {
+            input: {
+                'name': external_wiring_config.get('POWER_MEASUREMENTS', input),
+                'a_per_bit': 4.096/self.ads_gain/(2**15)
+                             /(external_wiring_config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_MV')/1000)
+                             *external_wiring_config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_A')
+            } for input in ['IN_1', 'IN_2', 'IN_3']
+        }
+
+        with suppress(Exception):
+            self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(adc_addresses['ADS_1'], 16))
+            self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(adc_addresses['ADS_2'], 16))
 
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 
-        for
-        GPIO.setup(int(self.pins['FRONT_LIGHT_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(int(self.pins['BACK_LIGHT_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(int(self.pins['FRIDGE_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(int(self.pins['RADIO_SWITCH']), GPIO.OUT, initial=GPIO.LOW)
+        for assignment, pin_number in self.pins:
+            if assignment.startswith('SWITCH_'):
+                GPIO.setup(int(pin_number), GPIO.OUT, initial=GPIO.LOW)
 
 
     def switch(self, switch, on=True):
@@ -33,42 +48,77 @@ class GpioController:
             GPIO.output(io_pin, GPIO.LOW)
 
     def get_statistics(self):
-        #todo: remove when fixed
-        if self.ads_measurements is not None:
-            bat_amp = self.ads_measurements.get_current()
-        else:
-            bat_amp = 1.23
 
         stats = dict()
 
-        stats[self.measurement_names['STAT_BATTERY_VOLT']] = random.randint(1220, 1360)/100
-        stats[self.measurement_names['STAT_BATTERY_AMP']] = bat_amp
-        stats[self.measurement_names['STAT_SOLAR_VOLT']] = random.randint(2500, 3500)/100
-        stats[self.measurement_names['STAT_SOLAR_AMP']] = random.randint(300, 500)/100
+        for input in ['IN_1', 'IN_2', 'IN_3']:
+            U, I = self.get_power_measurements(input)
+
+            stats[self.measurement_names[f'STAT_VOLT_{self.power_measurement_mapping[input]["name"]}']] = U
+            stats[self.measurement_names[f'STAT_AMP_{self.power_measurement_mapping[input]["name"]}']] = I
+
+
         # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
         # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
+
         return stats
 
+    def get_power_measurements(self, input):
+        adc_name, channel = self.measurement_mapping[f'{input}_POSITIVE']
+        U = self._read_adc(adc_name, channel)
+
+        adc_name_high, channel_high = self.measurement_mapping[f'{input}_NEGATIVE_HIGH']
+        adc_name_low, channel_low = self.measurement_mapping[f'{input}_NEGATIVE_LOW']
+        if adc_name_low != adc_name_high:
+            raise TypeError('Cant read difference if adcs are not the same')
+
+
+        I = self._read_adc(adc_name_low, channel_high, channel_low) * self.power_measurement_mapping[input]['a_per_bit']
+
+        return U, I
+
+
+    def _read_adc(self, name, difference=False, gain=16, *channels):
+            if difference and len(channels)!=2:
+                raise TypeError('Wrong number of channels supplied for difference=True')
+
+            if name.startswith('ADS_'):
+                if name == 'ADS_1':
+                    ADS = self.ads_1
+                elif name == 'ADS_2':
+                    ADS = self.ads_2
+                else:
+                    raise TypeError()
+                if difference:
+                    if channels == (0,1):
+                        fac = 1
+                        num = 0
+                    elif channels == (1,0):
+                        fac = -1
+                        num = 0
+                    elif channels == (2,3):
+                        fac = 1
+                        num = 3
+                    elif channels == (3,2):
+                        fac = -1
+                        num = 3
+                    else:
+                        raise TypeError(f'Channelset {channels} unknown')
+
+                    return ADS.read_adc_difference(num, gain=gain) * fac
+
+                else:
+                    return (ADS.read_adc(c, gain=gain) for c in channels)
+
+            elif name == 'MCP':
+                #todo
+                return 0
+
     def get_switch_status(self):
-        return {switch: self.switch_is_on(switch) for switch in self.pins.keys()}
+        return {switch: self.switch_is_on(switch) for switch in self.pins.keys() if switch.startswith('SWITCH_')}
 
     def switch_is_on(self, switch):
         io_pin = int(self.pins[switch])
         if GPIO.input(io_pin) == GPIO.HIGH:
             return True
         return False
-
-class own_ADS:
-    GAIN = 16
-    VOLT_PER_BIT = 4.096/GAIN/(2**15)
-
-    def __init__(self, shunt_mv=50, shunt_a=100, address=0x48):
-        self.ads = Adafruit_ADS1x15.ADS1115(address=address)
-        self.a_per_bit = self.VOLT_PER_BIT / (shunt_mv/1000)*shunt_a
-
-    def get_current(self):
-        read_diff = self.ads.read_adc_difference(0, gain=self.GAIN)
-        current = self.ads.read_adc_difference(0, gain=self.GAIN) * self.a_per_bit
-        print(f'abs: {read_diff}; amp: {current}')
-
-        return current
