@@ -33,6 +33,7 @@ class Processor:
 
         msg_flag, msg_type, msg_details = msg.split('\u0003')
 
+        # IN CASE COMMAND WAS RECEIVED
         if msg_flag == self.codes['COMMAND_FLAG']:
             if msg_type == self.codes['CMD_SWITCH_ON']:
                 with suppress(IndexError):
@@ -55,33 +56,45 @@ class Processor:
                         else:
                             self.gpio_controller.switch(switch, on=True)
 
-            elif msg_flag == self.codes['CMD_SEND_DATA']:
+            elif msg_type == self.codes['CMD_SEND_DATA']:
                 if msg_details == self.codes['DATA_POWER_MEASUREMENTS']:
-                    s = self.gpio_controller.get_statistics()
-                    measurement_string =
+                    s = list()
+                    for inp in ['IN_1', 'IN_2', 'IN_3']:
+                        U, I = self.gpio_controller.get_power_measurements(inp)
+                        s.extend([I, U])
+                    meas_string = '\u0004'.join(s)
+                    msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+                          f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
+                          f'\u0003{meas_string}\u0002'
                     with lock:
                         self.bt_controller.send(msg)
 
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
                     s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}
                     status_string = "\u0004".join([i[1] for i in sorted(s)])
-                    msg = f'\u0002{self.codes["DATA_FLAG"]}\u0003{self.codes["DATA_SWITCH_STATUS"]}\u0003{status_string}\u0002'
+                    msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+                          f'\u0003{self.codes["DATA_SWITCH_STATUS"]}' \
+                          f'\u0003{status_string}\u0002'
                     with lock:
                         self.bt_controller.send(msg)
 
-            elif cmd == self.codes['SEND_STATISTICS']:
-                #TODO change message format to not use "-" as separator
-                s = self.gpio_controller.get_statistics()
-                msg = f'\u0002{self.config.get("PREFIXES", "PFX_STATISTICS")}{"|".join([str(k)+":"+str(v) for k,v in s.items()])}\u0002'
-                with lock:
-                    self.bt_controller.send(msg)
+        elif msg_flag == self.codes['DATA_FLAG']:
+            pass
 
-            elif cmd == self.codes['SEND_SWITCH_STATUS']:
 
-                s = {self.config.get('SWITCHES', k): int(v) for k, v in self.gpio_controller.get_switch_status().items()}
-                msg = f'\u0002{self.config.get("PREFIXES", "PFX_SWITCH_STATUS")}{"|".join([str(k)+":"+str(v) for k,v in s.items()])}\u0002'
-                # with lock:
-                self.bt_controller.send(msg)
+            # elif cmd == self.codes['SEND_STATISTICS']:
+            #     #TODO change message format to not use "-" as separator
+            #     s = self.gpio_controller.get_statistics()
+            #     msg = f'\u0002{self.config.get("PREFIXES", "PFX_STATISTICS")}{"|".join([str(k)+":"+str(v) for k,v in s.items()])}\u0002'
+            #     with lock:
+            #         self.bt_controller.send(msg)
+            #
+            # elif cmd == self.codes['SEND_SWITCH_STATUS']:
+            #
+            #     s = {self.config.get('SWITCHES', k): int(v) for k, v in self.gpio_controller.get_switch_status().items()}
+            #     msg = f'\u0002{self.config.get("PREFIXES", "PFX_SWITCH_STATUS")}{"|".join([str(k)+":"+str(v) for k,v in s.items()])}\u0002'
+            #     # with lock:
+            #     self.bt_controller.send(msg)
 
 
 if __name__ == '__main__':

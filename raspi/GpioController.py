@@ -48,20 +48,20 @@ class GpioController:
         else:
             GPIO.output(io_pin, GPIO.LOW)
 
-    def get_statistics(self):
-
-        stats = dict()
-
-        for input in ['IN_1', 'IN_2', 'IN_3']:
-            U, I = self.get_power_measurements(input)
-
-            stats['{input}_U'] = U
-            stats['{input}_I'] = I
-
-        # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
-        # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
-
-        return stats
+    # def get_power(self):
+    #
+    #     stats = list()
+    #
+    #     for input in ['IN_1', 'IN_2', 'IN_3']:
+    #         U, I = self.get_power_measurements(input)
+    #
+    #         stats.append(I)
+    #         stats.append(U)
+    #
+    #     # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
+    #     # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
+    #
+    #     return stats
 
     def get_power_measurements(self, input):
         adc_name, channel = self.measurement_mapping[f'{input}_POSITIVE']
