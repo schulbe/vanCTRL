@@ -209,11 +209,11 @@ class BluetoothException(message: String) : Exception(message)
 
 class MessageProcessor(private val viewModel: VanViewModel) {
     fun createCommandMessage(cmd:RaspiCodes): String {
-        if cmd.startsWitch("SWITCH_") {
-            var split = cmd.split('_')
+        if cmd.name.startsWitch("SWITCH_") {
+            var split = cmd.name.split('_')
             var switch = split.slice((1..s.size-2)).joinToString(separator="_")
             var action = split[split.size-1]
-            return "\u0002${cmd.code}\u0002"
+            return "\u0002${action}\u0003${switch}\u0002"
         }
 
 

@@ -55,9 +55,8 @@ class GpioController:
         for input in ['IN_1', 'IN_2', 'IN_3']:
             U, I = self.get_power_measurements(input)
 
-            stats[self.measurement_names[f'STAT_VOLT_{self.power_measurement_mapping[input]["name"]}']] = U
-            stats[self.measurement_names[f'STAT_AMP_{self.power_measurement_mapping[input]["name"]}']] = I
-
+            stats['{input}_U'] = U
+            stats['{input}_I'] = I
 
         # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
         # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
