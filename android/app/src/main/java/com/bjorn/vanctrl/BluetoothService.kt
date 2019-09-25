@@ -259,7 +259,17 @@ class MessageProcessor(private val viewModel: VanViewModel) {
 
     private fun processDataMessage(type:RaspiCodes, details:String) {
         details_split = details.split("\u0004")
+        when (type) {
+            RaspiCodes.DATA_POWER_MEASUREMENTS -> {
 
+            }
+            RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS -> {
+
+            }
+            RaspiCodes.DATA_SWITCH_STATUS -> {
+
+            }
+        }
     }
 
     private fun processReceivedSwitchStatus(message: String) {

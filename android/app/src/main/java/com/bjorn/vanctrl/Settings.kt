@@ -1,5 +1,7 @@
 package com.bjorn.vanctrl
 
+import
+
 enum class Settings(val code: String) {
 
     //Should be set within App lateron
@@ -11,13 +13,14 @@ enum class Settings(val code: String) {
     BATTERY_LOAD_IN("I1")
     MPPT_LOAD_IN("I2")
     MPPT_CHARGE_IN("I3")
+
     UNKNOWN(1000);
 
 
 
     companion object {
         private val map = RaspiCodes.values().associateBy(RaspiCodes::code)
-        fun fromCode(type: Int) = map[type]?: UNKNOWN
+        fun internalName(type: Int) = map[type]?: UNKNOWN
     }
 
 }

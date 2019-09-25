@@ -4,7 +4,7 @@
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,15 +43,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="431" />
+          <entry key="kt" value="654" />
           <entry key="py" value="286" />
-          <entry key="txt" value="67" />
+          <entry key="txt" value="99" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="431" />
-          <entry key="PLAIN_TEXT" value="67" />
+          <entry key="Kotlin" value="654" />
+          <entry key="PLAIN_TEXT" value="99" />
           <entry key="Python" value="286" />
         </counts>
       </usages-collector>
@@ -102,11 +102,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="260" column="18" selection-start-line="260" selection-start-column="18" selection-end-line="260" selection-end-column="18" />
+            <state relative-caret-position="555">
+              <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+              <folding>
+                <element signature="e#27#572#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,17 +117,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="435">
               <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+              <folding>
+                <element signature="e#27#768#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+            <state relative-caret-position="345">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -132,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-282">
-              <caret line="4" column="16" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="16" />
+            <state relative-caret-position="210">
+              <caret line="14" column="33" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -168,6 +174,7 @@
         <option value="$PROJECT_DIR$/raspi/server.py" />
         <option value="$PROJECT_DIR$/raspi/GpioController.py" />
         <option value="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" />
+        <option value="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" />
       </list>
     </option>
   </component>
@@ -289,7 +296,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569424584892" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569425112553" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -348,7 +355,7 @@
       <workItem from="1565117150400" duration="714000" />
       <workItem from="1565340482910" duration="6108000" />
       <workItem from="1565368763304" duration="152000" />
-      <workItem from="1569393761344" duration="3369000" />
+      <workItem from="1569393761344" duration="3895000" />
     </task>
     <task id="LOCAL-00001" summary="merged">
       <created>1565117413318</created>
@@ -546,11 +553,18 @@
       <option name="project" value="LOCAL" />
       <updated>1569423295608</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="working on android message stuff">
+      <created>1569424738675</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1569424738675</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3369000" />
+    <option name="totallyTimeSpent" value="3895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1613" height="920" extended-state="6" />
@@ -633,7 +647,8 @@
     <MESSAGE value="small update - sends ampere!" />
     <MESSAGE value="updated to most recent untested version" />
     <MESSAGE value="raspi communication updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="raspi communication updated" />
+    <MESSAGE value="working on android message stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on android message stuff" />
   </component>
   <component name="WindowStateProjectService">
     <state x="547" y="168" key="CommitChangelistDialog2" />
@@ -700,31 +715,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt">
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-282">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        <state relative-caret-position="555">
+          <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+          <folding>
+            <element signature="e#27#572#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="435">
           <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding>
+            <element signature="e#27#768#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt">
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="260" column="18" selection-start-line="260" selection-start-column="18" selection-end-line="260" selection-end-column="18" />
+        <state relative-caret-position="210">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
         </state>
       </provider>
     </entry>
