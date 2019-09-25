@@ -227,13 +227,39 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         }
 
         val message = msg.removeSurrounding("\u0002")
+        val (flag, type, details) = message.split("\u0003")
 
-        if (message.startsWith(RaspiCodes.PFX_STATISTICS.code.toString())) {
-            processReceivedStatistics(message.removePrefix(RaspiCodes.PFX_STATISTICS.code.toString()))
+        when (RaspiCodes.fromCode(flag.toInt())) {
+            RaspiCodes.COMMAND_FLAG -> {
+                processCommandMessage(RaspiCodes.fromCode(type.toInt()), details)
+            }
+            RaspiCodes.DATA_FLAG -> {
+                processDataMessage(RaspiCodes.fromCode(type.toInt()), details)
+            }
         }
-        else if (message.startsWith(RaspiCodes.PFX_SWITCH_STATUS.code.toString())) {
-            processReceivedSwitchStatus(message.removePrefix(RaspiCodes.PFX_SWITCH_STATUS.code.toString()))
-        }
+//        if (flag == RaspiCodes.COMMAND_FLAG.code.toString()){
+//            println("Received Command. No Options available. To be implemented")
+//        }
+//
+//        else if (flag == RaspiCodes.DATA_FLAG.code.toString()){
+//            when
+//        }
+//
+//        if (message.startsWith(RaspiCodes.PFX_STATISTICS.code.toString())) {
+//            processReceivedStatistics(message.removePrefix(RaspiCodes.PFX_STATISTICS.code.toString()))
+//        }
+//        else if (message.startsWith(RaspiCodes.PFX_SWITCH_STATUS.code.toString())) {
+//            processReceivedSwitchStatus(message.removePrefix(RaspiCodes.PFX_SWITCH_STATUS.code.toString()))
+//        }
+    }
+
+    private fun processCommandMessage(type: RaspiCodes, details:String) {
+
+    }
+
+    private fun processDataMessage(type:RaspiCodes, details:String) {
+        details_split = details.split("\u0004")
+
     }
 
     private fun processReceivedSwitchStatus(message: String) {
