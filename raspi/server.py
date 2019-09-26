@@ -72,7 +72,7 @@ class Processor:
                             logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
                             U, I = (0, 0)
                         s.extend([I, U])
-                    meas_string = '\u0004'.join(s)
+                    meas_string = '\u0004'.join(str(v) for v in s)
                     msg = f'\u0002{self.codes["DATA_FLAG"]}' \
                           f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
                           f'\u0003{meas_string}\u0002'
@@ -81,7 +81,7 @@ class Processor:
 
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
                     s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}
-                    status_string = "\u0004".join([i[1] for i in sorted(s)])
+                    status_string = "\u0004".join([str(i[1]) for i in sorted(s)])
                     msg = f'\u0002{self.codes["DATA_FLAG"]}' \
                           f'\u0003{self.codes["DATA_SWITCH_STATUS"]}' \
                           f'\u0003{status_string}\u0002'
