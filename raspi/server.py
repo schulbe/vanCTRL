@@ -29,32 +29,35 @@ class Processor:
 
     def process_message_error_wrapper(self, msg, lock):
         try:
-            print(f"Received: {msg}")
             self.process_message(msg, lock)
         except Exception as e:
             logging.error(f'Error in "process_message: {e}', exc_info=True)
 
     def process_message(self, msg, lock):
         global send_statistics
-        logging.debug(f'Received Message {msg} (type{type(msg)})')
+        logging.debug(f'Received Message: {msg}')
 
         msg_flag, msg_type, msg_details = msg.split('\u0003')
 
         # IN CASE COMMAND WAS RECEIVED
         if msg_flag == self.codes['COMMAND_FLAG']:
+            logging.debug(f"{msg} is a COMMAND message")
             if msg_type == self.codes['CMD_SWITCH_ON']:
+                logging.debug(f"COMMAND of {msg} is CMD_SWITCH_ON")
                 with suppress(IndexError):
                     switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         self.gpio_controller.switch(switch, on=True)
 
             elif msg_type == self.codes['CMD_SWITCH_OFF']:
+                logging.debug(f"COMMAND of {msg} is CMD_SWITCH_OFF")
                 with suppress(IndexError):
                     switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         self.gpio_controller.switch(switch, on=False)
 
             elif msg_type == self.codes['CMD_SWITCH_TOGGLE']:
+                logging.debug(f"COMMAND of {msg} is CMD_SWITCH_TOGGLE")
                 with suppress(IndexError):
                     switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
@@ -64,6 +67,7 @@ class Processor:
                             self.gpio_controller.switch(switch, on=True)
 
             elif msg_type == self.codes['CMD_SEND_DATA']:
+                logging.debug(f"COMMAND of {msg} is CMD_SEND_DATA")
                 if msg_details == self.codes['DATA_POWER_MEASUREMENTS']:
                     s = list()
                     for inp in ['IN_1', 'IN_2', 'IN_3']:
@@ -82,7 +86,7 @@ class Processor:
 
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
                     s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}
-                    status_string = "\u0004".join([str(i[1]) for i in sorted(s)])
+                    status_string = "\u0004".join([str(i[1]) for i in sorted(s.items())])
                     msg = f'\u0002{self.codes["DATA_FLAG"]}' \
                           f'\u0003{self.codes["DATA_SWITCH_STATUS"]}' \
                           f'\u0003{status_string}\u0002'
@@ -90,6 +94,7 @@ class Processor:
                         self.bt_controller.send(msg)
 
         elif msg_flag == self.codes['DATA_FLAG']:
+            logging.debug(f"{msg} is a DATA message")
             pass
 
 

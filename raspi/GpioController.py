@@ -43,8 +43,10 @@ class GpioController:
         io_pin = int(self.pins[switch])
         if on:
             GPIO.output(io_pin, GPIO.HIGH)
+            logging.debug(f'Switching Switch {switch} on pin {io_pin} on')
         else:
             GPIO.output(io_pin, GPIO.LOW)
+            logging.debug(f'Switching Switch {switch} on pin {io_pin} off')
 
     # def get_power(self):
     #
@@ -104,7 +106,7 @@ class GpioController:
                     return ADS.read_adc_difference(num, gain=gain) * fac
 
                 else:
-                    return (ADS.read_adc(c, gain=gain) for c in channels)
+                    return tuple(ADS.read_adc(c, gain=gain) for c in channels)
 
             elif name == 'MCP':
                 #todo

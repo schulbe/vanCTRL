@@ -35,7 +35,6 @@ class BluetoothController:
     def send(self, msg):
         try:
             with self._lock:
-                print(f"Sending: {msg}")
                 self._client_sock.send(bytes(msg, 'utf-8'))
                 logging.debug(f'Sent message: {msg}')
         except bt.btcommon.BluetoothError as e:
