@@ -2,18 +2,18 @@ package com.bjorn.vanctrl
 
 enum class RaspiCodes(val code: String) {
 
-    COMMAND_FLAG("C")
+    COMMAND_FLAG("C"),
 
     CMD_SWITCH_ON("C1"),
     CMD_SWITCH_OFF("C2"),
     CMD_SWITCH_TOGGLE("C3"),
-    CMD_SEND_DATA("C4")
+    CMD_SEND_DATA("C4"),
 
-    DATA_FLAG("D")
+    DATA_FLAG("D"),
 
-    DATA_POWER_MEASUREMENTS("D1")
-    DATA_TEMPERATURE_MEASUREMENTS("D2")
-    DATA_SWITCH_STATUS("D3")
+    DATA_POWER_MEASUREMENTS("D1"),
+    DATA_TEMPERATURE_MEASUREMENTS("D2"),
+    DATA_SWITCH_STATUS("D3"),
 
 
 //    SWITCH_FRONT_LIGHT_ON(1),
@@ -51,17 +51,18 @@ enum class RaspiCodes(val code: String) {
     SWITCH_7("S7"),
     SWITCH_8("S8"),
 
-    INPUT_1("I1")
-    INPUT_2("I2")
-    INPUT_3("I3")
+    INPUT_1("I1"),
+    INPUT_2("I2"),
+    INPUT_3("I3"),
 
-    UNKNOWN(1000);
+    UNKNOWN("U");
 
 
 
     companion object {
-        private val map = RaspiCodes.values().associateBy(RaspiCodes::code)
-        fun fromCode(type: Int) = map[type]?: UNKNOWN
+        private val map = values().associateBy(RaspiCodes::code)
+        fun fromCode(type: String) = map[type]?: UNKNOWN
+        fun fromSetting(set: Settings) = fromCode(set.code)
     }
 
 }

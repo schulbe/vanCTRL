@@ -14,4 +14,8 @@
     <string name="desc_fridge_switch">Kühlschrank Schalter</string>
     <string name="desc_kitchenlight_switch">Küchenlicht Schalter</string>
     <string name="desc_bedlight_switch">Schlafzimmerlicht Schalter</string>
+    <string name="overview_solar_title">Solar</string>
+    <string name="overview_temperature_title">Temperatur</string>
+    <string name="connect_button_label">Verbinden via BT...</string>
+    <string name="measure_button_label">Batterieleistungsmessung</string>
 </resources>

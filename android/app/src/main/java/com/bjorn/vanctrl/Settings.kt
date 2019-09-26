@@ -1,6 +1,5 @@
 package com.bjorn.vanctrl
 
-import
 
 enum class Settings(val code: String) {
 
@@ -10,17 +9,17 @@ enum class Settings(val code: String) {
     FRIDGE_SWITCH("S3"),
     RADIO_SWITCH("S4"),
 
-    BATTERY_LOAD_IN("I1")
-    MPPT_LOAD_IN("I2")
-    MPPT_CHARGE_IN("I3")
+    BATTERY_LOAD("I1"),
+    MPPT_LOAD("I2"),
+    MPPT_CHARGE("I3"),
 
-    UNKNOWN(1000);
+    UNKNOWN("U");
 
 
 
     companion object {
-        private val map = RaspiCodes.values().associateBy(RaspiCodes::code)
-        fun internalName(type: Int) = map[type]?: UNKNOWN
+        private val map = Settings.values().associateBy(Settings::code)
+        fun fromCode(code: String) = map[code]?: UNKNOWN
     }
 
 }

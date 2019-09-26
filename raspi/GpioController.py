@@ -12,7 +12,6 @@ class GpioController:
     mcp = None
     ads_gain = 16
 
-
     def __init__(self, config):
 
         # self.pins = pin_numbers

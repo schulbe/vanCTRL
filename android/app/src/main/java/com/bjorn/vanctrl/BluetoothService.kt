@@ -1,6 +1,5 @@
 package com.bjorn.vanctrl
 
-import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
@@ -35,8 +34,8 @@ class BluetoothService(
 
     private val REQUEST_ENABLE_BT = 17
 
-    fun sendCommand(cmd: RaspiCodes) {
-        write(messageProcessor.createCommandMessage(cmd))
+    fun sendCommand(cmd: RaspiCodes, details:RaspiCodes) {
+        write(messageProcessor.createCommandMessage(cmd, details))
     }
 
     fun tryConnection(deviceMac: String, deviceDisplayName: String, timeout: Int = 10) {
@@ -208,16 +207,8 @@ class BluetoothException(message: String) : Exception(message)
 
 
 class MessageProcessor(private val viewModel: VanViewModel) {
-    fun createCommandMessage(cmd:RaspiCodes): String {
-        if cmd.name.startsWitch("SWITCH_") {
-            var split = cmd.name.split('_')
-            var switch = split.slice((1..s.size-2)).joinToString(separator="_")
-            var action = split[split.size-1]
-            return "\u0002${action}\u0003${switch}\u0002"
-        }
-
-
-        return "\u0002${cmd.code}\u0002"
+    fun createCommandMessage(cmd:RaspiCodes, details: RaspiCodes): String {
+        return "\u0002${RaspiCodes.COMMAND_FLAG.code}\u0003${cmd.code}\u0003${details.code}\u0002"
     }
 
     fun processReceivedMessage(msg: String) {
@@ -229,28 +220,15 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         val message = msg.removeSurrounding("\u0002")
         val (flag, type, details) = message.split("\u0003")
 
-        when (RaspiCodes.fromCode(flag.toInt())) {
+        when (RaspiCodes.fromCode(flag)) {
             RaspiCodes.COMMAND_FLAG -> {
-                processCommandMessage(RaspiCodes.fromCode(type.toInt()), details)
+                processCommandMessage(RaspiCodes.fromCode(type), details)
             }
             RaspiCodes.DATA_FLAG -> {
-                processDataMessage(RaspiCodes.fromCode(type.toInt()), details)
+                processDataMessage(RaspiCodes.fromCode(type), details)
             }
+            else -> {println("Unknown Sequence as Flag received: $flag")}
         }
-//        if (flag == RaspiCodes.COMMAND_FLAG.code.toString()){
-//            println("Received Command. No Options available. To be implemented")
-//        }
-//
-//        else if (flag == RaspiCodes.DATA_FLAG.code.toString()){
-//            when
-//        }
-//
-//        if (message.startsWith(RaspiCodes.PFX_STATISTICS.code.toString())) {
-//            processReceivedStatistics(message.removePrefix(RaspiCodes.PFX_STATISTICS.code.toString()))
-//        }
-//        else if (message.startsWith(RaspiCodes.PFX_SWITCH_STATUS.code.toString())) {
-//            processReceivedSwitchStatus(message.removePrefix(RaspiCodes.PFX_SWITCH_STATUS.code.toString()))
-//        }
     }
 
     private fun processCommandMessage(type: RaspiCodes, details:String) {
@@ -258,45 +236,81 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     }
 
     private fun processDataMessage(type:RaspiCodes, details:String) {
-        details_split = details.split("\u0004")
+        val detailsSplit = details.split("\u0004")
         when (type) {
             RaspiCodes.DATA_POWER_MEASUREMENTS -> {
-
+                processPowerMeasurements(detailsSplit)
             }
             RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS -> {
 
             }
             RaspiCodes.DATA_SWITCH_STATUS -> {
-
+                processSwitchStatus(detailsSplit)
             }
+            else -> {println("Unknown Sequence as Data Type received: $type")}
         }
     }
 
-    private fun processReceivedSwitchStatus(message: String) {
-        val statistics = mutableMapOf<RaspiCodes, Boolean>()
-        message.split("|").forEach{
-                val s = it.split(":")
-                if (s.size == 2) {
-                    statistics[RaspiCodes.fromCode(s[0].toInt())] = (s[1] == "1")
-                }
-            }
+//    private fun processReceivedSwitchStatus(message: String) {
+//        val statistics = mutableMapOf<RaspiCodes, Boolean>()
+//        message.split("|").forEach{
+//                val s = it.split(":")
+//                if (s.size == 2) {
+//                    statistics[RaspiCodes.fromCode(s[0])] = (s[1] == "1")
+//                }
+//            }
+//
+//        viewModel.setSwitchStatus(statistics.toMap())
+//    }
 
-        viewModel.setSwitchStatus(statistics.toMap())
+    private fun processSwitchStatus(details: List<String>) {
+        val status = mutableMapOf<Settings, Boolean>()
+
+        status[Settings.fromCode("S1")] = (details[0]=="1")
+        status[Settings.fromCode("S2")] = (details[1]=="1")
+        status[Settings.fromCode("S3")] = (details[2]=="1")
+        status[Settings.fromCode("S4")] = (details[3]=="1")
+        status[Settings.fromCode("S5")] = (details[4]=="1")
+        status[Settings.fromCode("S6")] = (details[5]=="1")
+        status[Settings.fromCode("S7")] = (details[6]=="1")
+        status[Settings.fromCode("S8")] = (details[7]=="1")
+
+        viewModel.setSwitchStatus(status.toMap())
     }
 
-    private fun processReceivedStatistics(message: String) {
+    private fun processPowerMeasurements(details: List<String>) {
 
-        val statistics = mutableMapOf<RaspiCodes, Float>()
-        message.split("|").forEach{
-                val s = it.split(":")
-                if (s.size == 2) {
-                    statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toFloat()
-            }
-        }
+        val statistics = mutableMapOf<Settings, Map<String, Float>>()
+        val meas = mutableMapOf<String, Float>()
 
-        viewModel.setStatistics(statistics.toMap())
+        meas["V"] = details[0].toFloat()
+        meas["A"] = details[1].toFloat()
+        statistics[Settings.fromCode("IN_1")] = meas.toMap()
 
+        meas["V"] = details[2].toFloat()
+        meas["A"] = details[3].toFloat()
+        statistics[Settings.fromCode("IN_2")] = meas.toMap()
+
+        meas["V"] = details[4].toFloat()
+        meas["A"] = details[5].toFloat()
+        statistics[Settings.fromCode("IN_3")] = meas.toMap()
+
+        viewModel.setPowerStats(statistics.toMap())
     }
+
+//    private fun processReceivedStatistics(message: String) {
+//
+//        val statistics = mutableMapOf<RaspiCodes, Float>()
+//        message.split("|").forEach{
+//                val s = it.split(":")
+//                if (s.size == 2) {
+//                    statistics[RaspiCodes.fromCode(s[0].toInt())] = s[1].toFloat()
+//            }
+//        }
+//
+//        viewModel.setPowerStats(statistics.toMap())
+//
+//    }
 }
 
 

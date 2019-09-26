@@ -1,16 +1,12 @@
 package com.bjorn.vanctrl
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.ImageButton
-import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -105,19 +101,19 @@ class MainActivity : AppCompatActivity(),
 
     override fun onSwitchClicked(switchId: Int) {
         when(switchId) {
-            R.id.kitchenlightButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_FRONT_LIGHT_TOGGLE)
-                                        viewModel.toggleSwitchStatus(RaspiCodes.FRONT_LIGHT_SWITCH) }
-            R.id.bedlightButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_BACK_LIGHT_TOGGLE)
-                                    viewModel.toggleSwitchStatus(RaspiCodes.BACK_LIGHT_SWITCH)}
-            R.id.fridgeButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_FRIDGE_TOGGLE)
-                                  viewModel.toggleSwitchStatus(RaspiCodes.FRIDGE_SWITCH)}
-            R.id.radioButton -> {rasPi.sendCommand(RaspiCodes.SWITCH_RADIO_TOGGLE)
-                                 viewModel.toggleSwitchStatus(RaspiCodes.RADIO_SWITCH) }
+            R.id.kitchenlightButton -> {rasPi.sendCommand(RaspiCodes.CMD_SWITCH_TOGGLE, RaspiCodes.fromSetting(Settings.FRONT_LIGHT_SWITCH))
+                                        viewModel.toggleSwitchStatus(Settings.FRONT_LIGHT_SWITCH) }
+            R.id.bedlightButton -> {rasPi.sendCommand(RaspiCodes.CMD_SWITCH_TOGGLE, RaspiCodes.fromSetting(Settings.BACK_LIGHT_SWITCH))
+                                    viewModel.toggleSwitchStatus(Settings.BACK_LIGHT_SWITCH)}
+            R.id.fridgeButton -> {rasPi.sendCommand(RaspiCodes.CMD_SWITCH_TOGGLE, RaspiCodes.fromSetting(Settings.FRIDGE_SWITCH))
+                                  viewModel.toggleSwitchStatus(Settings.FRIDGE_SWITCH)}
+            R.id.radioButton -> {rasPi.sendCommand(RaspiCodes.CMD_SWITCH_TOGGLE, RaspiCodes.fromSetting(Settings.RADIO_SWITCH))
+                                 viewModel.toggleSwitchStatus(Settings.RADIO_SWITCH) }
         }
 //        // TODO: Trigger return on switch status change on serverside
         GlobalScope.launch{
             delay(500)
-            rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
+            rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_SWITCH_STATUS)
         }
 
     }
@@ -135,41 +131,70 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun setObservers() {
-        viewModel.getStatistics().observe(this, Observer<Map<RaspiCodes,Float>>{ measurements -> setPowerMeasurementsToUI(measurements) })
-        viewModel.getSwitchStatus().observe(this, Observer<Map<RaspiCodes, Boolean>>{ status -> setButtonImages(status)})
+        viewModel.getPowerStats().observe(this, Observer<Map<Settings, Map<String, Float>>>{ measurements -> setPowerMeasurementsToUI(measurements) })
+        viewModel.getSwitchStatus().observe(this, Observer<Map<Settings, Boolean>>{ status -> setButtonImages(status)})
         viewModel.getFragmentTitle().observe(this, Observer<Int> {fragmentId -> onFragmentChange(fragmentId)})
 
         rasPi.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
 
     }
 
-    private fun setButtonImages(status: Map<RaspiCodes, Boolean>) {
+    private fun setButtonImages(status: Map<Settings, Boolean>) {
         val kitchenlightButton = findViewById<ImageButton>(R.id.kitchenlightButton)
-        if (status[RaspiCodes.FRONT_LIGHT_SWITCH] == true){
+        if (status[Settings.FRONT_LIGHT_SWITCH] == true){
             kitchenlightButton?.setImageResource(R.drawable.ic_kitchenlight_on)
         } else kitchenlightButton?.setImageResource(R.drawable.ic_kitchenlight_off)
 
         val bedlightButton = findViewById<ImageButton>(R.id.bedlightButton)
-        if (status[RaspiCodes.BACK_LIGHT_SWITCH] == true){
+        if (status[Settings.BACK_LIGHT_SWITCH] == true){
             bedlightButton?.setImageResource(R.drawable.ic_bedlight_on)
         } else bedlightButton?.setImageResource(R.drawable.ic_bedlight_off)
 
         val fridgeButton = findViewById<ImageButton>(R.id.fridgeButton)
-        if (status[RaspiCodes.FRIDGE_SWITCH] == true){
+        if (status[Settings.FRIDGE_SWITCH] == true){
             fridgeButton?.setImageResource(R.drawable.ic_fridge_on)
         } else fridgeButton?.setImageResource(R.drawable.ic_fridge_off)
 
         val radioButton = findViewById<ImageButton>(R.id.radioButton)
-        if (status[RaspiCodes.RADIO_SWITCH] == true){
+        if (status[Settings.RADIO_SWITCH] == true){
             radioButton?.setImageResource(R.drawable.ic_radio_on)
         } else radioButton?.setImageResource(R.drawable.ic_radio_off)
     }
 
-    private fun setPowerMeasurementsToUI(measurements: Map<RaspiCodes, Float>) {
-        val formattedVoltage = "%.2f V".format(measurements[RaspiCodes.STAT_BATTERY_VOLT])
-        findViewById<TextView>(R.id.batteryVoltageView)?.apply {
-            text = formattedVoltage
+    private fun setPowerMeasurementsToUI(measurements: Map<Settings, Map<String, Float>>) {
+
+        var amp = measurements[Settings.BATTERY_LOAD]?.get("A")
+        var volt = measurements[Settings.BATTERY_LOAD]?.get("V")
+        var uiText = "%.2f V".format(volt)
+        findViewById<TextView>(R.id.overviewBatteryVoltageView)?.apply {
+            text = uiText
         }
+        uiText = "%.2f A".format(amp)
+        findViewById<TextView>(R.id.overviewBatteryAmpView)?.apply {
+            text = uiText
+        }
+        var power = amp?.times(volt?: 0f)
+        uiText = "%.2f W".format((power))
+        findViewById<TextView>(R.id.overviewBatteryPowerView)?.apply {
+            text = uiText
+        }
+
+        amp = measurements[Settings.MPPT_CHARGE]?.get("A")
+        volt = measurements[Settings.MPPT_CHARGE]?.get("V")
+        uiText = "%.2f V".format(volt)
+        findViewById<TextView>(R.id.overviewSolarVoltageView)?.apply {
+            text = uiText
+        }
+        uiText = "%.2f A".format(amp)
+        findViewById<TextView>(R.id.overviewSolarAmpView)?.apply {
+            text = uiText
+        }
+        power = amp?.times(volt?: 0f)
+        uiText = "%.2f W".format(power)
+        findViewById<TextView>(R.id.overviewSolarPowerView)?.apply {
+            text = uiText
+        }
+
     }
 
     private fun setConnectionBanner(isConnected: Boolean) {
@@ -189,7 +214,8 @@ class MainActivity : AppCompatActivity(),
     private fun launchUpdateStatistics() {
         GlobalScope.launch {
             while (viewModel.getFragmentTitle().value == R.id.overviewFragment){
-                rasPi.sendCommand(RaspiCodes.SEND_STATISTICS)
+                rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_POWER_MEASUREMENTS)
+                rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS)
                 delay(1500)
             }
         }
@@ -200,7 +226,7 @@ class MainActivity : AppCompatActivity(),
                 launchUpdateStatistics()
             }
             R.id.switchesFragment -> {
-                rasPi.sendCommand(RaspiCodes.SEND_SWITCH_STATUS)
+                rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_SWITCH_STATUS)
             }
             R.id.radioFragment -> {
             }

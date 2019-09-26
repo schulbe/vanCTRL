@@ -18,7 +18,22 @@
                 android:id="@+id/buttonConnectBt"
                 android:layout_width="match_parent"
                 android:layout_height="69dp"
-                android:text="Bluetooth Connect" />
+                android:background="#FFFFFF"
+                android:gravity="left|center_vertical"
+                android:longClickable="false"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/connect_button_label" />
+
+            <Button
+                android:id="@+id/buttonMeasureBattery"
+                android:layout_width="match_parent"
+                android:layout_height="69dp"
+                android:background="#FFFFFF"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/measure_button_label" />
         </LinearLayout>
     </ScrollView>
 
