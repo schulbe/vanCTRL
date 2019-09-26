@@ -29,6 +29,7 @@ class Processor:
 
     def process_message_error_wrapper(self, msg, lock):
         try:
+            print(f"Received: {msg}")
             self.process_message(msg, lock)
         except Exception as e:
             logging.error(f'Error in "process_message: {e}', exc_info=True)
@@ -43,19 +44,19 @@ class Processor:
         if msg_flag == self.codes['COMMAND_FLAG']:
             if msg_type == self.codes['CMD_SWITCH_ON']:
                 with suppress(IndexError):
-                    switch = [k for k, v in self.codes if v == msg_details][0]
+                    switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         self.gpio_controller.switch(switch, on=True)
 
             elif msg_type == self.codes['CMD_SWITCH_OFF']:
                 with suppress(IndexError):
-                    switch = [k for k,v in self.codes if v == msg_details][0]
+                    switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         self.gpio_controller.switch(switch, on=False)
 
             elif msg_type == self.codes['CMD_SWITCH_TOGGLE']:
                 with suppress(IndexError):
-                    switch = [k for k, v in self.codes if v == msg_details][0]
+                    switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         if self.gpio_controller.switch_is_on(switch):
                             self.gpio_controller.switch(switch, on=False)
