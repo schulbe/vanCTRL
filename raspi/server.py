@@ -66,7 +66,11 @@ class Processor:
                 if msg_details == self.codes['DATA_POWER_MEASUREMENTS']:
                     s = list()
                     for inp in ['IN_1', 'IN_2', 'IN_3']:
-                        U, I = self.gpio_controller.get_power_measurements(inp)
+                        try:
+                            U, I = self.gpio_controller.get_power_measurements(inp)
+                        except Exception as e:
+                            logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
+                            U, I = (0, 0)
                         s.extend([I, U])
                     meas_string = '\u0004'.join(s)
                     msg = f'\u0002{self.codes["DATA_FLAG"]}' \
