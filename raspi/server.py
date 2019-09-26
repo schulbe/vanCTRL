@@ -105,15 +105,13 @@ class Processor:
 
 if __name__ == '__main__':
     config = configparser.ConfigParser()
+    config.optionxform = str
+
     config.read('/home/pi/repos/vancontrol/raspi/config.ini')
 
     config.read('/home/pi/repos/vancontrol/raspi/internal_wiring_config.ini')
     config.read('/home/pi/repos/vancontrol/external_wiring_config.ini')
 
-    print(config.items())
-    print()
-    print(config.items('MEASUREMENT_MAPPINGS'))
-    print()
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     fileHandler = logging.FileHandler(f'/home/pi/logs/{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log')
