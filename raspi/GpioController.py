@@ -17,8 +17,7 @@ class GpioController:
         # self.pins = pin_numbers
         self.pins = dict([(v, k) for k, v in config.items('GPIOS')])
         # self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
-        self.measurement_mapping = dict(config.items('MEASUREMENT_MAPPINGS'))
-        print(self.measurement_mapping)
+        self.measurement_mapping = {k: eval(v) for k, v in config.items('MEASUREMENT_MAPPINGS')}
 
         self.power_measurement_mapping = {
             input: {
