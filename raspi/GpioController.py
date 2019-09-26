@@ -36,7 +36,7 @@ class GpioController:
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 
-        for assignment, pin_number in self.pins:
+        for assignment, pin_number in self.pins.items():
             if assignment.startswith('SWITCH_'):
                 GPIO.setup(int(pin_number), GPIO.OUT, initial=GPIO.LOW)
 

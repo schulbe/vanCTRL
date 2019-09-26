@@ -2,7 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Python" name="Python">
-      <configuration sdkName="" />
+      <configuration sdkName="Python 3.6 (hr_lab_vision)" />
     </facet>
   </component>
   <component name="NewModuleRootManager">
