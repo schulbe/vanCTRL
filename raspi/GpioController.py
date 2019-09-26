@@ -17,7 +17,7 @@ class GpioController:
 
         # self.pins = pin_numbers
         self.pins = dict([(v, k) for k, v in config.items('GPIOS')])
-        self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
+        # self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
         self.measurement_mapping = dict(config.items('MEASUREMENT_MAPPINGS'))
 
         self.power_measurement_mapping = {
@@ -39,7 +39,6 @@ class GpioController:
         for assignment, pin_number in self.pins:
             if assignment.startswith('SWITCH_'):
                 GPIO.setup(int(pin_number), GPIO.OUT, initial=GPIO.LOW)
-
 
     def switch(self, switch, on=True):
         io_pin = int(self.pins[switch])
