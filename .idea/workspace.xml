@@ -2,149 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vancontrol.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vancontrol.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1023392830">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="ini" value="1" />
-          <entry key="kt" value="7" />
-          <entry key="md" value="1" />
-          <entry key="py" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Ini" value="1" />
-          <entry key="Kotlin" value="7" />
-          <entry key="Markdown" value="1" />
-          <entry key="Python" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages">
-        <counts>
-          <entry key="git.branch.checkout.remote" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="kt" value="654" />
-          <entry key="py" value="286" />
-          <entry key="txt" value="99" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Kotlin" value="654" />
-          <entry key="PLAIN_TEXT" value="99" />
-          <entry key="Python" value="286" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raspi/server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="51" column="77" lean-forward="true" selection-start-line="51" selection-start-column="77" selection-end-line="51" selection-end-column="77" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raspi/GpioController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raspi/config.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-              <folding>
-                <element signature="e#27#572#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-              <folding>
-                <element signature="e#27#768#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="33" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -168,123 +34,8 @@
       </map>
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/raspi/server.py" />
-        <option value="$PROJECT_DIR$/raspi/GpioController.py" />
-        <option value="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" />
-        <option value="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="1613" />
-    <option name="height" value="920" />
-  </component>
   <component name="ProjectId" id="1P3p6cdssBiRkxMrUIJfrclg0Rd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bjorn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bjorn" type="462c0819:PsiDirectoryNode" />
-              <item name="vanctrl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vancontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vancontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="raspi" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -356,6 +107,7 @@
       <workItem from="1565340482910" duration="6108000" />
       <workItem from="1565368763304" duration="152000" />
       <workItem from="1569393761344" duration="3895000" />
+      <workItem from="1569512052399" duration="957000" />
     </task>
     <task id="LOCAL-00001" summary="merged">
       <created>1565117413318</created>
@@ -563,46 +315,6 @@
     <option name="localTasksCounter" value="30" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3895000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1613" height="920" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24952137" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" weight="0.32911393" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Remote Host" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -612,21 +324,12 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -651,103 +354,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="working on android message stuff" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="547" y="168" key="CommitChangelistDialog2" />
-    <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" />
-    <state x="780" y="142" key="FileChooserDialogImpl" />
-    <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" />
-    <state x="675" y="307" key="Vcs.Push.Dialog" />
-    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2" />
-    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" />
-    <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" />
-    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog" />
-    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog/1920.1200" />
-    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog/63.27.1857.1173@63.27.1857.1173" />
-    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog" />
-    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog/63.27.1857.1173@63.27.1857.1173" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/raspi/BluetoothController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raspi/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/RasPi.kt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raspi/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="51" column="77" lean-forward="true" selection-start-line="51" selection-start-column="77" selection-end-line="51" selection-end-column="77" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raspi/GpioController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-          <folding>
-            <element signature="e#27#572#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-          <folding>
-            <element signature="e#27#768#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Codes.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <state x="547" y="168" key="CommitChangelistDialog2" timestamp="1569511992129" />
+    <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" timestamp="1569511992129" />
+    <state x="780" y="142" key="FileChooserDialogImpl" timestamp="1569511992129" />
+    <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" timestamp="1569511992129" />
+    <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
+    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569511992129" />
+    <state x="586" y="349" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569511992129" />
+    <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1569512084297">
+      <screen x="63" y="27" width="1857" height="1173" />
+    </state>
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569511992129" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569512084297" />
+    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog" timestamp="1569511992129" />
+    <state x="718" y="306" key="git4idea.branch.GitSmartOperationDialog/1920.1200" timestamp="1569511992129" />
+    <state x="718" y="306" width="537" height="572" key="git4idea.branch.GitSmartOperationDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569511992129" />
+    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog" timestamp="1569511992129" />
+    <state x="681" y="406" width="610" height="413" key="git4idea.merge.GitPullDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1569511992130" />
   </component>
 </project>

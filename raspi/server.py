@@ -100,6 +100,8 @@ class Processor:
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('/home/pi/repos/vancontrol/raspi/config.ini')
+    config.read('/home/pi/repos/vancontrol/raspi/internal_wiring_config.ini')
+    config.read('/home/pi/repos/vancontrol/external_wiring_config.ini')
 
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)

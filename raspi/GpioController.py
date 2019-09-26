@@ -76,7 +76,6 @@ class GpioController:
 
         return U, I
 
-
     def _read_adc(self, name, difference=False, gain=16, *channels):
             if difference and len(channels)!=2:
                 raise TypeError('Wrong number of channels supplied for difference=True')
