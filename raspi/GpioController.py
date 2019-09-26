@@ -72,7 +72,10 @@ class GpioController:
         if adc_name_low != adc_name_high:
             raise TypeError('Cant read difference if adcs are not the same')
 
-        I = self._read_adc(adc_name_low, int(channel_high), int(channel_low)) * self.power_measurement_mapping[input]['a_per_bit']
+        #todo only debug reasons
+        I = self._read_adc(adc_name_low, int(channel_high), int(channel_low))
+        logging.debug(f"I: {I} // type: {type(I)}")
+        I = I * self.power_measurement_mapping[input]['a_per_bit']
 
         return U, I
 
