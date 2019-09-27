@@ -10,8 +10,8 @@ enum class Settings(val code: String) {
     RADIO_SWITCH("S4"),
 
     BATTERY_LOAD("I1"),
-    MPPT_LOAD("I2"),
-    MPPT_CHARGE("I3"),
+    MPPT_CHARGE("I2"),
+    MPPT_LOAD("I3"),
 
     UNKNOWN("U");
 
