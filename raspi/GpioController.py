@@ -13,6 +13,7 @@ class GpioController:
     mcp = None
     ads_gain_amp = 16
     ads_gain_v = 1
+    voltage_splitter_factor = 11
 
     def __init__(self, config):
 
@@ -27,7 +28,7 @@ class GpioController:
                 'a_per_bit': 4.096/self.ads_gain_amp/(2**15)
                              /(config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_MV')/1000)
                              *config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_A'),
-                'v_per_bit': 4.096/self.ads_gain_v/(2**15)
+                'v_per_bit': 4.096/self.ads_gain_v/(2**15) * self.voltage_splitter_factor
             } for inp in ['IN_1', 'IN_2', 'IN_3']
         }
 

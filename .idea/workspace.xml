@@ -424,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569583651403</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="changed behaviour to only use ads1115 (one per measurement)">
+      <created>1569583864513</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1569583864513</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,10 +491,10 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1569513848200" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569583653260">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1569583865686">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569583653260" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1569583865686" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1569577150226">
       <screen x="63" y="27" width="1857" height="1173" />
