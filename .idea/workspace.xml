@@ -4,6 +4,7 @@
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/internal_wiring_config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/internal_wiring_config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,12 +20,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1P3p6cdssBiRkxMrUIJfrclg0Rd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />

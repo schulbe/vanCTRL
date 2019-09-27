@@ -9,8 +9,10 @@ from contextlib import suppress
 class GpioController:
     ads_1 = None
     ads_2 = None
+    ads_3 = None
     mcp = None
-    ads_gain = 16
+    ads_gain_amp = 16
+    ads_gain_v = 1
 
     def __init__(self, config):
 
@@ -20,19 +22,21 @@ class GpioController:
         self.measurement_mapping = {k: v.split(':') for k, v in config.items('MEASUREMENT_MAPPINGS')}
 
         self.power_measurement_mapping = {
-            input: {
-                'name': config.get('POWER_MEASUREMENTS', input),
-                'a_per_bit': 4.096/self.ads_gain/(2**15)
-                             /(config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_MV')/1000)
-                             *config.getint('POWER_MEASUREMENTS', f'{input}_SHUNT_A')
-            } for input in ['IN_1', 'IN_2', 'IN_3']
+            inp: {
+                'name': config.get('POWER_MEASUREMENTS', inp),
+                'a_per_bit': 4.096/self.ads_gain_amp/(2**15)
+                             /(config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_MV')/1000)
+                             *config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_A'),
+                'v_per_bit': 4.096/self.ads_gain_v/(2**15)
+            } for inp in ['IN_1', 'IN_2', 'IN_3']
         }
 
         with suppress(Exception):
             self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
         with suppress(Exception):
             self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_2'), 16))
-
+        with suppress(Exception):
+            self.ads_3 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_3'), 16))
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 
@@ -49,70 +53,57 @@ class GpioController:
             GPIO.output(io_pin, GPIO.LOW)
             logging.debug(f'Switching Switch {switch} on pin {io_pin} off')
 
-    # def get_power(self):
-    #
-    #     stats = list()
-    #
-    #     for input in ['IN_1', 'IN_2', 'IN_3']:
-    #         U, I = self.get_power_measurements(input)
-    #
-    #         stats.append(I)
-    #         stats.append(U)
-    #
-    #     # stats[measurement_names['TEMPERATURE_FRIDGE']] = random.randint(40, 70)/10
-    #     # stats[measurement_names['TEMPERATURE_INSIDE']] = random.randint(250, 280)/10
-    #
-    #     return stats
-
     def get_power_measurements(self, input):
-        adc_name, channel = self.measurement_mapping[f'{input}_POSITIVE']
-        U = self._read_adc(adc_name, channel)
-
-        adc_name_high, channel_high = self.measurement_mapping[f'{input}_NEGATIVE_HIGH']
-        adc_name_low, channel_low = self.measurement_mapping[f'{input}_NEGATIVE_LOW']
-        if adc_name_low != adc_name_high:
+        adc_name_pos, channel_pos = self.measurement_mapping[f'{input}_POSITIVE']
+        adc_name_pre_shunt, channel_pre_shunt = self.measurement_mapping[f'{input}_NEGATIVE_HIGH']
+        adc_name_ref, channel_ref = self.measurement_mapping[f'{input}_NEGATIVE_LOW']
+        if adc_name_pos != adc_name_ref or adc_name_pre_shunt!=adc_name_ref:
             raise TypeError('Cant read difference if adcs are not the same')
 
-        #todo only debug reasons
-        I = self._read_adc(adc_name_low, int(channel_low), int(channel_high), difference=True)
-        logging.debug(f"I: {I} // type: {type(I)}")
-        I = I * self.power_measurement_mapping[input]['a_per_bit']
+        U = self._read_adc(adc_name_ref, int(channel_pos), channel_ref=int(channel_ref), gain=self.ads_gain_v) \
+            * self.power_measurement_mapping[input]['v_per_bit']
+        # todo only debug reasons
+        I = self._read_adc(adc_name_ref, int(channel_pre_shunt), channel_ref=int(channel_ref), gain=self.ads_gain_amp) \
+            * self.power_measurement_mapping[input]['a_per_bit']
+        logging.debug(f"I: {I} // U: {U}")
 
         return U, I
 
-    def _read_adc(self, name, *channels, difference=False, gain=16):
-        if difference and len(channels) != 2:
-            raise TypeError('Wrong number of channels supplied for difference=True')
+    def _read_adc(self, name, channel, channel_ref=None, gain=16):
+        def sign(perm, base):
+            if perm == base:
+                return 1
+            elif perm == (base[1], base[0]):
+                return -1
+
+        def map_channel(c, cref):
+            channels = (c, cref)
+            if set(channels) == {0, 1}:
+                return 0, sign(channels, (0, 1))
+            elif set(channels) == {0, 3}:
+                return 1, sign(channels, (0, 3))
+            elif set(channels) == {1, 3}:
+                return 2, sign(channels, (1, 3))
+            elif set(channels) == {2, 3}:
+                return 3, sign(channels, (2, 3))
 
         if name.startswith('ADS_'):
             if name == 'ADS_1':
                 ADS = self.ads_1
             elif name == 'ADS_2':
                 ADS = self.ads_2
+            elif name == 'ADS_3':
+                ADS = self.ads_3
             else:
                 raise TypeError()
-            if difference:
-                if channels == (0, 1):
-                    fac = 1
-                    num = 0
-                elif channels == (1, 0):
-                    fac = -1
-                    num = 0
-                elif channels == (2, 3):
-                    fac = 1
-                    num = 3
-                elif channels == (3, 2):
-                    fac = -1
-                    num = 3
-                else:
-                    raise TypeError(f'Channelset {channels} unknown')
-
-                dif = ADS.read_adc_difference(num, gain=gain) * fac
-                logging.debug(f'Read difference Ration {num}: {dif}')
+            if channel_ref is not None:
+                dif_channel, factor = map_channel(channel, channel_ref)
+                dif = ADS.read_adc_difference(dif_channel, gain=gain) * factor
+                logging.debug(f'Read difference Ratio {dif_channel}: {dif}')
                 return dif
 
             else:
-                return tuple(ADS.read_adc(c, gain=gain) for c in channels)
+                return ADS.read_adc(channel, gain=gain)
 
         elif name == 'MCP':
             #todo
