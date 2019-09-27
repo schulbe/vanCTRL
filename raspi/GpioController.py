@@ -74,7 +74,7 @@ class GpioController:
             raise TypeError('Cant read difference if adcs are not the same')
 
         #todo only debug reasons
-        I = self._read_adc(adc_name_low, int(channel_high), int(channel_low), difference=True)
+        I = self._read_adc(adc_name_low, int(channel_low), int(channel_high), difference=True)
         logging.debug(f"I: {I} // type: {type(I)}")
         I = I * self.power_measurement_mapping[input]['a_per_bit']
 
@@ -107,7 +107,9 @@ class GpioController:
                 else:
                     raise TypeError(f'Channelset {channels} unknown')
 
-                return ADS.read_adc_difference(num, gain=gain) * fac
+                dif = ADS.read_adc_difference(num, gain=gain) * fac
+                logging.debug(f'Read difference Ration {num}: {dif}')
+                return dif
 
             else:
                 return tuple(ADS.read_adc(c, gain=gain) for c in channels)
