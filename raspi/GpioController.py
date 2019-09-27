@@ -30,7 +30,8 @@ class GpioController:
 
         with suppress(Exception):
             self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
-            self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
+        with suppress(Exception):
+            self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_2'), 16))
 
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
@@ -80,40 +81,40 @@ class GpioController:
         return U, I
 
     def _read_adc(self, name, *channels, difference=False, gain=16):
-            if difference and len(channels) != 2:
-                raise TypeError('Wrong number of channels supplied for difference=True')
+        if difference and len(channels) != 2:
+            raise TypeError('Wrong number of channels supplied for difference=True')
 
-            if name.startswith('ADS_'):
-                if name == 'ADS_1':
-                    ADS = self.ads_1
-                elif name == 'ADS_2':
-                    ADS = self.ads_2
+        if name.startswith('ADS_'):
+            if name == 'ADS_1':
+                ADS = self.ads_1
+            elif name == 'ADS_2':
+                ADS = self.ads_2
+            else:
+                raise TypeError()
+            if difference:
+                if channels == (0, 1):
+                    fac = 1
+                    num = 0
+                elif channels == (1, 0):
+                    fac = -1
+                    num = 0
+                elif channels == (2, 3):
+                    fac = 1
+                    num = 3
+                elif channels == (3, 2):
+                    fac = -1
+                    num = 3
                 else:
-                    raise TypeError()
-                if difference:
-                    if channels == (0, 1):
-                        fac = 1
-                        num = 0
-                    elif channels == (1, 0):
-                        fac = -1
-                        num = 0
-                    elif channels == (2, 3):
-                        fac = 1
-                        num = 3
-                    elif channels == (3, 2):
-                        fac = -1
-                        num = 3
-                    else:
-                        raise TypeError(f'Channelset {channels} unknown')
+                    raise TypeError(f'Channelset {channels} unknown')
 
-                    return ADS.read_adc_difference(num, gain=gain) * fac
+                return ADS.read_adc_difference(num, gain=gain) * fac
 
-                else:
-                    return tuple(ADS.read_adc(c, gain=gain) for c in channels)
+            else:
+                return tuple(ADS.read_adc(c, gain=gain) for c in channels)
 
-            elif name == 'MCP':
-                #todo
-                return 0
+        elif name == 'MCP':
+            #todo
+            return 0
 
     def get_switch_status(self):
         return {switch: self.switch_is_on(switch) for switch in self.pins.keys() if switch.startswith('SWITCH_')}
