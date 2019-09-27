@@ -55,9 +55,9 @@ class GpioController:
 
     def get_power_measurements(self, input):
         adc_name_pos, channel_pos = self.measurement_mapping[f'{input}_POSITIVE']
-        adc_name_pre_shunt, channel_pre_shunt = self.measurement_mapping[f'{input}_NEGATIVE_HIGH']
-        adc_name_ref, channel_ref = self.measurement_mapping[f'{input}_NEGATIVE_LOW']
-        if adc_name_pos != adc_name_ref or adc_name_pre_shunt!=adc_name_ref:
+        adc_name_pre_shunt, channel_pre_shunt = self.measurement_mapping[f'{input}_PRE_SHUNT']
+        adc_name_ref, channel_ref = self.measurement_mapping[f'{input}_NEGATIVE_REF']
+        if adc_name_pos != adc_name_ref or adc_name_pre_shunt != adc_name_ref:
             raise TypeError('Cant read difference if adcs are not the same')
 
         U = self._read_adc(adc_name_ref, int(channel_pos), channel_ref=int(channel_ref), gain=self.ads_gain_v) \
