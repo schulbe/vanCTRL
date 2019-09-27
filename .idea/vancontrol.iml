@@ -12,6 +12,7 @@
     <orderEntry type="jdk" jdkName="Pipenv (vancontrol)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="jetbot" />
+    <orderEntry type="library" name="Python 3.6 (hr_lab_vision) interpreter library" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

@@ -195,7 +195,6 @@ class BluetoothService(
             if (mmOutStream == null) {
                 throw BluetoothException("mmOutStream is not available")
             }
-            println("TRYING TO WRITE $bytes")
             mmOutStream.write(bytes)
         }
 
@@ -223,6 +222,7 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         when (RaspiCodes.fromCode(flag)) {
             RaspiCodes.COMMAND_FLAG -> {
                 processCommandMessage(RaspiCodes.fromCode(type), details)
+
             }
             RaspiCodes.DATA_FLAG -> {
                 processDataMessage(RaspiCodes.fromCode(type), details)
@@ -239,6 +239,7 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         val detailsSplit = details.split("\u0004")
         when (type) {
             RaspiCodes.DATA_POWER_MEASUREMENTS -> {
+                println("Processing Power Measurements: $details")
                 processPowerMeasurements(detailsSplit)
             }
             RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS -> {
@@ -283,17 +284,18 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         val statistics = mutableMapOf<Settings, Map<String, Float>>()
         val meas = mutableMapOf<String, Float>()
 
-        meas["V"] = details[0].toFloat()
-        meas["A"] = details[1].toFloat()
-        statistics[Settings.fromCode("IN_1")] = meas.toMap()
+        meas["A"] = details[0].toFloat()
+        meas["V"] = details[1].toFloat()
 
-        meas["V"] = details[2].toFloat()
-        meas["A"] = details[3].toFloat()
-        statistics[Settings.fromCode("IN_2")] = meas.toMap()
+        statistics[Settings.fromCode("I1")] = meas.toMap()
 
-        meas["V"] = details[4].toFloat()
-        meas["A"] = details[5].toFloat()
-        statistics[Settings.fromCode("IN_3")] = meas.toMap()
+        meas["A"] = details[2].toFloat()
+        meas["V"] = details[3].toFloat()
+        statistics[Settings.fromCode("I2")] = meas.toMap()
+
+        meas["A"] = details[4].toFloat()
+        meas["V"] = details[5].toFloat()
+        statistics[Settings.fromCode("I3")] = meas.toMap()
 
         viewModel.setPowerStats(statistics.toMap())
     }

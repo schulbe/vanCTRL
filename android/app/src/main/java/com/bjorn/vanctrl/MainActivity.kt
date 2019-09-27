@@ -162,13 +162,13 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun setPowerMeasurementsToUI(measurements: Map<Settings, Map<String, Float>>) {
-
         var amp = measurements[Settings.BATTERY_LOAD]?.get("A")
         var volt = measurements[Settings.BATTERY_LOAD]?.get("V")
         var uiText = "%.2f V".format(volt)
         findViewById<TextView>(R.id.overviewBatteryVoltageView)?.apply {
             text = uiText
         }
+
         uiText = "%.2f A".format(amp)
         findViewById<TextView>(R.id.overviewBatteryAmpView)?.apply {
             text = uiText
