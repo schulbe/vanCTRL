@@ -109,7 +109,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewTemperatureView"
+                android:id="@+id/overviewTemperatureView1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
@@ -117,6 +117,14 @@
                 android:paddingRight="30dp"
                 android:textSize="18sp"/>
 
+            <TextView
+                android:id="@+id/overviewTemperatureView2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="start|center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textSize="18sp"/>
         </LinearLayout>
     </ScrollView>
 

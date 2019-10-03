@@ -134,6 +134,7 @@ class MainActivity : AppCompatActivity(),
         viewModel.getPowerStats().observe(this, Observer<Map<Settings, Map<String, Float>>>{ measurements -> setPowerMeasurementsToUI(measurements) })
         viewModel.getSwitchStatus().observe(this, Observer<Map<Settings, Boolean>>{ status -> setButtonImages(status)})
         viewModel.getFragmentTitle().observe(this, Observer<Int> {fragmentId -> onFragmentChange(fragmentId)})
+        viewModel.getTemperatures().observe(this, Observer<Map<Settings, Float>> { temperatures -> setTemperatureMeasurementsToUI(temperatures)})
 
         rasPi.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
 
@@ -197,6 +198,21 @@ class MainActivity : AppCompatActivity(),
 
     }
 
+    private fun setTemperatureMeasurementsToUI(temperatures: Map<Settings,Float>) {
+
+        var temp = temperatures[Settings.TEMPERATURE_AIR]
+        var uiText = "%.2f °C".format(temp)
+        findViewById<TextView>(R.id.overviewTemperatureView1)?.apply {
+            text = uiText
+        }
+
+        temp = temperatures[Settings.TEMPERATURE_FRIDGE]
+        uiText = "%.2f °C".format(temp)
+        findViewById<TextView>(R.id.overviewTemperatureView2)?.apply {
+            text = uiText
+        }
+    }
+
     private fun setConnectionBanner(isConnected: Boolean) {
         if (isConnected) {
             println("SET CONNECTION BANNER RECEIVED IS_CONNECTED")
@@ -213,13 +229,20 @@ class MainActivity : AppCompatActivity(),
 
     private fun launchUpdateStatistics() {
         GlobalScope.launch {
-            while (viewModel.getFragmentTitle().value == R.id.overviewFragment){
+            while (viewModel.getFragmentTitle().value == R.id.overviewFragment) {
                 rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_POWER_MEASUREMENTS)
-                rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS)
-                delay(1500)
+                delay(2000)
             }
         }
+        GlobalScope.launch {
+            while (viewModel.getFragmentTitle().value == R.id.overviewFragment) {
+                rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS)
+                delay(10000)
+            }
+
+        }
     }
+
     private fun onFragmentChange(fragmentId: Int) {
         when (fragmentId) {
             R.id.overviewFragment -> {

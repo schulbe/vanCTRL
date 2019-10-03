@@ -9,6 +9,7 @@ class VanViewModel : ViewModel() {
     private val activeFragment = MutableLiveData<Int>()
     private val btConnected = MutableLiveData<Boolean>()
     private val switchStatus = MutableLiveData<Map<Settings, Boolean>>()
+    private val temperatures = MutableLiveData<Map<Settings, Float>>()
 
     fun initalizeLiveData() {
         switchStatus.postValue(mapOf(
@@ -56,5 +57,13 @@ class VanViewModel : ViewModel() {
 
     fun setBtConnected(connected: Boolean) {
         btConnected.postValue(connected)
+    }
+
+    fun setTemperatures(temps: Map<Settings, Float>) {
+        temperatures.postValue(temps)
+    }
+
+    fun getTemperatures(): LiveData<Map<Settings, Float>>{
+        return temperatures
     }
 }

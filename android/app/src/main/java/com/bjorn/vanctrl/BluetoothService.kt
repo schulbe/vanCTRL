@@ -239,11 +239,10 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         val detailsSplit = details.split("\u0004")
         when (type) {
             RaspiCodes.DATA_POWER_MEASUREMENTS -> {
-                println("Processing Power Measurements: $details")
                 processPowerMeasurements(detailsSplit)
             }
             RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS -> {
-
+                processTemperatureMeasurements(detailsSplit)
             }
             RaspiCodes.DATA_SWITCH_STATUS -> {
                 processSwitchStatus(detailsSplit)
@@ -298,6 +297,16 @@ class MessageProcessor(private val viewModel: VanViewModel) {
         statistics[Settings.fromCode("I3")] = meas.toMap()
 
         viewModel.setPowerStats(statistics.toMap())
+    }
+
+    private fun processTemperatureMeasurements(details: List<String>) {
+        println("Process Temperature: $details")
+        val temperatures = mutableMapOf<Settings, Float>()
+
+        temperatures[Settings.fromCode("I4")] = details[0].toFloat()
+        temperatures[Settings.fromCode("I5")] = details[1].toFloat()
+
+        viewModel.setTemperatures(temperatures.toMap())
     }
 
 //    private fun processReceivedStatistics(message: String) {

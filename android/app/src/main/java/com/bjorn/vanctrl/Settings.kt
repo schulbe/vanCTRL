@@ -13,6 +13,9 @@ enum class Settings(val code: String) {
     MPPT_CHARGE("I2"),
     MPPT_LOAD("I3"),
 
+    TEMPERATURE_AIR("I4"),
+    TEMPERATURE_FRIDGE("I5"),
+
     UNKNOWN("U");
 
 

@@ -87,7 +87,7 @@ class Processor:
                         except Exception as e:
                             logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
                             temp = -100
-                        s.extend(temp)
+                        s.append(temp)
                     meas_string = '\u0004'.join(str(v) for v in s)
                     msg = f'\u0002{self.codes["DATA_FLAG"]}' \
                           f'\u0003{self.codes["DATA_TEMPERATURE_MEASUREMENTS"]}' \
