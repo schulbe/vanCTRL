@@ -131,9 +131,9 @@ class GpioController:
         mapping = dict()
 
         for inp in power_inputs:
-            a_shunt = config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_A')
-            v_shunt = config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_MV')/1000
-            max_volt = config.getint('POWER_MEASUREMENTS', f'{inp}_MAX_VOLT')
+            a_shunt = config.getint('INPUT_SPECS', f'{inp}_SHUNT_A')
+            v_shunt = config.getint('INPUT_SPECS', f'{inp}_SHUNT_MV')/1000
+            max_volt = config.getint('INPUT_SPECS', f'{inp}_MAX_VOLT')
             factor = config.getint('MEASUREMENT_MAPPINGS', f'{inp}_VOLT_DIV_FACTOR')
             positive = config.get('MEASUREMENT_MAPPINGS', f'{inp}_POSITIVE').split(':')
             pre_shunt = config.get('MEASUREMENT_MAPPINGS', f'{inp}_PRE_SHUNT').split(':')
