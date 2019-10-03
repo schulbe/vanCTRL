@@ -7,15 +7,10 @@ import time
 from datetime import datetime
 from contextlib import suppress
 
-send_statistics = False
-
-
 class Processor:
     def __init__(self, conf):
         self.config = conf
         self.codes = config['CODES']
-
-        self.dt = 1/int(conf['GENERAL']['updates_per_second'])
 
         logging.info("Initializing GPIO Controll")
         self.gpio_controller = GpioController(config=config)
@@ -34,7 +29,6 @@ class Processor:
             logging.error(f'Error in "process_message: {e}', exc_info=True)
 
     def process_message(self, msg, lock):
-        global send_statistics
         logging.debug(f'Received Message: {msg}')
 
         msg_flag, msg_type, msg_details = msg.split('\u0003')
@@ -68,9 +62,10 @@ class Processor:
 
             elif msg_type == self.codes['CMD_SEND_DATA']:
                 logging.debug(f"COMMAND of {msg} is CMD_SEND_DATA")
+
                 if msg_details == self.codes['DATA_POWER_MEASUREMENTS']:
                     s = list()
-                    for inp in ['IN_1', 'IN_2', 'IN_3']:
+                    for inp in self.gpio_controller.power_inputs:
                         try:
                             U, I = self.gpio_controller.get_power_measurements(inp)
                         except Exception as e:
@@ -80,6 +75,22 @@ class Processor:
                     meas_string = '\u0004'.join(str(v) for v in s)
                     msg = f'\u0002{self.codes["DATA_FLAG"]}' \
                           f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
+                          f'\u0003{meas_string}\u0002'
+                    with lock:
+                        self.bt_controller.send(msg)
+
+                elif msg_details == self.codes['DATA_TEMPERATURE_MEASUREMENTS']:
+                    s = list()
+                    for inp in self.gpio_controller.temperature_inputs:
+                        try:
+                            temp = self.gpio_controller.get_temperature_measurement(inp)
+                        except Exception as e:
+                            logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
+                            temp = -100
+                        s.extend(temp)
+                    meas_string = '\u0004'.join(str(v) for v in s)
+                    msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+                          f'\u0003{self.codes["DATA_TEMPERATURE_MEASUREMENTS"]}' \
                           f'\u0003{meas_string}\u0002'
                     with lock:
                         self.bt_controller.send(msg)
@@ -98,29 +109,13 @@ class Processor:
             pass
 
 
-            # elif cmd == self.codes['SEND_STATISTICS']:
-            #     #TODO change message format to not use "-" as separator
-            #     s = self.gpio_controller.get_statistics()
-            #     msg = f'\u0002{self.config.get("PREFIXES", "PFX_STATISTICS")}{"|".join([str(k)+":"+str(v) for k,v in s.items()])}\u0002'
-            #     with lock:
-            #         self.bt_controller.send(msg)
-            #
-            # elif cmd == self.codes['SEND_SWITCH_STATUS']:
-            #
-            #     s = {self.config.get('SWITCHES', k): int(v) for k, v in self.gpio_controller.get_switch_status().items()}
-            #     msg = f'\u0002{self.config.get("PREFIXES", "PFX_SWITCH_STATUS")}{"|".join([str(k)+":"+str(v) for k,v in s.items()])}\u0002'
-            #     # with lock:
-            #     self.bt_controller.send(msg)
-
-
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.optionxform = str
 
     config.read('/home/pi/repos/vancontrol/raspi/config.ini')
 
-    config.read('/home/pi/repos/vancontrol/raspi/internal_wiring_config.ini')
-    config.read('/home/pi/repos/vancontrol/external_wiring_config.ini')
+    config.read('/home/pi/repos/vancontrol/input_specifications.ini')
 
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)

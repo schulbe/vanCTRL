@@ -4,16 +4,22 @@ import Adafruit_ADS1x15
 import random
 import logging
 from contextlib import suppress
+import regex as re
 
 
 class GpioController:
     ads_1 = None
     ads_2 = None
     ads_3 = None
-    mcp = None
-    ads_gain_amp = 16
-    ads_gain_v = 1
-    voltage_splitter_factor = 11
+
+    gain_factor_mapping = {
+        0.256: 16,
+        0.512: 8,
+        1.024: 4,
+        2.048: 2,
+        4.096: 1,
+        6.144: 2/3
+    }
 
     def __init__(self, config):
 
@@ -22,22 +28,16 @@ class GpioController:
         # self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
         self.measurement_mapping = {k: v.split(':') for k, v in config.items('MEASUREMENT_MAPPINGS')}
 
-        self.power_measurement_mapping = {
-            inp: {
-                'name': config.get('POWER_MEASUREMENTS', inp),
-                'a_per_bit': 4.096/self.ads_gain_amp/(2**15)
-                             /(config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_MV')/1000)
-                             *config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_A'),
-                'v_per_bit': 4.096/self.ads_gain_v/(2**15) * self.voltage_splitter_factor
-            } for inp in ['IN_1', 'IN_2', 'IN_3']
-        }
+        self.power_inputs = [k for k, v in config['INPUT_SPECS'].items() if re.match("^IN_\d*$", k) and v == "POW"]
+        self.temperature_inputs = [k for k, v in config['INPUT_SPECS'].items() if re.match("^IN_\d*$", k) and v == "TEMP"]
 
-        with suppress(Exception):
-            self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
-        with suppress(Exception):
-            self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_2'), 16))
-        with suppress(Exception):
-            self.ads_3 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_3'), 16))
+        self.power_measurement_mapping = self.create_power_measurement_mapping(config, self.power_inputs)
+        self.temp_measurement_mapping = {inp: {'id': config.get('INPUT_SPECS', f'{inp}_SENSOR_ID')} for inp in self.temperature_inputs}
+
+        self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
+        self.ads_2 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_2'), 16))
+        self.ads_3 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_3'), 16))
+
         GPIO.setwarnings(False)  # Ignore warning for now
         GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 
@@ -54,21 +54,25 @@ class GpioController:
             GPIO.output(io_pin, GPIO.LOW)
             logging.debug(f'Switching Switch {switch} on pin {io_pin} off')
 
-    def get_power_measurements(self, input):
-        adc_name_pos, channel_pos = self.measurement_mapping[f'{input}_POSITIVE']
-        adc_name_pre_shunt, channel_pre_shunt = self.measurement_mapping[f'{input}_PRE_SHUNT']
-        adc_name_ref, channel_ref = self.measurement_mapping[f'{input}_NEGATIVE_REF']
+    def get_power_measurements(self, inp):
+        adc_name_pos, channel_pos = self.power_measurement_mapping[inp]['addr_positive']
+        adc_name_pre_shunt, channel_pre_shunt = self.power_measurement_mapping[inp]['addr_pre_shunt']
+        adc_name_ref, channel_ref = self.power_measurement_mapping[inp]['addr_negative_ref']
         if adc_name_pos != adc_name_ref or adc_name_pre_shunt != adc_name_ref:
             raise TypeError('Cant read difference if adcs are not the same')
 
         Is = list()
         Us = list()
         for i in range(5):
-            Us.append(self._read_adc(adc_name_ref, int(channel_pos), channel_ref=int(channel_ref), gain=self.ads_gain_v) \
-                * self.power_measurement_mapping[input]['v_per_bit'])
+            Us.append(self._read_adc(adc_name_ref, int(channel_pos),
+                                     channel_ref=int(channel_ref),
+                                     gain=self.power_measurement_mapping[inp]['v_gain']) \
+                      * self.power_measurement_mapping[inp]['v_per_bit'])
             # todo only debug reasons
-            Is.append(self._read_adc(adc_name_ref, int(channel_pre_shunt), channel_ref=int(channel_ref), gain=self.ads_gain_amp) \
-                * self.power_measurement_mapping[input]['a_per_bit'])
+            Is.append(self._read_adc(adc_name_ref, int(channel_pre_shunt),
+                                     channel_ref=int(channel_ref),
+                                     gain=self.power_measurement_mapping[inp]['a_gain']) \
+                      * self.power_measurement_mapping[inp]['a_per_bit'])
         U = sum(Us)/5
         I = sum(Is)/5
         logging.debug(f"I: {I} // U: {U}")
@@ -111,10 +115,6 @@ class GpioController:
             else:
                 return ADS.read_adc(channel, gain=gain)
 
-        elif name == 'MCP':
-            #todo
-            return 0
-
     def get_switch_status(self):
         return {switch: self.switch_is_on(switch) for switch in self.pins.keys() if switch.startswith('SWITCH_')}
 
@@ -123,3 +123,57 @@ class GpioController:
         if GPIO.input(io_pin) == GPIO.HIGH:
             return True
         return False
+
+    def create_power_measurement_mapping(self, config, power_inputs):
+        def v_per_bit(gain):
+            return 4.096/gain/(2**15)
+
+        mapping = dict()
+
+        for inp in power_inputs:
+            a_shunt = config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_A')
+            v_shunt = config.getint('POWER_MEASUREMENTS', f'{inp}_SHUNT_MV')/1000
+            max_volt = config.getint('POWER_MEASUREMENTS', f'{inp}_MAX_VOLT')
+            factor = config.getint('MEASUREMENT_MAPPINGS', f'{inp}_VOLT_DIV_FACTOR')
+            positive = config.get('MEASUREMENT_MAPPINGS', f'{inp}_POSITIVE').split(':')
+            pre_shunt = config.get('MEASUREMENT_MAPPINGS', f'{inp}_PRE_SHUNT').split(':')
+            negative_ref = config.get('MEASUREMENT_MAPPINGS', f'{inp}_NEGATIVE_REF').split(':')
+
+            a_gain = self.get_gain(v_shunt)
+            v_gain = self.get_gain(max_volt/factor)
+
+            mapping[inp] = {
+                'a_per_bit': v_per_bit(a_gain) / v_shunt * a_shunt,
+                'v_per_bit': v_per_bit(v_gain) * factor,
+                'a_gain': a_gain,
+                'v_gain': v_gain,
+                'addr_positive': positive,
+                'addr_pre_shunt': pre_shunt,
+                'addr_negative_ref': negative_ref,
+            }
+
+        return mapping
+
+    def get_gain(self, max_volt):
+        possible_gains = [(k, v) for k, v in self.gain_factor_mapping.items() if k >= max_volt]
+        try:
+            _, gain = sorted(possible_gains)[0]
+        except IndexError:
+            # TODO produce Errors!
+            return 2/3
+
+        return gain
+
+    def get_temperature_measurement(self, inp):
+        name = self.temp_measurement_mapping[inp]['id']
+        path = f'/sys/bus/w1/devices/{name}/w1_slave'
+
+        with open(path, 'r') as f:
+            line = f.readline()
+            if re.match(r"([0-9a-f]{2} ){9}: crc=[0-9a-f]{2} YES", line):
+                line = f.readline()
+                m = re.match(r"([0-9a-f]{2} ){9}t=([+-]?[0-9]+)", line)
+                if m:
+                    value = str(float(m.group(2)) / 1000.0)
+
+        return value

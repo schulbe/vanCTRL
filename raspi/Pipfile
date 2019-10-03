@@ -5,7 +5,9 @@ name = "pypi"
 
 [packages]
 "RPi.GPIO" = "*"
-PyBluez = '*'
+PyBluez = "*"
+regex = "*"
+Adafruit-ADS1x15 = "*"
 
 
 [dev-packages]
@@ -24,4 +26,6 @@ python_version = "3"
 # bluetooth permission denied error see:
 # https://stackoverflow.com/questions/34599703/rfcomm-bluetooth-permission-denied-error-raspberry-pi
 #
-#
+# enable i2c and 1-wire bus
+# also start on reboot: https://www.einplatinencomputer.com/raspberry-pi-1-wire-temperatursensor-ds1820-ansteuern/
+
