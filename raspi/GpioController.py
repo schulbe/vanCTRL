@@ -70,7 +70,7 @@ class GpioController:
                             channel_ref=int(channel_ref),
                             gain=self.power_measurement_mapping[inp]['a_gain'])
              * self.power_measurement_mapping[inp]['a_per_bit'])
-        logging.debug(f"I: {I} // U: {U}")
+        logging.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']}")
 
         return U, I
 

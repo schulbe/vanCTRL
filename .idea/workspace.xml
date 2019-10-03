@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/VanViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/VanViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_overview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_overview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +102,7 @@
       <workItem from="1569512052399" duration="6164000" />
       <workItem from="1569572366407" duration="2981000" />
       <workItem from="1570112897404" duration="2779000" />
-      <workItem from="1570126992814" duration="9127000" />
-    </task>
-    <task id="LOCAL-00004" summary="removed os.envoiron from config to iterate over keys">
-      <created>1565354537926</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1565354537926</updated>
+      <workItem from="1570126992814" duration="10091000" />
     </task>
     <task id="LOCAL-00005" summary="changed names">
       <created>1565355352060</created>
@@ -453,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570133507269</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="changed readings">
+      <created>1570136784833</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1570136784833</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,10 +514,10 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570128275139" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570133508083">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570136786661">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570133508083" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570136786661" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570127152888">
       <screen x="63" y="27" width="1857" height="1173" />
