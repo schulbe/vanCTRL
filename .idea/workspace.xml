@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vancontrol.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vancontrol.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,14 +103,7 @@
       <workItem from="1569572366407" duration="2981000" />
       <workItem from="1570112897404" duration="2779000" />
       <workItem from="1570126992814" duration="11057000" />
-      <workItem from="1570165856459" duration="893000" />
-    </task>
-    <task id="LOCAL-00006" summary="added logging import">
-      <created>1565356277890</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1565356277890</updated>
+      <workItem from="1570165856459" duration="1252000" />
     </task>
     <task id="LOCAL-00007" summary="changed frige switch">
       <created>1565356405603</created>
@@ -450,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570137792483</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added globals for job tracking">
+      <created>1570166763801</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1570166763802</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +471,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../jetbot" />
     </ignored-roots>
-    <MESSAGE value="added ADS to functionality" />
     <MESSAGE value="changed ads class" />
     <MESSAGE value="debug" />
     <MESSAGE value="fixed bug" />
@@ -498,7 +495,8 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="deleted pin7" />
     <MESSAGE value="changed readings" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed readings" />
+    <MESSAGE value="added globals for job tracking" />
+    <option name="LAST_COMMIT_MESSAGE" value="added globals for job tracking" />
   </component>
   <component name="WindowStateProjectService">
     <state x="569" y="270" width="824" height="684" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1570128268428">
@@ -517,10 +515,10 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570128275139" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570137793483">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570166767412">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570137793483" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570166767412" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570165855342">
       <screen x="63" y="27" width="1857" height="1173" />

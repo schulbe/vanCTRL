@@ -1,7 +1,7 @@
 from BluetoothController import BluetoothController
 from GpioController import GpioController
 import configparser
-import os
+import sys
 import logging
 import time
 from datetime import datetime
@@ -142,12 +142,20 @@ if __name__ == '__main__':
 
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
+
+    formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
+                                  "%Y-%m-%d %H:%M:%S")
+
     fileHandler = logging.FileHandler(f'/home/pi/logs/{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log')
     fileHandler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
-                                    "%Y-%m-%d %H:%M:%S")
     fileHandler.setFormatter(formatter)
+
+    streamHandler = logging.StreamHandler(sys.stderr)
+    streamHandler.setLevel(logging.DEBUG)
+    streamHandler.setFormatter(formatter)
+
     logger.addHandler(fileHandler)
+    logger.addHandler(streamHandler)
 
     processor = Processor(config)
     processor.run_main_loop()
