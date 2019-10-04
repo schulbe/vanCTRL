@@ -3,7 +3,6 @@ from GpioController import GpioController
 import configparser
 import sys
 import logging
-import time
 from datetime import datetime
 from contextlib import suppress
 
@@ -81,7 +80,7 @@ class Processor:
                         t = datetime.now()
                         self.send_temperature_measurements(lock)
                         SENDING_TEMPERATURE_MEASUREMENTS = False
-                        logging.debug(f"Send Power Took: {(datetime.now() - t).total_seconds()}s")
+                        logging.debug(f"Send Temperature Took: {(datetime.now() - t).total_seconds()}s")
 
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
                     self.send_switch_status(lock)
