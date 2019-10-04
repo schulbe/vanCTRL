@@ -40,7 +40,6 @@ class BluetoothService(
 
     fun tryConnection(deviceMac: String, deviceDisplayName: String, timeout: Int = 10) {
         try {
-            println("INITIALIZE")
             initiateBluetoothConnection(deviceMac, deviceDisplayName)
         } catch (e: Exception) {
             val txt = "Error in inital Connection Process: $e"

@@ -40,8 +40,8 @@
     <ProgressBar
         android:id="@+id/progressBarSettings"
         style="?android:attr/progressBarStyle"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
 

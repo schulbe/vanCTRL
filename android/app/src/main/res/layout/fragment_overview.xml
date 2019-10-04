@@ -15,41 +15,47 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/overviewBatteryLabelView"
+                android:id="@+id/overviewInp1LabelView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:text="@string/overview_battery_title"
+                android:text="@string/overview_inp1_title"
+                android:textColor="@color/colorText"
+                android:background="@color/colorSectionTitleBackground"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewBatteryVoltageView"
+                android:id="@+id/overviewInp1VoltageView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:drawableLeft="@drawable/ic_flash"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewBatteryAmpView"
+                android:id="@+id/overviewInp1AmpView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewBatteryPowerView"
+                android:id="@+id/overviewInp1PowerView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/overviewSeparator"
@@ -57,44 +63,94 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/overviewSolarLabelView"
+                android:id="@+id/overviewInp2LabelView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:text="@string/overview_solar_title"
+                android:text="@string/overview_inp2_title"
+                android:textColor="@color/colorText"
+                android:background="@color/colorSectionTitleBackground"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewSolarVoltageView"
+                android:id="@+id/overviewInp2VoltageView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewSolarAmpView"
+                android:id="@+id/overviewInp2AmpView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewSolarPowerView"
+                android:id="@+id/overviewInp2PowerView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/overviewSeparator2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/overviewInp3LabelView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="start|center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/overview_inp3_title"
+                android:textColor="@color/colorText"
+                android:background="@color/colorSectionTitleBackground"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/overviewInp3VoltageView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="start|center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/overviewInp3AmpView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="start|center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/overviewInp3PowerView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="start|center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/overviewSeparator3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -106,25 +162,29 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/overview_temperature_title"
+                android:textColor="@color/colorText"
+                android:background="@color/colorSectionTitleBackground"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewTemperatureView1"
+                android:id="@+id/overviewInp4TemperatureView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/overviewTemperatureView2"
+                android:id="@+id/overviewInp5TemperatureView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="start|center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 

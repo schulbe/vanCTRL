@@ -1,9 +1,11 @@
 package com.bjorn.vanctrl
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.ProgressBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -25,13 +27,11 @@ class MainActivity : AppCompatActivity(),
     val PI_BT_NAME: String = "raspberrypi"
     val PI_UUID: UUID = UUID.fromString("1e0ca4ea-299d-4335-93eb-27fcfe7fa849")
 
-//    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
-//    private lateinit var piBtDevice: BluetoothDevice
     private lateinit var rasPi: BluetoothService
 
     private lateinit var navController: NavController
     private lateinit var viewModel: VanViewModel
-//    private lateinit var rasPi: RasPi
+    private val handler: Handler = Handler()
 
     private var mIsInForeground: Boolean = true
 
@@ -76,12 +76,8 @@ class MainActivity : AppCompatActivity(),
 
         rasPi = BluetoothService(PI_UUID, this, MessageProcessor(viewModel))
 
-//        rasPi = RasPi(btService)
-
         setObservers()
 
-        //TODO: REMOVE - only test
-//        viewModel.setSwitchStatus(false, false, false, false)
 
         viewModel.setActiveFragment(R.id.overviewFragment)
     }
@@ -89,14 +85,11 @@ class MainActivity : AppCompatActivity(),
     override fun onPause() {
         super.onPause()
         mIsInForeground = false
-//        btService.closeConnection()
     }
 
     override fun onResume() {
         super.onResume()
         mIsInForeground = true
-//        try {btService.openConnection()}
-//        catch (e: BluetoothException){ Toast.makeText(this, "Closing Socket failed", Toast.LENGTH_LONG).show()}
     }
 
     override fun onSwitchClicked(switchId: Int) {
@@ -112,7 +105,7 @@ class MainActivity : AppCompatActivity(),
         }
 //        // TODO: Trigger return on switch status change on serverside
         GlobalScope.launch{
-            delay(500)
+            delay(300)
             rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_SWITCH_STATUS)
         }
 
@@ -120,14 +113,14 @@ class MainActivity : AppCompatActivity(),
 
 
     override fun onConnectBtButtonClick() {
-        //TODO why isnt this working
+        val setVisible = Runnable { findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE } }
+        val setInvisible = Runnable { findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE } }
 
-//        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE }
-        rasPi.tryConnection(PI_MAC_ADDR, PI_BT_NAME)
-//        findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE }
-//        if (rasPi.isConnected().value == true) rasPi.setIsConnectedTest(false) else rasPi.setIsConnectedTest(true)
-
-
+        GlobalScope.launch {
+            handler.post(setVisible)
+            rasPi.tryConnection(PI_MAC_ADDR, PI_BT_NAME)
+            handler.post(setInvisible)
+        }
     }
 
     private fun setObservers() {
@@ -166,33 +159,33 @@ class MainActivity : AppCompatActivity(),
         var amp = measurements[Settings.BATTERY_LOAD]?.get("A")
         var volt = measurements[Settings.BATTERY_LOAD]?.get("V")
         var uiText = "%.2f V".format(volt)
-        findViewById<TextView>(R.id.overviewBatteryVoltageView)?.apply {
+        findViewById<TextView>(R.id.overviewInp1VoltageView)?.apply {
             text = uiText
         }
 
         uiText = "%.2f A".format(amp)
-        findViewById<TextView>(R.id.overviewBatteryAmpView)?.apply {
+        findViewById<TextView>(R.id.overviewInp1AmpView)?.apply {
             text = uiText
         }
         var power = amp?.times(volt?: 0f)
         uiText = "%.2f W".format((power))
-        findViewById<TextView>(R.id.overviewBatteryPowerView)?.apply {
+        findViewById<TextView>(R.id.overviewInp1PowerView)?.apply {
             text = uiText
         }
 
         amp = measurements[Settings.MPPT_CHARGE]?.get("A")
         volt = measurements[Settings.MPPT_CHARGE]?.get("V")
         uiText = "%.2f V".format(volt)
-        findViewById<TextView>(R.id.overviewSolarVoltageView)?.apply {
+        findViewById<TextView>(R.id.overviewInp2VoltageView)?.apply {
             text = uiText
         }
         uiText = "%.2f A".format(amp)
-        findViewById<TextView>(R.id.overviewSolarAmpView)?.apply {
+        findViewById<TextView>(R.id.overviewInp2AmpView)?.apply {
             text = uiText
         }
         power = amp?.times(volt?: 0f)
         uiText = "%.2f W".format(power)
-        findViewById<TextView>(R.id.overviewSolarPowerView)?.apply {
+        findViewById<TextView>(R.id.overviewInp2PowerView)?.apply {
             text = uiText
         }
 
@@ -202,13 +195,13 @@ class MainActivity : AppCompatActivity(),
 
         var temp = temperatures[Settings.TEMPERATURE_AIR]
         var uiText = "%.2f °C".format(temp)
-        findViewById<TextView>(R.id.overviewTemperatureView1)?.apply {
+        findViewById<TextView>(R.id.overviewInp4TemperatureView)?.apply {
             text = uiText
         }
 
         temp = temperatures[Settings.TEMPERATURE_FRIDGE]
         uiText = "%.2f °C".format(temp)
-        findViewById<TextView>(R.id.overviewTemperatureView2)?.apply {
+        findViewById<TextView>(R.id.overviewInp5TemperatureView)?.apply {
             text = uiText
         }
     }
@@ -237,7 +230,7 @@ class MainActivity : AppCompatActivity(),
         GlobalScope.launch {
             while (viewModel.getFragmentTitle().value == R.id.overviewFragment) {
                 rasPi.sendCommand(RaspiCodes.CMD_SEND_DATA, RaspiCodes.DATA_TEMPERATURE_MEASUREMENTS)
-                delay(10000)
+                delay(5000)
             }
 
         }

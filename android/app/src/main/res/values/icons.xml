@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="voltageIcon">@drawable/ic_flash</drawable>
+    <drawable name="ampereIcon">@drawable/ic_lightbulb</drawable>
+    <drawable name="powerIcon">@drawable/ic_plug</drawable>
+    <!--<drawable name="inp1Icon"></drawable>-->
+    <!--<drawable name="inp2Icon"></drawable>-->
+    <!--<drawable name="inp3Icon"></drawable>-->
+    <!--<drawable name="inp4Icon"></drawable>-->
+    <!--<drawable name="inp5Icon"></drawable>-->
+</resources>

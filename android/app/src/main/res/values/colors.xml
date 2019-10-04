@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#33691E</color>
-    <color name="colorPrimaryDark">#1B5E20</color>
-    <color name="colorAccent">#E65100</color>
+    <color name="ic_launcher_background">#317DAF</color>
 
-    <color name="colorWarning">#B71C1C</color>
+    <color name="colorPrimary">#317DAF</color>
+    <color name="colorPrimaryDark">#133247</color>
+    <!--<color name="colorAccent">#E65100</color>-->
+
+    <color name="colorBanner">#9ecded</color>
+    <color name="colorText">#2B3135</color>
+    <color name="colorBackground">#C7CCCA</color>
+    <color name="colorSectionTitleBackground">#8B8E8D</color>
 </resources>
