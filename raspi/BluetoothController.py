@@ -75,7 +75,7 @@ class BluetoothController:
         if data.startswith("\u0002") and data.endswith("\u0002"):
             for cmd in data.split("\u0002"):
                 if cmd:
-                    t = threading.Thread(target=self.callback(cmd, self._lock))
+                    t = threading.Thread(target=self.callback, args=(cmd, self._lock))
                     t.setDaemon(True)
                     t.start()
         else:
