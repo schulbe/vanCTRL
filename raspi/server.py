@@ -7,6 +7,9 @@ import time
 from datetime import datetime
 from contextlib import suppress
 
+SENDING_POWER_MEASUREMENTS = False
+SENDING_TEMPERATURE_MEASUREMENTS = False
+
 class Processor:
     def __init__(self, conf):
         self.config = conf
@@ -35,23 +38,19 @@ class Processor:
 
         # IN CASE COMMAND WAS RECEIVED
         if msg_flag == self.codes['COMMAND_FLAG']:
-            logging.debug(f"{msg} is a COMMAND message")
             if msg_type == self.codes['CMD_SWITCH_ON']:
-                logging.debug(f"COMMAND of {msg} is CMD_SWITCH_ON")
                 with suppress(IndexError):
                     switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         self.gpio_controller.switch(switch, on=True)
 
             elif msg_type == self.codes['CMD_SWITCH_OFF']:
-                logging.debug(f"COMMAND of {msg} is CMD_SWITCH_OFF")
                 with suppress(IndexError):
                     switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
                         self.gpio_controller.switch(switch, on=False)
 
             elif msg_type == self.codes['CMD_SWITCH_TOGGLE']:
-                logging.debug(f"COMMAND of {msg} is CMD_SWITCH_TOGGLE")
                 with suppress(IndexError):
                     switch = [k for k, v in self.codes.items() if v == msg_details][0]
                     with lock:
@@ -61,52 +60,76 @@ class Processor:
                             self.gpio_controller.switch(switch, on=True)
 
             elif msg_type == self.codes['CMD_SEND_DATA']:
-                logging.debug(f"COMMAND of {msg} is CMD_SEND_DATA")
+                global SENDING_POWER_MEASUREMENTS
+                global SENDING_TEMPERATURE_MEASUREMENTS
 
                 if msg_details == self.codes['DATA_POWER_MEASUREMENTS']:
-                    s = list()
-                    for inp in self.gpio_controller.power_inputs:
-                        try:
-                            U, I = self.gpio_controller.get_power_measurements(inp)
-                        except Exception as e:
-                            logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
-                            U, I = (0, 0)
-                        s.extend([I, U])
-                    meas_string = '\u0004'.join(str(v) for v in s)
-                    msg = f'\u0002{self.codes["DATA_FLAG"]}' \
-                          f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
-                          f'\u0003{meas_string}\u0002'
-                    with lock:
-                        self.bt_controller.send(msg)
+                    global SENDING_POWER_MEASUREMENTS
+
+                    if not SENDING_POWER_MEASUREMENTS:
+                        SENDING_POWER_MEASUREMENTS = True
+                        t = datetime.now()
+                        self.send_power_measurements(lock)
+                        SENDING_POWER_MEASUREMENTS = False
+                        logging.debug(f"Send Power Took: {(datetime.now() - t).total_seconds()}s")
 
                 elif msg_details == self.codes['DATA_TEMPERATURE_MEASUREMENTS']:
-                    s = list()
-                    for inp in self.gpio_controller.temperature_inputs:
-                        try:
-                            temp = self.gpio_controller.get_temperature_measurement(inp)
-                        except Exception as e:
-                            logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
-                            temp = -100
-                        s.append(temp)
-                    meas_string = '\u0004'.join(str(v) for v in s)
-                    msg = f'\u0002{self.codes["DATA_FLAG"]}' \
-                          f'\u0003{self.codes["DATA_TEMPERATURE_MEASUREMENTS"]}' \
-                          f'\u0003{meas_string}\u0002'
-                    with lock:
-                        self.bt_controller.send(msg)
+                    global SENDING_TEMPERATURE_MEASUREMENTS
+
+                    if not SENDING_TEMPERATURE_MEASUREMENTS:
+                        SENDING_TEMPERATURE_MEASUREMENTS = True
+                        t = datetime.now()
+                        self.send_temperature_measurements(lock)
+                        SENDING_TEMPERATURE_MEASUREMENTS = False
+                        logging.debug(f"Send Power Took: {(datetime.now() - t).total_seconds()}s")
 
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
-                    s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}
-                    status_string = "\u0004".join([str(i[1]) for i in sorted(s.items())])
-                    msg = f'\u0002{self.codes["DATA_FLAG"]}' \
-                          f'\u0003{self.codes["DATA_SWITCH_STATUS"]}' \
-                          f'\u0003{status_string}\u0002'
-                    with lock:
-                        self.bt_controller.send(msg)
+                    self.send_switch_status(lock)
 
         elif msg_flag == self.codes['DATA_FLAG']:
             logging.debug(f"{msg} is a DATA message")
             pass
+
+    def send_switch_status(self, lock):
+        s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}
+        status_string = "\u0004".join([str(i[1]) for i in sorted(s.items())])
+        msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+              f'\u0003{self.codes["DATA_SWITCH_STATUS"]}' \
+              f'\u0003{status_string}\u0002'
+        with lock:
+            self.bt_controller.send(msg)
+
+    def send_power_measurements(self, lock):
+        s = list()
+        for inp in self.gpio_controller.power_inputs:
+            try:
+                U, I = self.gpio_controller.get_power_measurements(inp)
+            except Exception as e:
+                logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
+                U, I = (0, 0)
+            s.extend([I, U])
+        meas_string = '\u0004'.join(str(v) for v in s)
+        msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+              f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
+              f'\u0003{meas_string}\u0002'
+        with lock:
+            self.bt_controller.send(msg)
+
+    def send_temperature_measurements(self, lock):
+        s = list()
+        for inp in self.gpio_controller.temperature_inputs:
+            try:
+                temp = self.gpio_controller.get_temperature_measurement(inp)
+            except Exception as e:
+                logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
+                temp = -100
+            s.append(temp)
+        meas_string = '\u0004'.join(str(v) for v in s)
+        msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+              f'\u0003{self.codes["DATA_TEMPERATURE_MEASUREMENTS"]}' \
+              f'\u0003{meas_string}\u0002'
+        with lock:
+            self.bt_controller.send(msg)
 
 
 if __name__ == '__main__':

@@ -1,9 +1,7 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import Adafruit_ADS1x15
 
-import random
 import logging
-from contextlib import suppress
 import regex as re
 
 
@@ -70,7 +68,7 @@ class GpioController:
                             channel_ref=int(channel_ref),
                             gain=self.power_measurement_mapping[inp]['a_gain'])
              * self.power_measurement_mapping[inp]['a_per_bit'])
-        logging.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']}")
+        logging.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']})")
 
         return U, I
 
