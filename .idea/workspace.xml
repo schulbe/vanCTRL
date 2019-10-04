@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_plug.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_input_specs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/icons.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_car_battery.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_ice_crystal.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_solar_panel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_thermometer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_thermometer_cold.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_thermometer_hot.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_van.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/Settings.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_overview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_overview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/icons.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/icons.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/GpioController.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +115,7 @@
       <workItem from="1569572366407" duration="2981000" />
       <workItem from="1570112897404" duration="2779000" />
       <workItem from="1570126992814" duration="11057000" />
-      <workItem from="1570165856459" duration="5645000" />
+      <workItem from="1570165856459" duration="6848000" />
     </task>
     <task id="LOCAL-00011" summary="changed frige switch">
       <created>1565359356592</created>

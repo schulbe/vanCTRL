@@ -156,8 +156,8 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun setPowerMeasurementsToUI(measurements: Map<Settings, Map<String, Float>>) {
-        var amp = measurements[Settings.BATTERY_LOAD]?.get("A")
-        var volt = measurements[Settings.BATTERY_LOAD]?.get("V")
+        var amp = measurements[Settings.IN_1]?.get("A")
+        var volt = measurements[Settings.IN_1]?.get("V")
         var uiText = "%.2f V".format(volt)
         findViewById<TextView>(R.id.overviewInp1VoltageView)?.apply {
             text = uiText
@@ -173,8 +173,8 @@ class MainActivity : AppCompatActivity(),
             text = uiText
         }
 
-        amp = measurements[Settings.MPPT_CHARGE]?.get("A")
-        volt = measurements[Settings.MPPT_CHARGE]?.get("V")
+        amp = measurements[Settings.IN_2]?.get("A")
+        volt = measurements[Settings.IN_2]?.get("V")
         uiText = "%.2f V".format(volt)
         findViewById<TextView>(R.id.overviewInp2VoltageView)?.apply {
             text = uiText
@@ -189,17 +189,33 @@ class MainActivity : AppCompatActivity(),
             text = uiText
         }
 
+        amp = measurements[Settings.IN_3]?.get("A")
+        volt = measurements[Settings.IN_3]?.get("V")
+        uiText = "%.2f V".format(volt)
+        findViewById<TextView>(R.id.overviewInp3VoltageView)?.apply {
+            text = uiText
+        }
+        uiText = "%.2f A".format(amp)
+        findViewById<TextView>(R.id.overviewInp3AmpView)?.apply {
+            text = uiText
+        }
+        power = amp?.times(volt?: 0f)
+        uiText = "%.2f W".format(power)
+        findViewById<TextView>(R.id.overviewInp3PowerView)?.apply {
+            text = uiText
+        }
+
     }
 
     private fun setTemperatureMeasurementsToUI(temperatures: Map<Settings,Float>) {
 
-        var temp = temperatures[Settings.TEMPERATURE_AIR]
+        var temp = temperatures[Settings.IN_4]
         var uiText = "%.2f °C".format(temp)
         findViewById<TextView>(R.id.overviewInp4TemperatureView)?.apply {
             text = uiText
         }
 
-        temp = temperatures[Settings.TEMPERATURE_FRIDGE]
+        temp = temperatures[Settings.IN_5]
         uiText = "%.2f °C".format(temp)
         findViewById<TextView>(R.id.overviewInp5TemperatureView)?.apply {
             text = uiText

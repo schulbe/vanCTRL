@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <drawable name="voltageIcon">@drawable/ic_flash</drawable>
-    <drawable name="ampereIcon">@drawable/ic_lightbulb</drawable>
-    <drawable name="powerIcon">@drawable/ic_plug</drawable>
-    <!--<drawable name="inp1Icon"></drawable>-->
-    <!--<drawable name="inp2Icon"></drawable>-->
-    <!--<drawable name="inp3Icon"></drawable>-->
-    <!--<drawable name="inp4Icon"></drawable>-->
-    <!--<drawable name="inp5Icon"></drawable>-->
+    <drawable name="iconVoltage">@drawable/ic_flash</drawable>
+    <drawable name="iconAmpere">@drawable/ic_lightbulb</drawable>
+    <drawable name="iconPower">@drawable/ic_plug</drawable>
+    <drawable name="iconTemperature">@drawable/ic_thermometer</drawable>
+    <drawable name="iconInp1">@drawable/ic_car_battery</drawable>
+    <drawable name="iconInp2">@drawable/ic_solar_panel</drawable>
+    <drawable name="iconInp3">@drawable/ic_lisbon_background</drawable>
+    <drawable name="iconInp4">@drawable/ic_van</drawable>
+    <drawable name="iconInp5">@drawable/ic_ice_crystal</drawable>
 </resources>

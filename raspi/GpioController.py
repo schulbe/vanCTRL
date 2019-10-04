@@ -3,6 +3,7 @@ import Adafruit_ADS1x15
 
 import logging
 import regex as re
+import time
 
 
 class GpioController:
@@ -58,16 +59,24 @@ class GpioController:
         adc_name_ref, channel_ref = self.power_measurement_mapping[inp]['addr_negative_ref']
         if adc_name_pos != adc_name_ref or adc_name_pre_shunt != adc_name_ref:
             raise TypeError('Cant read difference if adcs are not the same')
+        Us = list()
+        Is = list()
 
-        U = (self._read_adc(adc_name_ref, int(channel_pos),
-                            channel_ref=int(channel_ref),
-                            gain=self.power_measurement_mapping[inp]['v_gain'])
-             * self.power_measurement_mapping[inp]['v_per_bit'])
+        for i in range(3):
+            Us.append((self._read_adc(adc_name_ref, int(channel_pos),
+                                      channel_ref=int(channel_ref),
+                                      gain=self.power_measurement_mapping[inp]['v_gain'])
+                       * self.power_measurement_mapping[inp]['v_per_bit']))
+            Is.append((self._read_adc(adc_name_ref, int(channel_pre_shunt),
+                                      channel_ref=int(channel_ref),
+                                      gain=self.power_measurement_mapping[inp]['a_gain'])
+                       * self.power_measurement_mapping[inp]['a_per_bit']))
+            time.sleep(0.1)
 
-        I = (self._read_adc(adc_name_ref, int(channel_pre_shunt),
-                            channel_ref=int(channel_ref),
-                            gain=self.power_measurement_mapping[inp]['a_gain'])
-             * self.power_measurement_mapping[inp]['a_per_bit'])
+        U = sum(Us)/3
+
+        I = sum(Is)/3
+
         logging.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']})")
 
         return U, I

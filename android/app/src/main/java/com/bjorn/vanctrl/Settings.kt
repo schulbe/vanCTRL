@@ -9,12 +9,12 @@ enum class Settings(val code: String) {
     FRIDGE_SWITCH("S3"),
     RADIO_SWITCH("S4"),
 
-    BATTERY_LOAD("I1"),
-    MPPT_CHARGE("I2"),
-    MPPT_LOAD("I3"),
+    IN_1("I1"),
+    IN_2("I2"),
+    IN_3("I3"),
 
-    TEMPERATURE_AIR("I4"),
-    TEMPERATURE_FRIDGE("I5"),
+    IN_4("I4"),
+    IN_5("I5"),
 
     UNKNOWN("U");
 
@@ -24,5 +24,4 @@ enum class Settings(val code: String) {
         private val map = Settings.values().associateBy(Settings::code)
         fun fromCode(code: String) = map[code]?: UNKNOWN
     }
-
 }
