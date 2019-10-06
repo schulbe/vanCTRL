@@ -35,21 +35,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noBtConnectionView"
+        app:layout_constraintTop_toBottomOf="@+id/btConnectButton"
         app:navGraph="@navigation/nav_graph" />
 
-    <TextView
-        android:id="@+id/noBtConnectionView"
+    <ImageButton
+        android:id="@+id/btConnectButton"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="@color/colorBanner"
         android:gravity="center"
-        android:text="@string/noBtConnectionWarning"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:typeface="normal"
+        android:contentDescription="@string/noBtConnectionWarning"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_bluetooth"/>
+
+    <FrameLayout
+        android:id="@+id/workingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:animateLayoutChanges="true"
+        android:alpha="0.4"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBarInfinity"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

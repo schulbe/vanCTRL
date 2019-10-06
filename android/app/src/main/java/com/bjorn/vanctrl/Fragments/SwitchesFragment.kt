@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.Switch
 import com.bjorn.vanctrl.R
 
 
@@ -15,7 +14,7 @@ class SwitchesFragment : Fragment() {
 
     private lateinit var callback: OnSwitchChangedListener
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnSwitchChangedListener) {
             callback = context

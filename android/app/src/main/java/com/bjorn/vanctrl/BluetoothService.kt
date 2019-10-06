@@ -44,19 +44,18 @@ class BluetoothService(
         } catch (e: Exception) {
             val txt = "Error in inital Connection Process: $e"
             println(txt)
-            Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+            activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show() }
         }
 
         try {
-            println("OPENCONNECTION")
-            openConnection()
+            if (bluetoothAdapter?.isEnabled?: false) {
+                openConnection() }
         } catch (e: Exception) {
-            val txt = "Error in openConnection(): $e"
+            val txt = "Could not connect to Pi..."
             println(txt)
-            Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+            activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show() }
         }
 
-        // TODO REINCLUDE!
         setIsConnected()
 
         try {
@@ -64,7 +63,7 @@ class BluetoothService(
         } catch (e: Exception) {
             val txt = "Error in openReader(): $e"
             println(txt)
-            Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
+            activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()}
         }
     }
 

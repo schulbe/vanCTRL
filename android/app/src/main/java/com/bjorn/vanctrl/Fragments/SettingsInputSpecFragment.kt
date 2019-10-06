@@ -11,7 +11,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.bjorn.vanctrl.R
 
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsInputSpecFragment : PreferenceFragmentCompat() {
 
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

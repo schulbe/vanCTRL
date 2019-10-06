@@ -3,9 +3,9 @@ package com.bjorn.vanctrl
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.ProgressBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -20,8 +20,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
-    SwitchesFragment.OnSwitchChangedListener,
-    SettingsFragment.OnBluetoothButtonClickedListener {
+    SwitchesFragment.OnSwitchChangedListener {
 
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
     val PI_BT_NAME: String = "raspberrypi"
@@ -112,9 +111,9 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-    override fun onConnectBtButtonClick() {
-        val setVisible = Runnable { findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.VISIBLE } }
-        val setInvisible = Runnable { findViewById<ProgressBar>(R.id.progressBarSettings)?.apply{ visibility = View.GONE } }
+    private fun onConnectBtButtonClick() {
+        val setVisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.VISIBLE } }
+        val setInvisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.GONE } }
 
         GlobalScope.launch {
             handler.post(setVisible)
@@ -130,6 +129,8 @@ class MainActivity : AppCompatActivity(),
         viewModel.getTemperatures().observe(this, Observer<Map<Settings, Float>> { temperatures -> setTemperatureMeasurementsToUI(temperatures)})
 
         rasPi.isConnected().observe(this, Observer<Boolean>{isConnected -> setConnectionBanner(isConnected)})
+
+        findViewById<ImageButton>(R.id.btConnectButton)?.setOnClickListener{ _ -> onConnectBtButtonClick()}
 
     }
 
@@ -225,12 +226,12 @@ class MainActivity : AppCompatActivity(),
     private fun setConnectionBanner(isConnected: Boolean) {
         if (isConnected) {
             println("SET CONNECTION BANNER RECEIVED IS_CONNECTED")
-            findViewById<TextView>(R.id.noBtConnectionView)?.apply{
+            findViewById<ImageButton>(R.id.btConnectButton)?.apply{
                 visibility = View.GONE
             }
         } else {
             println("SET CONNECTION BANNER RECEIVED IS_NOT_CONNECTED")
-            findViewById<TextView>(R.id.noBtConnectionView)?.apply{
+            findViewById<ImageButton>(R.id.btConnectButton)?.apply{
                 visibility = View.VISIBLE
             }
         }
