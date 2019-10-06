@@ -15,7 +15,7 @@ class SettingsInputSpecFragment : PreferenceFragmentCompat() {
 
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        addPreferencesFromResource(R.xml.preferences)
+        addPreferencesFromResource(R.xml.preferences_input_spec)
     }
 
 //    override fun onCreate(savedInstanceState: Bundle?) {

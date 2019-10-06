@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <PreferenceCategory
+            android:title="Power Inputs">
+            <PreferenceCategory
+                android:title="Input 1 (IN 1)">
+                <EditTextPreference
+                    android:key="name_in_1"
+                    android:summary="Name of connected measurement (f.e. 'Batterie')"
+                    android:title="Name" />
+                <CheckBoxPreference
+                    android:title="Connected"
+                    android:summary="Is this input in use?"
+                    android:key="pref_pow_inp_name">
+                </CheckBoxPreference>
+                <CheckBoxPreference
+                    android:title="Inverted Current/Power Measurements"
+                    android:summary="Controll the Direction of current to be seen as positive"
+                    android:key="pref_pow_inp_name">
+                </CheckBoxPreference>
+            </PreferenceCategory>
+        <PreferenceCategory
+            android:title="Input 2 (IN 2)">
+                <EditTextPreference
+                    android:key="name_in_2"
+                    android:summary="Name of connected measurement (f.e. 'Batterie')"
+                    android:title="Name" />
+                <CheckBoxPreference
+                    android:title="Connected"
+                    android:summary="Is this input in use?"
+                    android:key="pref_pow_inp_name">
+                </CheckBoxPreference>
+                <CheckBoxPreference
+                    android:title="Inverted Current/Power Measurements"
+                    android:summary="Controll the Direction of current to be seen as positive"
+                    android:key="pref_pow_inp_name">
+                </CheckBoxPreference>
+        </PreferenceCategory>
+        </PreferenceCategory>
+
+
+</androidx.preference.PreferenceScreen>

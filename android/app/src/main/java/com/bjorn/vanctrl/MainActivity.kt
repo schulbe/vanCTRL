@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
 import kotlinx.coroutines.GlobalScope
@@ -20,7 +22,8 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
-    SwitchesFragment.OnSwitchChangedListener {
+    SwitchesFragment.OnSwitchChangedListener,
+    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
     val PI_BT_NAME: String = "raspberrypi"
@@ -267,5 +270,22 @@ class MainActivity : AppCompatActivity(),
             }
         }
     }
+
+    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
+        // Instantiate the new Fragment
+        val args = pref.extras
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(
+            classLoader,
+            pref.fragment)
+        fragment.arguments = args
+        fragment.setTargetFragment(caller, 0)
+        // Replace the existing Fragment with the new Fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_graph, fragment)
+            .addToBackStack(null)
+            .commit()
+        return true
+    }
+
 
 }

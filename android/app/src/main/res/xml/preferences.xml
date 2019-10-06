@@ -28,18 +28,9 @@
             android:summary="Click to switch on or off"
             android:defaultValue="true"/>
     </PreferenceCategory>
-    <PreferenceCategory
-        android:title="Input Specifications">
-            <EditTextPreference
-                android:dialogTitle="Enter a text"
-                android:key="text2"
-                android:summary="Click to show a text entry dialog"
-                android:title="EditText Preference" />
-            <EditTextPreference
-                android:dialogTitle="Enter a text"
-                android:key="text"
-                android:summary="Click to show a text entry dialog"
-                android:title="EditText Preference" />
-    </PreferenceCategory>
+    <Preference
+        android:title="Input Specification"
+        android:summary="Change Wiring and Names"
+        android:fragment="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"/>
 
 </androidx.preference.PreferenceScreen>
