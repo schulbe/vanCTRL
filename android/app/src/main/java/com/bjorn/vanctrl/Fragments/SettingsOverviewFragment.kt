@@ -11,18 +11,18 @@ import androidx.preference.PreferenceFragmentCompat
 import com.bjorn.vanctrl.R
 
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsOverviewFragment : PreferenceFragmentCompat() {
 
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        addPreferencesFromResource(R.xml.preferences)
+        addPreferencesFromResource(R.xml.preferences_overview)
     }
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //        supportFragmentManager.beginTransaction().replace(android.R.id.content, MyPreferenceFragment()).commit()
 //    }
-//
+
 //    override fun onCreateView(
 //        inflater: LayoutInflater, container: ViewGroup?,
 //        savedInstanceState: Bundle?

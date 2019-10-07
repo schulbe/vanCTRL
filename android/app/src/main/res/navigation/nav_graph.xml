@@ -11,13 +11,29 @@
         <action
             android:id="@+id/action_overviewFragment_to_radioFragment"
             app:destination="@id/radioFragment" />
+        <action
+            android:id="@+id/action_overviewFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment android:id="@+id/switchesFragment" android:name="com.bjorn.vanctrl.Fragments.SwitchesFragment"
               android:label="fragment_switches" tools:layout="@layout/fragment_switches"/>
     <fragment android:id="@+id/radioFragment" android:name="com.bjorn.vanctrl.Fragments.RadioFragment"
               android:label="fragment_radio" tools:layout="@layout/fragment_radio"/>
     <fragment android:id="@+id/settingsFragment" android:name="com.bjorn.vanctrl.Fragments.SettingsFragment"
-              android:label="fragment_settings"/>
-    <fragment android:id="@+id/settingsFragmentInputSpec" android:name="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"
-              android:label="fragment_settings_input_spec"/>
+              android:label="fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsInputSpecFragment"
+            app:destination="@id/settingsInputSpecFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsOverviewFragment"
+            app:destination="@id/settingsOverviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsInputSpecFragment"
+        android:name="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"
+        android:label="SettingsInputSpecFragment" />
+    <fragment
+        android:id="@+id/settingsOverviewFragment"
+        android:name="com.bjorn.vanctrl.Fragments.SettingsOverviewFragment"
+        android:label="SettingsOverviewFragment" />
 </navigation>

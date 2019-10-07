@@ -1,45 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
         <PreferenceCategory
-            android:title="Power Inputs">
+            android:title="Energie Inputs">
             <PreferenceCategory
                 android:title="Input 1 (IN 1)">
+                <SwitchPreference
+                    android:key="pref_IN1_connected"
+                    android:title="Verbunden"
+                    android:defaultValue="true"/>
                 <EditTextPreference
-                    android:key="name_in_1"
-                    android:summary="Name of connected measurement (f.e. 'Batterie')"
-                    android:title="Name" />
+                    android:key="pref_IN1_name"
+                    android:title="Anzeigename"
+                    android:defaultValue="Batterie"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN1_shunt_mv"
+                    android:title="Shunt (mV)"
+                    android:defaultValue="75"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN1_shunt_a"
+                    android:title="Shunt (A)"
+                    android:defaultValue="100"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN1_max_v"
+                    android:title="Maximal anliegende Spannung (V)"
+                    android:defaultValue="20"
+                    app:useSimpleSummaryProvider="true"/>
                 <CheckBoxPreference
-                    android:title="Connected"
-                    android:summary="Is this input in use?"
-                    android:key="pref_pow_inp_name">
-                </CheckBoxPreference>
-                <CheckBoxPreference
-                    android:title="Inverted Current/Power Measurements"
-                    android:summary="Controll the Direction of current to be seen as positive"
-                    android:key="pref_pow_inp_name">
+                    android:key="pref_IN1_inverted"
+                    android:title="Invertieren"
+                    android:summary="Anzeige der Stromflussrichtung invertieren">
                 </CheckBoxPreference>
             </PreferenceCategory>
-        <PreferenceCategory
-            android:title="Input 2 (IN 2)">
+            <PreferenceCategory
+                android:title="Input 2 (IN 2)">
+                <SwitchPreference
+                    android:key="pref_IN2_connected"
+                    android:title="Verbunden"
+                    android:defaultValue="false"/>
                 <EditTextPreference
-                    android:key="name_in_2"
-                    android:summary="Name of connected measurement (f.e. 'Batterie')"
-                    android:title="Name" />
+                    android:key="pref_IN2_name"
+                    android:title="Anzeigename"
+                    android:defaultValue="Laderegler - Last"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN2_shunt_mv"
+                    android:title="Shunt (mV)"
+                    android:defaultValue="75"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN2_shunt_a"
+                    android:title="Shunt (A)"
+                    android:defaultValue="20"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN2_max_v"
+                    android:title="Maximal anliegende Spannung (V)"
+                    android:defaultValue="20"
+                    app:useSimpleSummaryProvider="true"/>
                 <CheckBoxPreference
-                    android:title="Connected"
-                    android:summary="Is this input in use?"
-                    android:key="pref_pow_inp_name">
+                    android:key="pref_IN2_inverted"
+                    android:title="Invertieren"
+                    android:summary="Anzeige der Stromflussrichtung invertieren">
                 </CheckBoxPreference>
+            </PreferenceCategory>
+            <PreferenceCategory
+                android:title="Input 3 (IN 3)">
+                <SwitchPreference
+                    android:key="pref_IN3_connected"
+                    android:title="Verbunden"
+                    android:defaultValue="false"/>
+                <EditTextPreference
+                    android:key="pref_IN3_name"
+                    android:title="Anzeigename"
+                    android:defaultValue="Laderegler - Batterie"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN3_shunt_mv"
+                    android:title="Shunt (mV)"
+                    android:defaultValue="75"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN3_shunt_a"
+                    android:title="Shunt (A)"
+                    android:defaultValue="20"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="pref_IN3_max_v"
+                    android:title="Maximal anliegende Spannung (V)"
+                    android:defaultValue="20"
+                    app:useSimpleSummaryProvider="true"/>
                 <CheckBoxPreference
-                    android:title="Inverted Current/Power Measurements"
-                    android:summary="Controll the Direction of current to be seen as positive"
-                    android:key="pref_pow_inp_name">
+                    android:key="pref_IN3_inverted"
+                    android:title="Invertieren"
+                    android:summary="Anzeige der Stromflussrichtung invertieren">
                 </CheckBoxPreference>
+            </PreferenceCategory>
         </PreferenceCategory>
+    <PreferenceCategory
+        android:name="Temperatur Sensoren">
+        <PreferenceCategory
+            android:name="Input 4 (IN 4)">
+            <SwitchPreference
+                android:key="pref_IN4_connected"
+                android:title="Verbunden"
+                android:defaultValue="true"/>
+            <EditTextPreference
+                android:key="pref_IN4_name"
+                android:title="Anzeigename"
+                android:defaultValue="Umgebungstemperatur"
+                app:useSimpleSummaryProvider="true"/>
+            <EditTextPreference
+                android:key="pref_IN4_id"
+                android:title="Sensor ID"
+                android:defaultValue="28-01145083f5aa"
+                app:useSimpleSummaryProvider="true"/>
         </PreferenceCategory>
+        <PreferenceCategory
+            android:name="Input 5 (IN 5)">
+            <SwitchPreference
+                android:key="pref_IN5_connected"
+                android:title="Verbunden"
+                android:defaultValue="false"/>
+            <EditTextPreference
+                android:key="pref_IN5_name"
+                android:title="Anzeigename"
+                android:defaultValue="Kühlboxtemperatur"
+                app:useSimpleSummaryProvider="true"/>
+            <EditTextPreference
+                android:key="pref_IN5_id"
+                android:title="Sensor ID"
+                android:defaultValue="28-0114509087aa"
+                app:useSimpleSummaryProvider="true"/>
+        </PreferenceCategory>
+
+    </PreferenceCategory>
 
 
 </androidx.preference.PreferenceScreen>

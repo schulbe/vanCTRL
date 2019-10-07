@@ -1,5 +1,6 @@
 package com.bjorn.vanctrl
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.bjorn.vanctrl.Fragments.SettingsFragment
@@ -19,6 +21,7 @@ import com.bjorn.vanctrl.Fragments.SwitchesFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.net.URI
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
@@ -268,22 +271,28 @@ class MainActivity : AppCompatActivity(),
             }
             R.id.settingsFragment -> {
             }
+            R.id.settingsInputSpecFragment -> {
+            }
         }
     }
 
     override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment
+        // TODO: Also non hardcoded way?
         val args = pref.extras
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(
-            classLoader,
-            pref.fragment)
-        fragment.arguments = args
-        fragment.setTargetFragment(caller, 0)
-        // Replace the existing Fragment with the new Fragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_graph, fragment)
-            .addToBackStack(null)
-            .commit()
+        var id = R.id.settingsFragment
+        when (pref.fragment) {
+            "com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment" -> {
+                id=R.id.settingsInputSpecFragment
+            }
+            "com.bjorn.vanctrl.Fragments.SettingsOverviewFragment" -> {
+                id=R.id.settingsOverviewFragment
+            }
+        }
+
+        viewModel.setActiveFragment(id)
+        navController.navigate(id)
+
         return true
     }
 

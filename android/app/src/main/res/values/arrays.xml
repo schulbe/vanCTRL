@@ -9,14 +9,19 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
-    <string-array name="settings_list_preference_titles">
+    <string-array name="list_names">
         <item>Test1</item>
         <item>Test2</item>
         <item>Test3</item>
     </string-array>
-    <string-array name="settings_list_preference_values">
+    <string-array name="list_values">
         <item>Test1V</item>
         <item>Test2V</item>
         <item>Test3V</item>
     </string-array>
+    <array name="image_values">
+        <item>@drawable/ic_005_bluetooth</item>
+        <item>@drawable/ic_flash</item>
+        <item>@drawable/ic_solar_panel</item>
+    </array>
 </resources>

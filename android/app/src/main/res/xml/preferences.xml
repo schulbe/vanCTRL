@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.SettingsFragment">
     <PreferenceCategory
-        android:title="General">
-        <CheckBoxPreference
-            android:key="checkbox"
-            android:summary="Tap to check if on or off"
-            android:title="Checkbox Preference" />
+        android:title="Verbindungen">
         <EditTextPreference
-            android:dialogTitle="Enter a text"
-            android:key="text"
-            android:summary="Click to show a text entry dialog"
-            android:title="EditText Preference" />
-        <ListPreference
-            android:dialogTitle="Select duration"
-            android:entries="@array/settings_list_preference_titles"
-            android:entryValues="@array/settings_list_preference_values"
-            android:key="list"
-            android:summary="Click to show a list to choose from"
-            android:title="List Preference" />
-        <SwitchPreference
-            android:key="switch"
-            android:title="Switch Preference"
-            android:summary="Click to switch on or off"
-            android:defaultValue="true"/>
+            android:dialogTitle="MAC Adresse des Controllers"
+            android:key="pref_mac_address"
+            android:title="Raspberry MAC"
+            android:defaultValue="B8:27:EB:C8:56:C7"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:dialogTitle="Name des Controllers"
+            android:key="pref_raspi_name"
+            android:title="Raspberry Name"
+            android:defaultValue="raspberrypi"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:dialogTitle="UUID der Verbindung"
+            android:key="pref_uuid"
+            android:title="UUID"
+            android:defaultValue="1e0ca4ea-299d-4335-93eb-27fcfe7fa849"
+            app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
-    <Preference
-        android:title="Input Specification"
-        android:summary="Change Wiring and Names"
-        android:fragment="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"/>
+    <PreferenceCategory
+        android:title="Eingänge">
+        <Preference
+            android:title="Messleitungen"
+            android:summary="Einstellungen der Inputs (IN 1 bis IN 5)"
+            android:fragment="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"
+            android:label="skjdbfksd"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Oberfläche">
+        <Preference
+            android:title="Übersicht"
+            android:summary="Auswahl der Elemente auf der Übersichtsseite"
+            android:fragment="com.bjorn.vanctrl.Fragments.SettingsOverviewFragment"
+            android:label="skjdbfksd"/>
+    </PreferenceCategory>
+
 
 </androidx.preference.PreferenceScreen>
