@@ -163,50 +163,56 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun setPowerMeasurementsToUI(measurements: Map<Settings, Map<String, Float>>) {
-        var amp = measurements[Settings.IN_1]?.get("A")
-        var volt = measurements[Settings.IN_1]?.get("V")
-        var uiText = "%.2f V".format(volt)
+        val overall_amp = measurements[Settings.IN_1]?.get("A")
+        val overall_volt = measurements[Settings.IN_1]?.get("V")
+        val mppt_solar_amp = measurements[Settings.IN_2]?.get("A")
+        val mppt_solar_volt = measurements[Settings.IN_2]?.get("V")
+        val mppt_load_amp = measurements[Settings.IN_3]?.get("A")
+        val mppt_load_volt = measurements[Settings.IN_3]?.get("V")
+
+        var load_amp = mppt_load_amp?.plus(mppt_solar_amp?:0f)
+        load_amp = overall_amp?.minus(load_amp?:0f)
+        load_amp = load_amp?.plus(mppt_load_amp?:0f)
+
+
+        var uiText = "%.2f V".format(load_amp)
         findViewById<TextView>(R.id.overviewInp1VoltageView)?.apply {
             text = uiText
         }
 
-        uiText = "%.2f A".format(amp)
+        uiText = "%.2f A".format(mppt_load_volt)
         findViewById<TextView>(R.id.overviewInp1AmpView)?.apply {
             text = uiText
         }
-        var power = amp?.times(volt?: 0f)
+        var power = load_amp?.times(mppt_load_volt?: 0f)
         uiText = "%.2f W".format((power))
         findViewById<TextView>(R.id.overviewInp1PowerView)?.apply {
             text = uiText
         }
 
-        amp = measurements[Settings.IN_2]?.get("A")
-        volt = measurements[Settings.IN_2]?.get("V")
-        uiText = "%.2f V".format(volt)
+        uiText = "%.2f V".format(mppt_solar_volt)
         findViewById<TextView>(R.id.overviewInp2VoltageView)?.apply {
             text = uiText
         }
-        uiText = "%.2f A".format(amp)
+        uiText = "%.2f A".format(mppt_solar_amp)
         findViewById<TextView>(R.id.overviewInp2AmpView)?.apply {
             text = uiText
         }
-        power = amp?.times(volt?: 0f)
+        power = mppt_solar_amp?.times(mppt_solar_volt?: 0f)
         uiText = "%.2f W".format(power)
         findViewById<TextView>(R.id.overviewInp2PowerView)?.apply {
             text = uiText
         }
 
-        amp = measurements[Settings.IN_3]?.get("A")
-        volt = measurements[Settings.IN_3]?.get("V")
-        uiText = "%.2f V".format(volt)
+        uiText = "%.2f V".format(overall_volt)
         findViewById<TextView>(R.id.overviewInp3VoltageView)?.apply {
             text = uiText
         }
-        uiText = "%.2f A".format(amp)
+        uiText = "%.2f A".format(overall_amp)
         findViewById<TextView>(R.id.overviewInp3AmpView)?.apply {
             text = uiText
         }
-        power = amp?.times(volt?: 0f)
+        power = overall_amp?.times(overall_volt?: 0f)
         uiText = "%.2f W".format(power)
         findViewById<TextView>(R.id.overviewInp3PowerView)?.apply {
             text = uiText

@@ -16,9 +16,9 @@
     <string name="overview_temperature_title">Temperatur</string>
     <string name="connect_button_label">Verbinden via BT</string>
     <string name="measure_button_label">Batterieleistungsmessung</string>
-    <string name="overview_inp1_title">Batterie</string>
-    <string name="overview_inp2_title"><![CDATA[Laderegler - Last]]></string>
-    <string name="overview_inp3_title"><![CDATA[Laderegler - Batterie]]></string>
+    <string name="overview_inp1_title">Last</string>
+    <string name="overview_inp2_title">Solar</string>
+    <string name="overview_inp3_title">Gesamt</string>
     <string name="configure_inputs_label">Eingänge Konfigurieren</string>
     <string name="title_activity_settings">Einstellungen</string>
 
