@@ -87,7 +87,14 @@ class Processor:
 
         elif msg_flag == self.codes['DATA_FLAG']:
             logging.debug(f"{msg} is a DATA message")
-            pass
+            if msg_type == self.codes['DATA_INPUT_SPECS']:
+                specs = msg_details.split('\u0004')
+                #todo: try except
+                inp = [k for k,v in self.codes.items() if v==specs[0]][0]
+                if inp in self.gpio_controller.power_inputs:
+                    self.gpio_controller.update_power_measurement_mapping_entry(inp, *specs[1:])
+                elif inp in self.gpio_controller.temperature_inputs:
+                    self.gpio_controller.temp_measurement_mapping[inp]['id'] = specs[1]
 
     def send_switch_status(self, lock):
         s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}

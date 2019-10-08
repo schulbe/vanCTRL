@@ -20,17 +20,21 @@ class GpioController:
         6.144: 2/3
     }
 
+    power_measurement_mapping = dict()
+
+
     def __init__(self, config):
 
+        self.config = config
         # self.pins = pin_numbers
         self.pins = dict([(v, k) for k, v in config.items('GPIOS')])
         # self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
         self.measurement_mapping = {k: v.split(':') for k, v in config.items('MEASUREMENT_MAPPINGS')}
 
-        self.power_inputs = [k for k, v in config['INPUT_SPECS'].items() if re.match("^IN_\d*$", k) and v == "POW"]
-        self.temperature_inputs = [k for k, v in config['INPUT_SPECS'].items() if re.match("^IN_\d*$", k) and v == "TEMP"]
+        self.power_inputs = [inp for inp, typ in config.items('INPUT_TYPES') if typ=='POWER']
+        self.temperature_inputs = [inp for inp, typ in config.items('INPUT_TYPES') if typ=='TEMPERATURE']
 
-        self.power_measurement_mapping = self.create_power_measurement_mapping(config, self.power_inputs)
+        # self.initialize_power_measurement_mapping(config, self.power_inputs)
         self.temp_measurement_mapping = {inp: {'id': config.get('INPUT_SPECS', f'{inp}_SENSOR_ID')} for inp in self.temperature_inputs}
 
         self.ads_1 = Adafruit_ADS1x15.ADS1115(address=int(config.get('ADC_ADDRESSES', 'ADS_1'), 16))
@@ -126,35 +130,38 @@ class GpioController:
             return True
         return False
 
-    def create_power_measurement_mapping(self, config, power_inputs):
+    def update_power_measurement_mapping_entry(self, inp, a_shunt, mv_shunt, max_volt):
         def v_per_bit(gain):
             return 4.096/gain/(2**15)
 
-        mapping = dict()
+        a_shunt = int(a_shunt)
+        max_volt = int(max_volt)
+        v_shunt = int(mv_shunt) / 1000
+        factor = self.config.getint('MEASUREMENT_MAPPINGS', f'{inp}_VOLT_DIV_FACTOR')
+        positive = self.config.get('MEASUREMENT_MAPPINGS', f'{inp}_POSITIVE').split(':')
+        pre_shunt = self.config.get('MEASUREMENT_MAPPINGS', f'{inp}_PRE_SHUNT').split(':')
+        negative_ref = self.config.get('MEASUREMENT_MAPPINGS', f'{inp}_NEGATIVE_REF').split(':')
 
+        a_gain = self.get_gain(v_shunt)
+        v_gain = self.get_gain(max_volt/factor)
+
+        self.power_measurement_mapping[inp] = {
+            'a_per_bit': v_per_bit(a_gain) / v_shunt * a_shunt,
+            'v_per_bit': v_per_bit(v_gain) * factor,
+            'a_gain': a_gain,
+            'v_gain': v_gain,
+            'addr_positive': positive,
+            'addr_pre_shunt': pre_shunt,
+            'addr_negative_ref': negative_ref,
+        }
+
+    def initialize_power_measurement_mapping(self, config, power_inputs):
         for inp in power_inputs:
-            a_shunt = config.getint('INPUT_SPECS', f'{inp}_SHUNT_A')
-            v_shunt = config.getint('INPUT_SPECS', f'{inp}_SHUNT_MV')/1000
-            max_volt = config.getint('INPUT_SPECS', f'{inp}_MAX_VOLT')
-            factor = config.getint('MEASUREMENT_MAPPINGS', f'{inp}_VOLT_DIV_FACTOR')
-            positive = config.get('MEASUREMENT_MAPPINGS', f'{inp}_POSITIVE').split(':')
-            pre_shunt = config.get('MEASUREMENT_MAPPINGS', f'{inp}_PRE_SHUNT').split(':')
-            negative_ref = config.get('MEASUREMENT_MAPPINGS', f'{inp}_NEGATIVE_REF').split(':')
-
-            a_gain = self.get_gain(v_shunt)
-            v_gain = self.get_gain(max_volt/factor)
-
-            mapping[inp] = {
-                'a_per_bit': v_per_bit(a_gain) / v_shunt * a_shunt,
-                'v_per_bit': v_per_bit(v_gain) * factor,
-                'a_gain': a_gain,
-                'v_gain': v_gain,
-                'addr_positive': positive,
-                'addr_pre_shunt': pre_shunt,
-                'addr_negative_ref': negative_ref,
-            }
-
-        return mapping
+            self.update_power_measurement_mapping_entry(
+                inp,
+                config.getint('INPUT_SPECS', f'{inp}_SHUNT_A'),
+                config.getint('INPUT_SPECS', f'{inp}_SHUNT_MV'),
+                config.getint('INPUT_SPECS', f'{inp}_MAX_VOLT'))
 
     def get_gain(self, max_volt):
         possible_gains = [(k, v) for k, v in self.gain_factor_mapping.items() if k >= max_volt]
