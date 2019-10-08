@@ -38,7 +38,7 @@ class BluetoothService(
         write(messageProcessor.createCommandMessage(cmd, details))
     }
 
-    fun tryConnection(deviceMac: String, deviceDisplayName: String, timeout: Int = 10) {
+    fun tryConnection(deviceMac: String?, deviceDisplayName: String?) {
         try {
             initiateBluetoothConnection(deviceMac, deviceDisplayName)
         } catch (e: Exception) {
@@ -67,11 +67,12 @@ class BluetoothService(
         }
     }
 
-    private fun initiateBluetoothConnection(deviceMac: String, deviceDisplayName: String) {
+    private fun initiateBluetoothConnection(deviceMac: String?, deviceDisplayName: String?) {
         if (bluetoothAdapter == null) {
-//            Toast.makeText(getApplicationContext(),"Device doesnt Support Bluetooth", Toast.LENGTH_SHORT).show();
             throw BluetoothException("No Bluetooth Adapter Found in Device")
-            // Device doesn't support Bluetooth
+        }
+        else if (deviceMac == null || deviceDisplayName == null) {
+            throw BluetoothException("No Device MAC or DisplayName found. Please go to Settings")
         }
         if (!bluetoothAdapter.isEnabled) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
@@ -90,8 +91,6 @@ class BluetoothService(
 
         if (mmSocket == null) {
             mmSocket = piBtDevice.createRfcommSocketToServiceRecord(CONFIG_UUID)
-            println("MMSOCKET:")
-            println(mmSocket)
         }
 
     }
@@ -115,7 +114,6 @@ class BluetoothService(
             } catch (e: Exception) {
                 val txt = "Error in Reading Process: $e"
                 println(txt)
-//                Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -136,11 +134,6 @@ class BluetoothService(
 
     }
 
-    // TODO: REMOVE
-//    fun setIsConnectedTest(isconnected: Boolean) {
-//        isConnected.postValue( isconnected)
-//    }
-
     fun isConnected(): LiveData<Boolean> {
         return isConnected
     }
@@ -148,6 +141,7 @@ class BluetoothService(
     private fun closeConnection() {
         try {
             mmSocket?.close()
+            mmSocket = null
         } catch (e: IOException) {
 //            Toast.makeText(activity, "IOException in closeConnection()", Toast.LENGTH_LONG).show()
         }

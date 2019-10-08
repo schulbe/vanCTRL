@@ -1,6 +1,6 @@
 package com.bjorn.vanctrl
 
-import android.net.Uri
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -13,29 +13,33 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.net.URI
 import java.util.*
 
 class MainActivity : AppCompatActivity(),
     SwitchesFragment.OnSwitchChangedListener,
-    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
+    SettingsFragment.OnSettingChangedListener
+{
 
-    val PI_MAC_ADDR: String = "B8:27:EB:C8:56:C7"
-    val PI_BT_NAME: String = "raspberrypi"
-    val PI_UUID: UUID = UUID.fromString("1e0ca4ea-299d-4335-93eb-27fcfe7fa849")
+    private var piMacAddress: String? = null
+    private var piBtName: String? = null
+
+    private lateinit var piUUID: UUID
 
     private lateinit var rasPi: BluetoothService
 
     private lateinit var navController: NavController
     private lateinit var viewModel: VanViewModel
+
+
     private val handler: Handler = Handler()
 
     private var mIsInForeground: Boolean = true
@@ -69,6 +73,11 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        println("pref MAN: ${PreferenceManager.getDefaultSharedPreferences(this)}")
+        piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
+        piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
+        piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
+
         setContentView(R.layout.activity_main)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -79,10 +88,10 @@ class MainActivity : AppCompatActivity(),
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.initalizeLiveData()
 
-        rasPi = BluetoothService(PI_UUID, this, MessageProcessor(viewModel))
+        println("UUID: $piUUID")
+        rasPi = BluetoothService(this.piUUID,this, MessageProcessor(viewModel))
 
         setObservers()
-
 
         viewModel.setActiveFragment(R.id.overviewFragment)
     }
@@ -123,7 +132,7 @@ class MainActivity : AppCompatActivity(),
 
         GlobalScope.launch {
             handler.post(setVisible)
-            rasPi.tryConnection(PI_MAC_ADDR, PI_BT_NAME)
+            rasPi.tryConnection(piMacAddress, piBtName)
             handler.post(setInvisible)
         }
     }
@@ -302,5 +311,14 @@ class MainActivity : AppCompatActivity(),
         return true
     }
 
+    override fun onSettingChanged(prefs: SharedPreferences?, key: String?) {
+        when (key) {
+            "pref_apply_connection_changes" -> {finish(); startActivity(intent)}
+            }
+        }
 
+    override fun onSynchronizeClicked() {
+        finish()
+        startActivity(intent)
+    }
 }

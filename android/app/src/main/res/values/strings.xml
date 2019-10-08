@@ -1,38 +1,92 @@
 <resources>
     <string name="app_name">Vancontrol</string>
+
     <string name="title_overview">Übersicht</string>
     <string name="title_settings">Einstellungen</string>
     <string name="title_radio">Radio</string>
     <string name="title_light">Schalter</string>
-    <string name="title_activity_change_lights">ChangeLightsActivity</string>
-    <string name="front_light_switch">Licht vorne</string>
-    <string name="back_light_switch">Licht hinten</string>
-    <string name="title_activity_bluetooth_connection">BluetoothConnectionActivity</string>
+
     <string name="noBtConnectionWarning">Keine Bluetoothverbindung!</string>
+
     <string name="desc_radio_switch">Radio Schalter</string>
     <string name="desc_fridge_switch">Kühlschrank Schalter</string>
     <string name="desc_kitchenlight_switch">Küchenlicht Schalter</string>
     <string name="desc_bedlight_switch">Schlafzimmerlicht Schalter</string>
+
     <string name="overview_temperature_title">Temperatur</string>
-    <string name="connect_button_label">Verbinden via BT</string>
-    <string name="measure_button_label">Batterieleistungsmessung</string>
     <string name="overview_inp1_title">Last</string>
     <string name="overview_inp2_title">Solar</string>
     <string name="overview_inp3_title">Gesamt</string>
-    <string name="configure_inputs_label">Eingänge Konfigurieren</string>
-    <string name="title_activity_settings">Einstellungen</string>
 
-    <!-- Preference Titles -->
-    <string name="prefCat_general">Allgemein</string>
-    <string name="sync_header">Sync</string>
+<!--PREFERENCES-->
+    <!--Preference Keys-->
+    <string name="key_pref_mac_address">pref_mac_address</string>
+    <string name="key_pref_raspi_name">pref_raspi_name</string>
+    <string name="key_pref_uuid">pref_uuid</string>
+    <string name="key_pref_apply_connection_changes">pref_apply_connection_changes</string>
+    <string name="key_pref_connected_in1">pref_connected_in1</string>
+    <string name="key_pref_connected_in2">pref_connected_in2</string>
+    <string name="key_pref_connected_in3">pref_connected_in3</string>
+    <string name="key_pref_connected_in4">pref_connected_in4</string>
+    <string name="key_pref_connected_in5">pref_connected_in5</string>
+    <string name="key_pref_name_in1">pref_name_in1</string>
+    <string name="key_pref_name_in2">pref_name_in2</string>
+    <string name="key_pref_name_in3">pref_name_in3</string>
+    <string name="key_pref_name_in4">pref_name_in4</string>
+    <string name="key_pref_name_in5">pref_name_in5</string>
+    <string name="key_pref_shunt_mv_in1">pref_shunt_mv_in1</string>
+    <string name="key_pref_shunt_mv_in2">pref_shunt_mv_in2</string>
+    <string name="key_pref_shunt_mv_in3">pref_shunt_mv_in3</string>
+    <string name="key_pref_shunt_a_in1">pref_shunt_a_in1</string>
+    <string name="key_pref_shunt_a_in2">pref_shunt_a_in2</string>
+    <string name="key_pref_shunt_a_in3">pref_shunt_a_in3</string>
+    <string name="key_pref_max_v_in1">pref_max_v_in1</string>
+    <string name="key_pref_max_v_in2">pref_max_v_in2</string>
+    <string name="key_pref_max_v_in3">pref_max_v_in3</string>
+    <string name="key_pref_invert_in1">pref_invert_in1</string>
+    <string name="key_pref_invert_in2">pref_invert_in2</string>
+    <string name="key_pref_invert_in3">pref_invert_in3</string>
+    <string name="key_pref_id_in4">pref_id_in4</string>
+    <string name="key_pref_id_in5">pref_id_in5</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!--Preference Titles-->
+    <string name="title_pref_cat_connections">Verbindungen</string>
+    <string name="title_pref_mac_address">MAC Adresse des Controllers</string>
+    <string name="title_pref_raspi_name">Name des Controllers</string>
+    <string name="title_pref_uuid">UUID</string>
+    <string name="title_pref_apply_connection_changes">Anwenden</string>
+    <string name="title_pref_cat_inputs">Anschlüsse</string>
+    <string name="title_pref_measurement_inputs">Eingänge</string>
+    <string name="title_pref_switches">Schalter</string>
+    <string name="title_pref_cat_ui">Oberfläche</string>
+    <string name="title_pref_overview">Übersicht</string>
+    <string name="title_pref_cat_energy_inputs">Energie Inputs</string>
+    <string name="title_pref_cat_temp_inputs">Temperatur Inputs</string>
+    <string name="title_pref_cat_in1">Input 1 (IN 1)</string>
+    <string name="title_pref_cat_in2">Input 2 (IN 2)</string>
+    <string name="title_pref_cat_in3">Input 3 (IN 3)</string>
+    <string name="title_pref_cat_in4">Input 4 (IN 4)</string>
+    <string name="title_pref_cat_in5">Input 5 (IN 5)</string>
+    <string name="title_pref_connected">Aktiv</string>
+    <string name="title_pref_in_name">Anzeigename</string>
+    <string name="title_pref_shunt_mv">Shunt (mV)</string>
+    <string name="title_pref_shunt_a">Shunt (A)</string>
+    <string name="title_pref_max_v">Maximale Eingangsspannung</string>
+    <string name="title_pref_invert">Stromrichtung invertieren</string>
+    <string name="title_pref_id">Sensor ID</string>
+
+    <!--Preference Defaults-->
+    <string name="default_pref_mac_address">B8:27:EB:C8:56:C7</string>
+    <string name="default_pref_raspi_name">raspberrypi</string>
+    <string name="default_pref_uuid"><![CDATA[1e0ca4ea-299d-4335-93eb-27fcfe7fa849]]></string>
+    <string name="default_pref_id_in4"><![CDATA[28-01145083f5aa]]></string>
+    <string name="default_pref_id_in5"><![CDATA[28-0114509087aa]]></string>
+
+    <!--Preference Summaries-->
+    <string name="sum_pref_measurement_inputs">Anpassen der Inputs (IN 1 bis IN 5)</string>
+    <string name="sum_pref_switches">Anpassen der Schalter (S 1 bis S 5)</string>
+    <string name="sum_pref_overview">Anpassen der Übersichtsseite</string>
+
+
 </resources>

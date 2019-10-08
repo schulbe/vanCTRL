@@ -3,6 +3,7 @@ package com.bjorn.vanctrl
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
 
 class VanViewModel : ViewModel() {
     private val powerStats = MutableLiveData<Map<Settings, Map<String, Float>>>()
@@ -10,6 +11,7 @@ class VanViewModel : ViewModel() {
     private val btConnected = MutableLiveData<Boolean>()
     private val switchStatus = MutableLiveData<Map<Settings, Boolean>>()
     private val temperatures = MutableLiveData<Map<Settings, Float>>()
+    private val btConnection = MutableLiveData<Map<String, String>>()
 
     fun initalizeLiveData() {
         switchStatus.postValue(mapOf(

@@ -4,138 +4,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
         <PreferenceCategory
-            android:title="Energie Inputs">
+            android:title="@string/title_pref_cat_energy_inputs">
             <PreferenceCategory
-                android:title="Input 1 (IN 1)">
+                android:title="@string/title_pref_cat_in1">
                 <SwitchPreference
-                    android:key="pref_IN1_connected"
-                    android:title="Verbunden"
-                    android:defaultValue="true"/>
-                <EditTextPreference
-                    android:key="pref_IN1_name"
-                    android:title="Anzeigename"
-                    android:defaultValue="Batterie"
-                    app:useSimpleSummaryProvider="true"/>
-                <EditTextPreference
-                    android:key="pref_IN1_shunt_mv"
-                    android:title="Shunt (mV)"
-                    android:defaultValue="75"
-                    app:useSimpleSummaryProvider="true"/>
-                <EditTextPreference
-                    android:key="pref_IN1_shunt_a"
-                    android:title="Shunt (A)"
-                    android:defaultValue="100"
-                    app:useSimpleSummaryProvider="true"/>
-                <EditTextPreference
-                    android:key="pref_IN1_max_v"
-                    android:title="Maximal anliegende Spannung (V)"
-                    android:defaultValue="20"
-                    app:useSimpleSummaryProvider="true"/>
-                <CheckBoxPreference
-                    android:key="pref_IN1_inverted"
-                    android:title="Invertieren"
-                    android:summary="Anzeige der Stromflussrichtung invertieren">
-                </CheckBoxPreference>
-            </PreferenceCategory>
-            <PreferenceCategory
-                android:title="Input 2 (IN 2)">
-                <SwitchPreference
-                    android:key="pref_IN2_connected"
-                    android:title="Verbunden"
+                    android:key="@string/key_pref_connected_in1"
+                    android:title="@string/title_pref_connected"
                     android:defaultValue="false"/>
                 <EditTextPreference
-                    android:key="pref_IN2_name"
-                    android:title="Anzeigename"
-                    android:defaultValue="Laderegler - Last"
+                    android:key="@string/key_pref_name_in1"
+                    android:title="@string/title_pref_in_name"
                     app:useSimpleSummaryProvider="true"/>
                 <EditTextPreference
-                    android:key="pref_IN2_shunt_mv"
-                    android:title="Shunt (mV)"
-                    android:defaultValue="75"
+                    android:key="@string/key_pref_shunt_mv_in1"
+                    android:title="@string/title_pref_shunt_mv"
                     app:useSimpleSummaryProvider="true"/>
                 <EditTextPreference
-                    android:key="pref_IN2_shunt_a"
-                    android:title="Shunt (A)"
-                    android:defaultValue="20"
+                    android:key="@string/key_pref_shunt_a_in1"
+                    android:title="@string/title_pref_shunt_a"
                     app:useSimpleSummaryProvider="true"/>
                 <EditTextPreference
-                    android:key="pref_IN2_max_v"
-                    android:title="Maximal anliegende Spannung (V)"
-                    android:defaultValue="20"
+                    android:key="@string/key_pref_max_v_in1"
+                    android:title="@string/title_pref_max_v"
                     app:useSimpleSummaryProvider="true"/>
                 <CheckBoxPreference
-                    android:key="pref_IN2_inverted"
-                    android:title="Invertieren"
-                    android:summary="Anzeige der Stromflussrichtung invertieren">
-                </CheckBoxPreference>
+                    android:key="@string/key_pref_invert_in1"
+                    android:title="@string/title_pref_invert"/>
             </PreferenceCategory>
             <PreferenceCategory
-                android:title="Input 3 (IN 3)">
+                android:title="@string/title_pref_cat_in2">
                 <SwitchPreference
-                    android:key="pref_IN3_connected"
-                    android:title="Verbunden"
+                    android:key="@string/key_pref_connected_in2"
+                    android:title="@string/title_pref_connected"
                     android:defaultValue="false"/>
                 <EditTextPreference
-                    android:key="pref_IN3_name"
-                    android:title="Anzeigename"
-                    android:defaultValue="Laderegler - Batterie"
+                    android:key="@string/key_pref_name_in2"
+                    android:title="@string/title_pref_in_name"
                     app:useSimpleSummaryProvider="true"/>
                 <EditTextPreference
-                    android:key="pref_IN3_shunt_mv"
-                    android:title="Shunt (mV)"
-                    android:defaultValue="75"
+                    android:key="@string/key_pref_shunt_mv_in2"
+                    android:title="@string/title_pref_shunt_mv"
                     app:useSimpleSummaryProvider="true"/>
                 <EditTextPreference
-                    android:key="pref_IN3_shunt_a"
-                    android:title="Shunt (A)"
-                    android:defaultValue="20"
+                    android:key="@string/key_pref_shunt_a_in2"
+                    android:title="@string/title_pref_shunt_a"
                     app:useSimpleSummaryProvider="true"/>
                 <EditTextPreference
-                    android:key="pref_IN3_max_v"
-                    android:title="Maximal anliegende Spannung (V)"
-                    android:defaultValue="20"
+                    android:key="@string/key_pref_max_v_in2"
+                    android:title="@string/title_pref_max_v"
                     app:useSimpleSummaryProvider="true"/>
                 <CheckBoxPreference
-                    android:key="pref_IN3_inverted"
-                    android:title="Invertieren"
-                    android:summary="Anzeige der Stromflussrichtung invertieren">
-                </CheckBoxPreference>
+                    android:key="@string/key_pref_invert_in2"
+                    android:title="@string/title_pref_invert"/>
+            </PreferenceCategory>
+            <PreferenceCategory
+                android:title="@string/title_pref_cat_in3">
+                <SwitchPreference
+                    android:key="@string/key_pref_connected_in3"
+                    android:title="@string/title_pref_connected"
+                    android:defaultValue="false"/>
+                <EditTextPreference
+                    android:key="@string/key_pref_name_in3"
+                    android:title="@string/title_pref_in_name"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="@string/key_pref_shunt_mv_in3"
+                    android:title="@string/title_pref_shunt_mv"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="@string/key_pref_shunt_a_in3"
+                    android:title="@string/title_pref_shunt_a"
+                    app:useSimpleSummaryProvider="true"/>
+                <EditTextPreference
+                    android:key="@string/key_pref_max_v_in3"
+                    android:title="@string/title_pref_max_v"
+                    app:useSimpleSummaryProvider="true"/>
+                <CheckBoxPreference
+                    android:key="@string/key_pref_invert_in3"
+                    android:title="@string/title_pref_invert"/>
             </PreferenceCategory>
         </PreferenceCategory>
     <PreferenceCategory
-        android:name="Temperatur Sensoren">
+        android:name="@string/title_pref_cat_temp_inputs">
         <PreferenceCategory
-            android:name="Input 4 (IN 4)">
+            android:name="@string/title_pref_cat_in4">
             <SwitchPreference
-                android:key="pref_IN4_connected"
-                android:title="Verbunden"
+                android:key="@string/key_pref_connected_in4"
+                android:title="@string/title_pref_connected"
                 android:defaultValue="true"/>
             <EditTextPreference
-                android:key="pref_IN4_name"
-                android:title="Anzeigename"
-                android:defaultValue="Umgebungstemperatur"
+                android:key="@string/key_pref_name_in4"
+                android:title="@string/title_pref_in_name"
                 app:useSimpleSummaryProvider="true"/>
             <EditTextPreference
-                android:key="pref_IN4_id"
-                android:title="Sensor ID"
-                android:defaultValue="28-01145083f5aa"
+                android:key="@string/key_pref_id_in4"
+                android:title="@string/title_pref_id"
+                android:defaultValue="@string/default_pref_id_in4"
                 app:useSimpleSummaryProvider="true"/>
         </PreferenceCategory>
         <PreferenceCategory
-            android:name="Input 5 (IN 5)">
+            android:name="@string/title_pref_cat_in5">
             <SwitchPreference
-                android:key="pref_IN5_connected"
-                android:title="Verbunden"
-                android:defaultValue="false"/>
+                android:key="@string/key_pref_connected_in5"
+                android:title="@string/title_pref_connected"
+                android:defaultValue="true"/>
             <EditTextPreference
-                android:key="pref_IN5_name"
-                android:title="Anzeigename"
-                android:defaultValue="Kühlboxtemperatur"
+                android:key="@string/key_pref_name_in5"
+                android:title="@string/title_pref_in_name"
                 app:useSimpleSummaryProvider="true"/>
             <EditTextPreference
-                android:key="pref_IN5_id"
-                android:title="Sensor ID"
-                android:defaultValue="28-0114509087aa"
+                android:key="@string/key_pref_id_in5"
+                android:title="@string/title_pref_id"
+                android:defaultValue="@string/default_pref_id_in5"
                 app:useSimpleSummaryProvider="true"/>
         </PreferenceCategory>
 

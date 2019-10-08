@@ -6,41 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.SettingsFragment">
     <PreferenceCategory
-        android:title="Verbindungen">
+        android:title="@string/title_pref_cat_connections">
         <EditTextPreference
-            android:dialogTitle="MAC Adresse des Controllers"
-            android:key="pref_mac_address"
-            android:title="Raspberry MAC"
-            android:defaultValue="B8:27:EB:C8:56:C7"
+            android:dialogTitle="@string/title_pref_mac_address"
+            android:key="@string/key_pref_mac_address"
+            android:title="@string/title_pref_mac_address"
+            android:defaultValue="@string/default_pref_mac_address"
             app:useSimpleSummaryProvider="true"/>
         <EditTextPreference
-            android:dialogTitle="Name des Controllers"
-            android:key="pref_raspi_name"
-            android:title="Raspberry Name"
-            android:defaultValue="raspberrypi"
+            android:dialogTitle="@string/title_pref_raspi_name"
+            android:key="@string/key_pref_raspi_name"
+            android:title="@string/title_pref_raspi_name"
+            android:defaultValue="@string/default_pref_raspi_name"
             app:useSimpleSummaryProvider="true"/>
         <EditTextPreference
-            android:dialogTitle="UUID der Verbindung"
-            android:key="pref_uuid"
-            android:title="UUID"
-            android:defaultValue="1e0ca4ea-299d-4335-93eb-27fcfe7fa849"
+            android:dialogTitle="@string/title_pref_uuid"
+            android:key="@string/key_pref_uuid"
+            android:title="@string/title_pref_uuid"
+            android:defaultValue="@string/default_pref_uuid"
             app:useSimpleSummaryProvider="true"/>
+        <Preference
+            android:title="@string/title_pref_apply_connection_changes"
+            android:key="@string/key_pref_apply_connection_changes"/>
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Eingänge">
+        android:title="@string/title_pref_cat_inputs">
         <Preference
-            android:title="Messleitungen"
-            android:summary="Einstellungen der Inputs (IN 1 bis IN 5)"
-            android:fragment="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"
-            android:label="skjdbfksd"/>
+            android:title="@string/title_pref_measurement_inputs"
+            android:summary="@string/sum_pref_measurement_inputs"
+            android:fragment="com.bjorn.vanctrl.Fragments.SettingsInputSpecFragment"/>
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Oberfläche">
+        android:title="@string/title_pref_cat_ui">
         <Preference
-            android:title="Übersicht"
-            android:summary="Auswahl der Elemente auf der Übersichtsseite"
-            android:fragment="com.bjorn.vanctrl.Fragments.SettingsOverviewFragment"
-            android:label="skjdbfksd"/>
+            android:title="@string/title_pref_overview"
+            android:summary="@string/sum_pref_overview"
+            android:fragment="com.bjorn.vanctrl.Fragments.SettingsOverviewFragment"/>
     </PreferenceCategory>
 
 
