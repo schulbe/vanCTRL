@@ -38,6 +38,10 @@ class BluetoothService(
         write(messageProcessor.createCommandMessage(cmd, details))
     }
 
+    fun sendData(data_type: RaspiCodes, details:List<String>) {
+        write(messageProcessor.createDataMessage(data_type, details))
+    }
+
     fun tryConnection(deviceMac: String?, deviceDisplayName: String?) {
         try {
             initiateBluetoothConnection(deviceMac, deviceDisplayName)
@@ -200,6 +204,10 @@ class BluetoothException(message: String) : Exception(message)
 class MessageProcessor(private val viewModel: VanViewModel) {
     fun createCommandMessage(cmd:RaspiCodes, details: RaspiCodes): String {
         return "\u0002${RaspiCodes.COMMAND_FLAG.code}\u0003${cmd.code}\u0003${details.code}\u0002"
+    }
+
+    fun createDataMessage(data_type:RaspiCodes, details: List<String>):String {
+        return "\u0002${RaspiCodes.DATA_FLAG.code}\u0003${data_type.code}\u0003${details.joinToString("\u0004")}\u0002"
     }
 
     fun processReceivedMessage(msg: String) {
