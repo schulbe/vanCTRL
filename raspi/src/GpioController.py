@@ -22,7 +22,6 @@ class GpioController:
 
     power_measurement_mapping = dict()
 
-
     def __init__(self, config):
 
         self.config = config
@@ -83,7 +82,7 @@ class GpioController:
 
         logging.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']})")
 
-        return U, I
+        return I, U
 
     def _read_adc(self, name, channel, channel_ref=None, gain=16):
         def sign(perm, base):

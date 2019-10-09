@@ -1,13 +1,18 @@
+import threading
+import time
+
 from BluetoothController import BluetoothController
 from GpioController import GpioController
 import configparser
 import sys
 import logging
+import sqlite3
 from datetime import datetime
 from contextlib import suppress
 
 SENDING_POWER_MEASUREMENTS = False
 SENDING_TEMPERATURE_MEASUREMENTS = False
+
 
 class Processor:
     def __init__(self, conf):
@@ -20,7 +25,14 @@ class Processor:
         logging.info("Initializing BT Controll")
         self.bt_controller = BluetoothController(uuid=config['GENERAL']['UUID'])
 
+        logging.info("Initializing Database")
+        self.db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
+        self.initialize_database()
+
     def run_main_loop(self):
+        logging.info("Starting regular logging...")
+        self.schedule_measurement_logging(config.getint('GENERAL', 'LOGGING_UPDATE_SEC'))
+
         logging.info("Starting connect_and_listen loop...")
         self.bt_controller.connect_and_listen(callback=self.process_message)
 
@@ -90,7 +102,7 @@ class Processor:
             if msg_type == self.codes['DATA_INPUT_SPECS']:
                 specs = msg_details.split('\u0004')
                 #todo: try except
-                inp = [k for k,v in self.codes.items() if v==specs[0]][0]
+                inp = [k for k,v in self.codes.items() if v == specs[0]][0]
                 if inp in self.gpio_controller.power_inputs:
                     self.gpio_controller.update_power_measurement_mapping_entry(inp, *specs[1:])
                 elif inp in self.gpio_controller.temperature_inputs:
@@ -109,10 +121,10 @@ class Processor:
         s = list()
         for inp in self.gpio_controller.power_inputs:
             try:
-                U, I = self.gpio_controller.get_power_measurements(inp)
+                I, U = self.gpio_controller.get_power_measurements(inp)
             except Exception as e:
                 logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
-                U, I = (0, 0)
+                I, U = (0, 0)
             s.extend([I, U])
         meas_string = '\u0004'.join(str(v) for v in s)
         msg = f'\u0002{self.codes["DATA_FLAG"]}' \
@@ -136,6 +148,41 @@ class Processor:
               f'\u0003{meas_string}\u0002'
         with lock:
             self.bt_controller.send(msg)
+
+    def schedule_measurement_logging(self, schedule_s):
+        t = threading.Thread(target=self._schedule_measurement_logging, args=(schedule_s,))
+        t.setDaemon(True)
+        t.start()
+
+    def _schedule_measurement_logging(self, schedule_s):
+        insert_measurements_sql = f"INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']} VALUES (?,?,?,?,?,?,?,?)"
+        measurements = list()
+        t = datetime.now()
+        for inp in ['IN_1', 'IN_2', 'IN_3']:
+            measurements.extend(self.gpio_controller.get_power_measurements(inp))
+
+        for inp in ['IN_4', 'IN_5']:
+            measurements.append(self.gpio_controller.get_temperature_measurement(inp))
+
+        self.db_connection.cursor().execute(insert_measurements_sql, measurements)
+        self.db_connection.commit()
+        time.sleep(schedule_s-(datetime.now()-t).total_seconds())
+
+    def initialize_database(self):
+
+        create_measurments_table_sql = """CREATE TABLE IF NOT EXISTS ? 
+                                          (IN_1_A FLOAT,
+                                           IN_1_U FLOAT,
+                                           IN_2_A FLOAT,
+                                           IN_2_U FLOAT,
+                                           IN_3_A FLOAT,
+                                           IN_3_U FLOAT,
+                                           IN_4 FLOAT
+                                           IN_5 FLOAT,
+                                           TIME TIMESTAMP DEFAULT (strftime('%s', 'now')))"""
+
+        self.db_connection.cursor().execute(create_measurments_table_sql, config['GENERAL']['MEASUREMENT_TABLE'])
+        self.db_connection.commit()
 
 
 if __name__ == '__main__':
