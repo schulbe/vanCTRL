@@ -175,6 +175,8 @@ class Processor:
             db_connection.close()
 
     def initialize_database(self):
+        print(self.config['GENERAL']['DB_NAME'])
+        print(type(self.config['GENERAL']['DB_NAME']))
         db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
         create_measurements_table_sql = """CREATE TABLE IF NOT EXISTS {tbl} 
                                           (IN_1_A FLOAT,
