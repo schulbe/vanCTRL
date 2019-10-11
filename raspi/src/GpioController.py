@@ -6,8 +6,8 @@ import regex as re
 import time
 
 logger = logging.getLogger(__name__)
-logger.addHandler(logging.NullHandler())
-
+logger.handlers = [logging.NullHandler()]
+logger.propagate = 0
 
 class GpioController:
     ads_1 = None
@@ -33,8 +33,8 @@ class GpioController:
         # self.measurement_names = dict(config.items('MEASUREMENT_NAMES'))
         self.measurement_mapping = {k: v.split(':') for k, v in config.items('MEASUREMENT_MAPPINGS')}
 
-        self.power_inputs = [inp for inp, typ in config.items('INPUT_TYPES') if typ=='POWER']
-        self.temperature_inputs = [inp for inp, typ in config.items('INPUT_TYPES') if typ=='TEMPERATURE']
+        self.power_inputs = [inp for inp, typ in config.items('INPUT_TYPES') if typ == 'POWER']
+        self.temperature_inputs = [inp for inp, typ in config.items('INPUT_TYPES') if typ == 'TEMPERATURE']
 
         self.initialize_power_measurement_mapping(config, self.power_inputs)
         self.temp_measurement_mapping = {inp: {'id': config.get('INPUT_SPECS', f'{inp}_SENSOR_ID')} for inp in self.temperature_inputs}
