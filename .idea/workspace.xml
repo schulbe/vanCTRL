@@ -4,7 +4,6 @@
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,14 +114,7 @@
       <workItem from="1570546662195" duration="2552000" />
       <workItem from="1570603586635" duration="3469000" />
       <workItem from="1570618870681" duration="5341000" />
-      <workItem from="1570773109025" duration="2371000" />
-    </task>
-    <task id="LOCAL-00015" summary="added ADS to functionality">
-      <created>1569064116398</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1569064116398</updated>
+      <workItem from="1570773109025" duration="2469000" />
     </task>
     <task id="LOCAL-00016" summary="changed ads class">
       <created>1569064205262</created>
@@ -460,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570775115904</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="moved db to home directory">
+      <created>1570775665233</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1570775665233</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,7 +482,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../jetbot" />
     </ignored-roots>
-    <MESSAGE value="working on android message stuff" />
     <MESSAGE value="added config paths" />
     <MESSAGE value="Andrid seems to run" />
     <MESSAGE value="Error in Raspi" />
@@ -508,7 +506,8 @@
     <MESSAGE value="Did sme changes" />
     <MESSAGE value="reincluded initialize power meas mapping" />
     <MESSAGE value="sqlite stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="sqlite stuff" />
+    <MESSAGE value="moved db to home directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved db to home directory" />
   </component>
   <component name="WindowStateProjectService">
     <state x="569" y="270" width="824" height="684" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1570128268428">
@@ -527,10 +526,10 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570773902772" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570775116900">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570775666898">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570775116900" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570775666898" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570773875433">
       <screen x="63" y="27" width="1857" height="1173" />
