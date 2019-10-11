@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,14 +105,7 @@
       <workItem from="1570546662195" duration="2552000" />
       <workItem from="1570603586635" duration="3469000" />
       <workItem from="1570618870681" duration="5341000" />
-      <workItem from="1570773109025" duration="5966000" />
-    </task>
-    <task id="LOCAL-00025" summary="added prints">
-      <created>1569065089432</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1569065089432</updated>
+      <workItem from="1570773109025" duration="6202000" />
     </task>
     <task id="LOCAL-00026" summary="small update - sends ampere!">
       <created>1569065265302</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570790116128</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="temp to float">
+      <created>1570790255820</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1570790255820</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,10 +517,10 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570773902772" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570790117052">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570790256855">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570790117052" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570790256855" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570773875433">
       <screen x="63" y="27" width="1857" height="1173" />
