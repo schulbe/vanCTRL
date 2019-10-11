@@ -279,7 +279,7 @@ class MessageProcessor(private val viewModel: VanViewModel) {
     }
 
     private fun processPowerMeasurements(details: List<String>) {
-
+        println("PROCESSING POWER MEAS: $details")
         val statistics = mutableMapOf<Settings, Map<String, Float>>()
         val meas = mutableMapOf<String, Float>()
 
