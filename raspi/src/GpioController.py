@@ -6,7 +6,7 @@ import regex as re
 import time
 
 logger = logging.getLogger(__name__)
-logger.handlers = [logging.NullHandler()]
+# logger.handlers = [logging.NullHandler()]
 # logger.propagate = 0
 
 

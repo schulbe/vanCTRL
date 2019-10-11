@@ -3,7 +3,8 @@ import logging
 import threading
 
 logger = logging.getLogger(__name__)
-logger.addHandler(logging.NullHandler())
+# logger.addHandler(logging.NullHandler())
+# logger.propagate = 0
 
 
 class BluetoothController:
