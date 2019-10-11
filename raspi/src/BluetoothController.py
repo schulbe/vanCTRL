@@ -2,6 +2,7 @@ import bluetooth as bt
 import logging
 import threading
 
+logger = logging.getLogger(__name__)
 
 class BluetoothController:
     def __init__(self, uuid):
@@ -24,10 +25,10 @@ class BluetoothController:
                              service_classes=[uuid, bt.SERIAL_PORT_CLASS],
                              profiles=[bt.SERIAL_PORT_PROFILE])
 
-        logging.info(f'Advertising BT Service on Port {self._port} // UUID: {self.uuid}')
+        logger.info(f'Advertising BT Service on Port {self._port} // UUID: {self.uuid}')
 
     def close_connection(self):
-        logging.info(f'Closing connection with {self._client_info}')
+        logger.info(f'Closing connection with {self._client_info}')
         self._client_sock.close()
         self._client_info = None
         self._client_sock = None
@@ -36,9 +37,9 @@ class BluetoothController:
         try:
             with self._lock:
                 self._client_sock.send(bytes(msg, 'utf-8'))
-                logging.debug(f'Sent message: {msg}')
+                logger.debug(f'Sent message: {msg}')
         except bt.btcommon.BluetoothError as e:
-            logging.error(f'BluetoothError occured while trying to send message: {e}', exc_info=True)
+            logger.error(f'BluetoothError occured while trying to send message: {e}', exc_info=True)
             self._handle_error(e)
 
     def connect_and_listen(self, callback):
@@ -49,9 +50,9 @@ class BluetoothController:
         t.join()
 
     def _wait_for_connection(self):
-        logging.info(f'Waiting for connection')
+        logger.info(f'Waiting for connection')
         self._client_sock, self._client_info = self._server_sock.accept()
-        logging.info(f'Established Connection with {self._client_info}')
+        logger.info(f'Established Connection with {self._client_info}')
 
     def _listen(self):
         while True:
@@ -61,17 +62,17 @@ class BluetoothController:
             try:
                 data = self._client_sock.recv(1024)
                 if len(data) == 0:
-                    logging.info('Data had length 0.')
+                    logger.info('Data had length 0.')
                     continue
                 self._process_received_data(data)
 
             except bt.btcommon.BluetoothError as e:
-                logging.error(f'BluetoothError occured while waiting or processing command: {e}', exc_info=True)
+                logger.error(f'BluetoothError occured while waiting or processing command: {e}', exc_info=True)
                 self._handle_error(e)
 
     def _process_received_data(self, data):
         data = data.decode("utf-8")
-        logging.debug(f'Processing Received Data: {data}')
+        logger.debug(f'Processing Received Data: {data}')
         if data.startswith("\u0002") and data.endswith("\u0002"):
             for cmd in data.split("\u0002"):
                 if cmd:
@@ -79,21 +80,21 @@ class BluetoothController:
                     t.setDaemon(True)
                     t.start()
         else:
-            logging.error(f"Did not understand command: {data}")
+            logger.error(f"Did not understand command: {data}")
 
     def _handle_error(self, e):
         try:
             error_code = eval(str(e))[0]
             if error_code == 104:
-                logging.error('Connection reset by peer. Closing Connection.')
+                logger.error('Connection reset by peer. Closing Connection.')
                 with self._lock:
                     self.close_connection()
             elif error_code == 110:
-                logging.error('Connection timed out. Closing Connection.')
+                logger.error('Connection timed out. Closing Connection.')
                 with self._lock:
                     self.close_connection()
         except Exception as e2:
-            logging.error(f"Could not process error: {e} (because of: {e2})")
+            logger.error(f"Could not process error: {e} (because of: {e2})")
 
 
 class ConnectionClosedError(Exception):

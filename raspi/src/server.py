@@ -209,9 +209,6 @@ if __name__ == '__main__':
 
     config.read('/home/pi/repos/vancontrol/input_specifications.ini')
 
-    logger = logging.getLogger('vancontrol')
-    logger.setLevel(logging.DEBUG)
-
     formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
                                   "%Y-%m-%d %H:%M:%S")
 
@@ -223,8 +220,15 @@ if __name__ == '__main__':
     streamHandler.setLevel(logging.DEBUG)
     streamHandler.setFormatter(formatter)
 
-    logger.addHandler(fileHandler)
-    logger.addHandler(streamHandler)
+    gpio_logger = logging.getLogger('GpioController')
+    gpio_logger.setLevel(logging.DEBUG)
+    gpio_logger.addHandler(fileHandler)
+    gpio_logger.addHandler(streamHandler)
+
+    bluetooth_logger = logging.getLogger('BluetoothController')
+    bluetooth_logger.setLevel(logging.DEBUG)
+    bluetooth_logger.addHandler(fileHandler)
+    bluetooth_logger.addHandler(streamHandler)
 
     processor = Processor(config)
     processor.run_main_loop()

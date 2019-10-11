@@ -5,6 +5,7 @@ import logging
 import regex as re
 import time
 
+logger = logging.getLogger(__name__)
 
 class GpioController:
     ads_1 = None
@@ -51,10 +52,10 @@ class GpioController:
         io_pin = int(self.pins[switch])
         if on:
             GPIO.output(io_pin, GPIO.HIGH)
-            logging.debug(f'Switching Switch {switch} on pin {io_pin} on')
+            logger.debug(f'Switching Switch {switch} on pin {io_pin} on')
         else:
             GPIO.output(io_pin, GPIO.LOW)
-            logging.debug(f'Switching Switch {switch} on pin {io_pin} off')
+            logger.debug(f'Switching Switch {switch} on pin {io_pin} off')
 
     def get_power_measurements(self, inp):
         adc_name_pos, channel_pos = self.power_measurement_mapping[inp]['addr_positive']
@@ -80,7 +81,7 @@ class GpioController:
 
         I = sum(Is)/3
 
-        logging.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']})")
+        logger.debug(f"I: {I} (Gain: {self.power_measurement_mapping[inp]['a_gain']} // U: {U} (Gain: {self.power_measurement_mapping[inp]['v_gain']})")
 
         return I, U
 
@@ -114,7 +115,7 @@ class GpioController:
             if channel_ref is not None:
                 dif_channel, factor = map_channel(channel, channel_ref)
                 dif = ADS.read_adc_difference(dif_channel, gain=gain) * factor
-                logging.debug(f'Read difference Ratio {dif_channel}: {dif}')
+                logger.debug(f'Read difference Ratio {dif_channel}: {dif}')
                 return dif
 
             else:
