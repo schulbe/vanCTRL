@@ -1,6 +1,7 @@
 import threading
 import time
 
+import numpy as np
 from BluetoothController import BluetoothController
 # from BluetoothController import logger as bt_logger
 from GpioController import GpioController
@@ -158,23 +159,29 @@ class Processor:
 
     def _schedule_measurement_logging(self, schedule_s):
         db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
-
-        try:
-            while True:
-                insert_measurements_sql = f"""INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']}
+        insert_measurements_sql = f"""INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']}
                                               (IN_1_A , IN_1_U, IN_2_A, IN_2_U, IN_3_A, IN_3_U, IN_4, IN_5)
                                               VALUES (?,?,?,?,?,?,?,?)"""
-                measurements = list()
-                t = datetime.now()
-                for inp in ['IN_1', 'IN_2', 'IN_3']:
-                    measurements.extend(self.gpio_controller.get_power_measurements(inp))
+        try:
+            while True:
+                measurements_glob = list()
+                min_schedule = schedule_s/5
+                for i in range(10):
 
-                for inp in ['IN_4', 'IN_5']:
-                    measurements.append(self.gpio_controller.get_temperature_measurement(inp))
+                    measurements = list()
+                    t = datetime.now()
+                    for inp in ['IN_1', 'IN_2', 'IN_3']:
+                        measurements.extend(self.gpio_controller.get_power_measurements(inp))
 
-                db_connection.cursor().execute(insert_measurements_sql, ["{0:.2f}".format(m) for m in measurements])
+                    for inp in ['IN_4', 'IN_5']:
+                        measurements.append(self.gpio_controller.get_temperature_measurement(inp))
+
+                    measurements_glob.append(measurements)
+                    time.sleep(min_schedule-(datetime.now()-t).total_seconds())
+
+                measurements_mean = np.mean(measurements_glob, axis=0)
+                db_connection.cursor().execute(insert_measurements_sql, ["{0:.2f}".format(m) for m in measurements_mean])
                 db_connection.commit()
-                time.sleep(schedule_s-(datetime.now()-t).total_seconds())
         finally:
             db_connection.close()
 
