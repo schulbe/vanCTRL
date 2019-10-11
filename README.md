@@ -1,6 +1,6 @@
 # vancontrol
 ## REMEMBER:
-crontab -e 
+sudo crontab -e 
 
 ## Config Files
 

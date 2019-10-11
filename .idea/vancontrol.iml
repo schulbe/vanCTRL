@@ -2,7 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Python" name="Python">
-      <configuration sdkName="" />
+      <configuration sdkName="Python 3.6 (vancontrol)" />
     </facet>
   </component>
   <component name="NewModuleRootManager">
@@ -12,6 +12,7 @@
     <orderEntry type="jdk" jdkName="vancontrol" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="jetbot" />
+    <orderEntry type="library" name="Python 3.6 (vancontrol) interpreter library" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

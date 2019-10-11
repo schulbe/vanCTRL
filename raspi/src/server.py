@@ -5,6 +5,7 @@ from BluetoothController import BluetoothController
 from GpioController import GpioController
 import configparser
 import sys
+import os
 import logging
 import sqlite3
 from datetime import datetime
@@ -170,7 +171,7 @@ class Processor:
 
     def initialize_database(self):
 
-        create_measurments_table_sql = """CREATE TABLE IF NOT EXISTS ? 
+        create_measurements_table_sql = """CREATE TABLE IF NOT EXISTS {tbl} 
                                           (IN_1_A FLOAT,
                                            IN_1_U FLOAT,
                                            IN_2_A FLOAT,
@@ -179,13 +180,18 @@ class Processor:
                                            IN_3_U FLOAT,
                                            IN_4 FLOAT
                                            IN_5 FLOAT,
-                                           TIME TIMESTAMP DEFAULT (strftime('%s', 'now')))"""
+                                           TIME TIMESTAMP DEFAULT (strftime('%s', 'now')))""".format(tbl=config['GENERAL']['MEASUREMENT_TABLE'])
 
-        self.db_connection.cursor().execute(create_measurments_table_sql, config['GENERAL']['MEASUREMENT_TABLE'])
+        self.db_connection.cursor().execute(create_measurements_table_sql)
         self.db_connection.commit()
 
 
 if __name__ == '__main__':
+
+    #todo execute somewehere else: turnoff leds
+    os.system("sudo bash -c \"echo none > /sys/class/leds/led0/trigger\"")
+    os.system("sudo bash -c \"echo none > /sys/class/leds/led1/trigger\"")
+
     config = configparser.ConfigParser()
     config.optionxform = str
 
