@@ -106,14 +106,7 @@
       <workItem from="1570546662195" duration="2552000" />
       <workItem from="1570603586635" duration="3469000" />
       <workItem from="1570618870681" duration="5341000" />
-      <workItem from="1570773109025" duration="6491000" />
-    </task>
-    <task id="LOCAL-00029" summary="working on android message stuff">
-      <created>1569424738675</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1569424738675</updated>
+      <workItem from="1570773109025" duration="6620000" />
     </task>
     <task id="LOCAL-00030" summary="added config paths">
       <created>1569513679243</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570790682863</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="logging update">
+      <created>1570790781843</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1570790781843</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,10 +518,10 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570773902772" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570790683792">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570790782764">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570790683792" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570790782764" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570773875433">
       <screen x="63" y="27" width="1857" height="1173" />
