@@ -159,7 +159,9 @@ class Processor:
 
         try:
             while True:
-                insert_measurements_sql = f"INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']} VALUES (?,?,?,?,?,?,?,?)"
+                insert_measurements_sql = f"""INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']}
+                                              (IN_1_A , IN_1_U, IN_2_A, IN_2_U, IN_3_A, IN_3_U, IN_4, IN_5)
+                                              VALUES (?,?,?,?,?,?,?,?)"""
                 measurements = list()
                 t = datetime.now()
                 for inp in ['IN_1', 'IN_2', 'IN_3']:
