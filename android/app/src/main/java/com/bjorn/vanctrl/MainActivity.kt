@@ -28,11 +28,6 @@ class MainActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
     SettingsFragment.OnSettingChangedListener
 {
-
-    private var piMacAddress: String? = null
-    private var piBtName: String? = null
-    private lateinit var piUUID: UUID
-
     private lateinit var rasPi: BluetoothService
     private lateinit var navController: NavController
     private lateinit var viewModel: VanViewModel
@@ -83,6 +78,7 @@ class MainActivity : AppCompatActivity(),
 
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.initalizeLiveData()
+        rasPi = BluetoothService(this, MessageProcessor(viewModel))
 
         setObservers()
 
@@ -90,16 +86,6 @@ class MainActivity : AppCompatActivity(),
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
-        piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
-        piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
-
-        rasPi = BluetoothService(this.piUUID,this, MessageProcessor(viewModel))
-
-    }
     override fun onPause() {
         super.onPause()
         mIsInForeground = false
@@ -130,12 +116,16 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun onConnectBtButtonClick() {
+
+        val piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
+        val piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
+        val piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
         val setVisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.VISIBLE } }
         val setInvisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.GONE } }
 
         GlobalScope.launch {
             handler.post(setVisible)
-            rasPi.tryConnection(piMacAddress, piBtName)
+            rasPi.tryConnection(piMacAddress, piBtName, piUUID)
             handler.post(setInvisible)
         }
     }

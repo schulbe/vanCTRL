@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -22,7 +23,6 @@ private const val TAG = "MY_APP_DEBUG_TAG"
 
 
 class BluetoothService(
-    private val CONFIG_UUID: UUID,
     private val activity: MainActivity,
     private val messageProcessor: MessageProcessor
 ) {
@@ -34,6 +34,7 @@ class BluetoothService(
 
     private val REQUEST_ENABLE_BT = 17
 
+
     fun sendCommand(cmd: RaspiCodes, details:RaspiCodes) {
         write(messageProcessor.createCommandMessage(cmd, details))
     }
@@ -42,13 +43,14 @@ class BluetoothService(
         write(messageProcessor.createDataMessage(data_type, details))
     }
 
-    fun tryConnection(deviceMac: String?, deviceDisplayName: String?) {
+    fun tryConnection(deviceMac: String?, deviceDisplayName: String?, deviceUUID: UUID) {
         try {
-            initiateBluetoothConnection(deviceMac, deviceDisplayName)
+            initiateBluetoothConnection(deviceMac, deviceDisplayName, deviceUUID)
         } catch (e: Exception) {
             val txt = "Error in inital Connection Process: $e"
             println(txt)
             activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show() }
+            return
         }
 
         try {
@@ -58,6 +60,7 @@ class BluetoothService(
             val txt = "Could not connect to Pi..."
             println(txt)
             activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show() }
+            return
         }
 
         setIsConnected()
@@ -68,10 +71,11 @@ class BluetoothService(
             val txt = "Error in openReader(): $e"
             println(txt)
             activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()}
+            return
         }
     }
 
-    private fun initiateBluetoothConnection(deviceMac: String?, deviceDisplayName: String?) {
+    private fun initiateBluetoothConnection(deviceMac: String?, deviceDisplayName: String?, deviceUUID: UUID) {
         if (bluetoothAdapter == null) {
             throw BluetoothException("No Bluetooth Adapter Found in Device")
         }
@@ -85,16 +89,15 @@ class BluetoothService(
 
         val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter.bondedDevices
         pairedDevices?.forEach { device ->
-            val deviceName = device.name
-            val deviceHardwareAddress = device.address // MAC address
 
-            if (deviceName == deviceDisplayName && deviceHardwareAddress == deviceMac) {
+            if (device.name == deviceDisplayName && device.address == deviceMac) {
                 piBtDevice = device
             }
         }
 
         if (mmSocket == null) {
-            mmSocket = piBtDevice.createRfcommSocketToServiceRecord(CONFIG_UUID)
+            mmSocket = piBtDevice.createRfcommSocketToServiceRecord(deviceUUID)
+            println("MMSOCKET: $mmSocket")
         }
 
     }
@@ -123,14 +126,17 @@ class BluetoothService(
     }
 
     private fun write(message: String) {
-        GlobalScope.launch {
-            try {
-                ConnectedThread().write(message.toByteArray())
-            } catch (e: Exception) {
-                val txt = "Error in Writing Process (msg= $message): $e"
-                println(txt)
+        if (isConnected.value == true) {
+            GlobalScope.launch {
+                try {
+                    ConnectedThread().write(message.toByteArray())
+                } catch (e: Exception) {
+                    val txt = "Error in Writing Process (msg= $message): $e"
+                    println(txt)
 //                Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()
-            }}
+                }
+            }
+        }
     }
 
     private fun setIsConnected() {
@@ -237,6 +243,7 @@ class MessageProcessor(private val viewModel: VanViewModel) {
 
     private fun processDataMessage(type:RaspiCodes, details:String) {
         val detailsSplit = details.split("\u0004")
+        println("Process Data Message: $type")
         when (type) {
             RaspiCodes.DATA_POWER_MEASUREMENTS -> {
                 processPowerMeasurements(detailsSplit)

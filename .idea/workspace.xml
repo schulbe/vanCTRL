@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/BluetoothController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/BluetoothController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/GpioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/BluetoothService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspi/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,14 +107,7 @@
       <workItem from="1570546662195" duration="2552000" />
       <workItem from="1570603586635" duration="3469000" />
       <workItem from="1570618870681" duration="5341000" />
-      <workItem from="1570773109025" duration="7348000" />
-    </task>
-    <task id="LOCAL-00036" summary="evaluate tuple in config">
-      <created>1569520868385</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1569520868385</updated>
+      <workItem from="1570773109025" duration="8664000" />
     </task>
     <task id="LOCAL-00037" summary="changed config to work with tuple">
       <created>1569521011031</created>
@@ -452,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570791612311</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="logging update">
+      <created>1570791640888</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1570791640888</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

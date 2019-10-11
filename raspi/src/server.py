@@ -144,7 +144,7 @@ class Processor:
                 logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
                 temp = -100
             s.append(temp)
-        meas_string = '\u0004'.join("0:.2f".format(v) for v in s)
+        meas_string = '\u0004'.join("{0:.2f}".format(v) for v in s)
         msg = f'\u0002{self.codes["DATA_FLAG"]}' \
               f'\u0003{self.codes["DATA_TEMPERATURE_MEASUREMENTS"]}' \
               f'\u0003{meas_string}\u0002'
