@@ -170,8 +170,6 @@ class Processor:
                 for inp in ['IN_4', 'IN_5']:
                     measurements.append(self.gpio_controller.get_temperature_measurement(inp))
 
-                for m in measurements:
-                    print(f"{m} - {type(m)}")
                 db_connection.cursor().execute(insert_measurements_sql, ["{0:.2f}".format(m) for m in measurements])
                 db_connection.commit()
                 time.sleep(schedule_s-(datetime.now()-t).total_seconds())

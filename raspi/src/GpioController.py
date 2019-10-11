@@ -182,6 +182,6 @@ class GpioController:
                 line = f.readline()
                 m = re.match(r"([0-9a-f]{2} ){9}t=([+-]?[0-9]+)", line)
                 if m:
-                    value = str(float(m.group(2)) / 1000.0)
+                    value = float(m.group(2)) / 1000.0
 
         return value
