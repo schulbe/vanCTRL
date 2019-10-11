@@ -224,13 +224,11 @@ if __name__ == '__main__':
 
     gpio_logger = logging.getLogger('GpioController')
     gpio_logger.setLevel(logging.DEBUG)
-    gpio_logger.addHandler(fileHandler)
-    gpio_logger.addHandler(streamHandler)
+    gpio_logger.handlers = [fileHandler, streamHandler]
 
     bt_logger = logging.getLogger('BluetoothController')
     bt_logger.setLevel(logging.DEBUG)
-    bt_logger.addHandler(fileHandler)
-    bt_logger.addHandler(streamHandler)
+    bt_logger.handlers = [fileHandler, streamHandler]
 
     processor = Processor(config)
     processor.run_main_loop()
