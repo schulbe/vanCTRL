@@ -126,7 +126,7 @@ class Processor:
                 logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
                 I, U = (0, 0)
             s.extend([I, U])
-        meas_string = '\u0004'.join("0:.2f".format(v) for v in s)
+        meas_string = '\u0004'.join("{0:.2f}".format(v) for v in s)
         msg = f'\u0002{self.codes["DATA_FLAG"]}' \
               f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
               f'\u0003{meas_string}\u0002'
@@ -170,7 +170,7 @@ class Processor:
                 for inp in ['IN_4', 'IN_5']:
                     measurements.append(self.gpio_controller.get_temperature_measurement(inp))
 
-                db_connection.cursor().execute(insert_measurements_sql, ["0:.2f".format(m) for m in measurements])
+                db_connection.cursor().execute(insert_measurements_sql, ["{0:.2f}".format(m) for m in measurements])
                 db_connection.commit()
                 time.sleep(schedule_s-(datetime.now()-t).total_seconds())
         finally:
