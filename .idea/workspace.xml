@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +51,7 @@
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1570635150217" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../datascience_app_tm_pflichtfeldkandidaten" />
+    <property name="last_opened_file_path" value="$USER_HOME$/temperatures.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -106,6 +108,7 @@
       <workItem from="1570603586635" duration="3469000" />
       <workItem from="1570618870681" duration="5341000" />
       <workItem from="1570773109025" duration="10045000" />
+      <workItem from="1570807483047" duration="7528000" />
     </task>
     <task id="LOCAL-00039" summary="bugfix">
       <created>1569521513749</created>
@@ -507,26 +510,26 @@
     <state x="569" y="270" width="824" height="684" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570128268428" />
     <state x="547" y="168" key="CommitChangelistDialog2" timestamp="1569511992129" />
     <state x="547" y="168" key="CommitChangelistDialog2/1920.1200" timestamp="1569511992129" />
-    <state x="780" y="142" width="424" height="484" key="FileChooserDialogImpl" timestamp="1570128236938">
+    <state x="780" y="142" width="424" height="484" key="FileChooserDialogImpl" timestamp="1570813762724">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
     <state x="780" y="142" key="FileChooserDialogImpl/1920.1200" timestamp="1569511992129" />
-    <state x="780" y="142" width="424" height="484" key="FileChooserDialogImpl/63.27.1857.1173@63.27.1857.1173" timestamp="1570128236938" />
+    <state x="780" y="142" width="424" height="484" key="FileChooserDialogImpl/63.27.1857.1173@63.27.1857.1173" timestamp="1570813762724" />
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor" timestamp="1570773902772">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570773902772" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570795021102">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1570796611820">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570795021102" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570796611820" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570773875433">
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570808263982">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569511992129" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1570773875433" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1570808263982" />
     <state x="960" y="175" width="916" height="705" key="find.popup" timestamp="1570131141663">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>

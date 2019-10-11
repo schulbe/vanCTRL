@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity(),
 
     private val handler: Handler = Handler()
 
-    private var mIsInForeground: Boolean = true
-
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_overview -> {
@@ -88,12 +86,11 @@ class MainActivity : AppCompatActivity(),
 
     override fun onPause() {
         super.onPause()
-        mIsInForeground = false
     }
 
     override fun onResume() {
         super.onResume()
-        mIsInForeground = true
+        onConnectBtButtonClick()
     }
 
     override fun onSwitchClicked(switchId: Int) {
@@ -120,13 +117,16 @@ class MainActivity : AppCompatActivity(),
         val piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
         val piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
         val piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
-        val setVisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.VISIBLE } }
-        val setInvisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.GONE } }
+
+        val setVisible = Runnable { findViewById<FrameLayout>(R.id.btConnectWidget)?.apply{ visibility = View.VISIBLE } }
+        val setInvisible = Runnable { findViewById<FrameLayout>(R.id.btConnectWidget)?.apply{ visibility = View.GONE } }
 
         GlobalScope.launch {
-            handler.post(setVisible)
-            rasPi.tryConnection(piMacAddress, piBtName, piUUID)
-            handler.post(setInvisible)
+            while (rasPi.isConnected().value != true) {
+                handler.post(setVisible)
+                rasPi.tryConnection(piMacAddress, piBtName, piUUID)
+                handler.post(setInvisible)
+            }
         }
     }
 
