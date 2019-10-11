@@ -230,8 +230,6 @@ if __name__ == '__main__':
     bt_logger.setLevel(logging.DEBUG)
     bt_logger.handlers = [fileHandler, streamHandler]
 
-    logging.handlers = []
-
     processor = Processor(config)
     processor.run_main_loop()
 

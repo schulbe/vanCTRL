@@ -7,7 +7,7 @@ import time
 
 logger = logging.getLogger(__name__)
 # logger.handlers = [logging.NullHandler()]
-# logger.propagate = 0
+logger.propagate = 0
 
 
 class GpioController:
