@@ -2,9 +2,9 @@ import threading
 import time
 
 from BluetoothController import BluetoothController
-from BluetoothController import logger as bt_logger
+# from BluetoothController import logger as bt_logger
 from GpioController import GpioController
-from GpioController import logger as gpio_logger
+# from GpioController import logger as gpio_logger
 import configparser
 import sys
 import os
@@ -222,12 +222,12 @@ if __name__ == '__main__':
     streamHandler.setLevel(logging.DEBUG)
     streamHandler.setFormatter(formatter)
 
-    # gpio_logger = logging.getLogger('GpioController')
+    gpio_logger = logging.getLogger('GpioController')
     gpio_logger.setLevel(logging.DEBUG)
     gpio_logger.addHandler(fileHandler)
     gpio_logger.addHandler(streamHandler)
 
-    # bt_logger = logging.getLogger('BluetoothController')
+    bt_logger = logging.getLogger('BluetoothController')
     bt_logger.setLevel(logging.DEBUG)
     bt_logger.addHandler(fileHandler)
     bt_logger.addHandler(streamHandler)

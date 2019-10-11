@@ -6,7 +6,7 @@ import regex as re
 import time
 
 logger = logging.getLogger(__name__)
-print(f"NAME: {name}")
+print(f"NAME: {__name__}")
 
 class GpioController:
     ads_1 = None
