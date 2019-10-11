@@ -209,7 +209,7 @@ if __name__ == '__main__':
 
     config.read('/home/pi/repos/vancontrol/input_specifications.ini')
 
-    logger = logging.getLogger()
+    logger = logging.getLogger('vancontrol')
     logger.setLevel(logging.DEBUG)
 
     formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
