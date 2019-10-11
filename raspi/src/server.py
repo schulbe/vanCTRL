@@ -27,7 +27,6 @@ class Processor:
         self.bt_controller = BluetoothController(uuid=config['GENERAL']['UUID'])
 
         logging.info("Initializing Database")
-        self.db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
         self.initialize_database()
 
     def run_main_loop(self):
@@ -156,21 +155,27 @@ class Processor:
         t.start()
 
     def _schedule_measurement_logging(self, schedule_s):
-        insert_measurements_sql = f"INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']} VALUES (?,?,?,?,?,?,?,?)"
-        measurements = list()
-        t = datetime.now()
-        for inp in ['IN_1', 'IN_2', 'IN_3']:
-            measurements.extend(self.gpio_controller.get_power_measurements(inp))
+        db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
 
-        for inp in ['IN_4', 'IN_5']:
-            measurements.append(self.gpio_controller.get_temperature_measurement(inp))
+        try:
+            while True:
+                insert_measurements_sql = f"INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']} VALUES (?,?,?,?,?,?,?,?)"
+                measurements = list()
+                t = datetime.now()
+                for inp in ['IN_1', 'IN_2', 'IN_3']:
+                    measurements.extend(self.gpio_controller.get_power_measurements(inp))
 
-        self.db_connection.cursor().execute(insert_measurements_sql, measurements)
-        self.db_connection.commit()
-        time.sleep(schedule_s-(datetime.now()-t).total_seconds())
+                for inp in ['IN_4', 'IN_5']:
+                    measurements.append(self.gpio_controller.get_temperature_measurement(inp))
+
+                db_connection.cursor().execute(insert_measurements_sql, measurements)
+                db_connection.commit()
+                time.sleep(schedule_s-(datetime.now()-t).total_seconds())
+        finally:
+            db_connection.close()
 
     def initialize_database(self):
-
+        db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
         create_measurements_table_sql = """CREATE TABLE IF NOT EXISTS {tbl} 
                                           (IN_1_A FLOAT,
                                            IN_1_U FLOAT,
@@ -182,8 +187,9 @@ class Processor:
                                            IN_5 FLOAT,
                                            TIME TIMESTAMP DEFAULT (strftime('%s', 'now')))""".format(tbl=config['GENERAL']['MEASUREMENT_TABLE'])
 
-        self.db_connection.cursor().execute(create_measurements_table_sql)
-        self.db_connection.commit()
+        db_connection.cursor().execute(create_measurements_table_sql)
+        db_connection.commit()
+        db_connection.close()
 
 
 if __name__ == '__main__':
