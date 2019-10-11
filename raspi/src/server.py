@@ -197,6 +197,8 @@ if __name__ == '__main__':
     #todo execute somewehere else: turnoff leds
     os.system("sudo bash -c \"echo none > /sys/class/leds/led0/trigger\"")
     os.system("sudo bash -c \"echo none > /sys/class/leds/led1/trigger\"")
+    os.system("sudo bash -c \"echo 0 > /sys/class/leds/led1/brightness\"")
+    os.system("sudo bash -c \"echo 0 > /sys/class/leds/led1/brightness\"")
 
     config = configparser.ConfigParser()
     config.optionxform = str
