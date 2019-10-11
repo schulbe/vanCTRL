@@ -84,18 +84,22 @@ class MainActivity : AppCompatActivity(),
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.initalizeLiveData()
 
-        piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
-        piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
-        piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
-
-        rasPi = BluetoothService(this.piUUID,this, MessageProcessor(viewModel))
-
         setObservers()
 
         viewModel.setActiveFragment(R.id.overviewFragment)
 
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
+        piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
+        piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
+
+        rasPi = BluetoothService(this.piUUID,this, MessageProcessor(viewModel))
+
+    }
     override fun onPause() {
         super.onPause()
         mIsInForeground = false
