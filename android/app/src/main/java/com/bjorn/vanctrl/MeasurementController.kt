@@ -31,7 +31,7 @@ class MeasurementController(private val activity: MainActivity) {
         load_amp = load_amp?.plus(mppt_load_amp?:0f)
 
 
-        var uiText = "%.2f V".format(load_amp)
+        var uiText = "%.2f V".format(mppt_load_volt)
         activity.findViewById<TextView>(R.id.overviewInp1VoltageView)?.apply {
             text = uiText
         }
