@@ -72,10 +72,6 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
-        piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
-        piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
-
         setContentView(R.layout.activity_main)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -88,11 +84,16 @@ class MainActivity : AppCompatActivity(),
         viewModel = ViewModelProviders.of(this)[VanViewModel::class.java]
         viewModel.initalizeLiveData()
 
+        piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
+        piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
+        piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
+
         rasPi = BluetoothService(this.piUUID,this, MessageProcessor(viewModel))
 
         setObservers()
 
         viewModel.setActiveFragment(R.id.overviewFragment)
+
     }
 
     override fun onPause() {
