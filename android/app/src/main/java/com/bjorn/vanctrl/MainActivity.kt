@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity(),
     override fun onResume() {
         super.onResume()
         onConnectBtButtonClick()
+
     }
 
     override fun onSwitchClicked(switchId: Int) {

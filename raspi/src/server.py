@@ -100,12 +100,16 @@ class Processor:
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
                     self.send_switch_status(lock)
 
+                elif msg_details.startswith(f"{self.codes['DATA_MEASUREMENT_HISTORY']}\u0004"):
+                    since = msg_details.split("\u0004")[1]
+                    self.send_measurement_history(since)
+
         elif msg_flag == self.codes['DATA_FLAG']:
             logging.debug(f"{msg} is a DATA message")
             if msg_type == self.codes['DATA_INPUT_SPECS']:
                 specs = msg_details.split('\u0004')
                 #todo: try except
-                inp = [k for k,v in self.codes.items() if v == specs[0]][0]
+                inp = [k for k, v in self.codes.items() if v == specs[0]][0]
                 if inp in self.gpio_controller.power_inputs:
                     self.gpio_controller.update_power_measurement_mapping_entry(inp, *specs[1:])
                 elif inp in self.gpio_controller.temperature_inputs:
@@ -117,8 +121,8 @@ class Processor:
         msg = f'\u0002{self.codes["DATA_FLAG"]}' \
               f'\u0003{self.codes["DATA_SWITCH_STATUS"]}' \
               f'\u0003{status_string}\u0002'
-        with lock:
-            self.bt_controller.send(msg)
+        # with lock:
+        self.bt_controller.send(msg)
 
     def send_power_measurements(self, lock):
         s = list()
@@ -133,8 +137,8 @@ class Processor:
         msg = f'\u0002{self.codes["DATA_FLAG"]}' \
               f'\u0003{self.codes["DATA_POWER_MEASUREMENTS"]}' \
               f'\u0003{meas_string}\u0002'
-        with lock:
-            self.bt_controller.send(msg)
+        # with lock:
+        self.bt_controller.send(msg)
 
     def send_temperature_measurements(self, lock):
         s = list()
@@ -142,15 +146,40 @@ class Processor:
             try:
                 temp = self.gpio_controller.get_temperature_measurement(inp)
             except Exception as e:
-                logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
+                logging.error(f"Error when getting measurements for  Input {inp}: {e}", exc_info=True)
                 temp = -100
             s.append(temp)
         meas_string = '\u0004'.join("{0:.2f}".format(v) for v in s)
         msg = f'\u0002{self.codes["DATA_FLAG"]}' \
               f'\u0003{self.codes["DATA_TEMPERATURE_MEASUREMENTS"]}' \
               f'\u0003{meas_string}\u0002'
-        with lock:
-            self.bt_controller.send(msg)
+        # with lock:
+        self.bt_controller.send(msg)
+
+    def send_measurement_history(self, since):
+        sql_data = f"""SELECT IN_1_A , IN_1_U, IN_2_A, IN_2_U, IN_3_A, IN_3_U, IN_4, IN_5, TIME 
+                      FROM {config['GENERAL']['MEASUREMENT_TABLE']}
+                      WHERE TIME > {since}"""
+        con = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
+        c = con.cursor()
+        c.execute(sql_data)
+        data = c.fetchall()
+        for history in data:
+            self.send_measurement_history_entry(history=history)
+
+    def send_measurement_history_entry(self, history=None):
+        if history is None:
+            sql_last = f"SELECT IN_1_A , IN_1_U, IN_2_A, IN_2_U, IN_3_A, IN_3_U, IN_4, IN_5, MAX(TIME) FROM {config['GENERAL']['MEASUREMENT_TABLE']};"
+            con = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
+            c = con.cursor()
+            c.execute(sql_last)
+            history = c.fetchall()
+        meas_string = '\u0004'.join(history)
+        msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+              f'\u0003{self.codes["DATA_MEASUREMENT_HISTORY"]}' \
+              f'\u0003{meas_string}\u0002'
+        # with self.bt_controller._lock:
+        self.bt_controller.send(msg)
 
     def schedule_measurement_logging(self, schedule_s):
         t = threading.Thread(target=self._schedule_measurement_logging, args=(schedule_s,))
@@ -179,9 +208,14 @@ class Processor:
                     measurements_glob.append(measurements)
                     time.sleep(min_schedule-(datetime.now()-t).total_seconds())
 
-                measurements_mean = np.mean(measurements_glob, axis=0)
-                db_connection.cursor().execute(insert_measurements_sql, ["{0:.2f}".format(m) for m in measurements_mean])
+                measurements_mean = ["{0:.2f}".format(m) for m in np.mean(measurements_glob, axis=0)]
+                db_connection.cursor().execute(insert_measurements_sql, measurements_mean)
                 db_connection.commit()
+
+                if self.bt_controller.is_connected():
+                    t = threading.Thread(target=self.send_measurement_history_entry())
+                    t.setDaemon(True)
+                    t.start()
         finally:
             db_connection.close()
 

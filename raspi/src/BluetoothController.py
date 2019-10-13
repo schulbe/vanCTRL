@@ -99,6 +99,11 @@ class BluetoothController:
         except Exception as e2:
             logger.error(f"Could not process error: {e} (because of: {e2})")
 
+    def is_connected(self):
+        if not self._client_sock:
+            return False
+        return True
+
 
 class ConnectionClosedError(Exception):
     pass
