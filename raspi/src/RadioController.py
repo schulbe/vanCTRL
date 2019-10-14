@@ -78,7 +78,7 @@ class RadioController:
 
 
 if __name__ == "__main__":
-    rc = RadioController(22)
+    rc = RadioController(25)
     t = sys.argv[1]
     if t == 'test':
         rc.test()
