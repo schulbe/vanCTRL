@@ -80,8 +80,11 @@ class RadioController:
 if __name__ == "__main__":
     rc = RadioController(25)
     t = sys.argv[1]
+    print(t)
     if t == 'test':
         rc.test()
+    else:
+        rc.send_code(t)
 
 
 
