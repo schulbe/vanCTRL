@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/DatabaseHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/raspi/src/RadioController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/bjorn/vanctrl/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/BluetoothController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/BluetoothController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +102,7 @@
       <workItem from="1570773109025" duration="10045000" />
       <workItem from="1570807483047" duration="8240000" />
       <workItem from="1570878247298" duration="2256000" />
+      <workItem from="1571054441625" duration="4319000" />
     </task>
     <task id="LOCAL-00040" summary="prints">
       <created>1569521696411</created>
@@ -523,11 +519,11 @@
     </state>
     <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1570817851426" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1570878254082">
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1571054606506">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569511992129" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1570878254082" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1571054606506" />
     <state x="960" y="175" width="916" height="705" key="find.popup" timestamp="1570131141663">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
