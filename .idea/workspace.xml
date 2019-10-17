@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/RadioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/RadioController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_specifications.ini" beforeDir="false" afterPath="$PROJECT_DIR$/input_specifications.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,14 +102,8 @@
       <workItem from="1570773109025" duration="10045000" />
       <workItem from="1570807483047" duration="8240000" />
       <workItem from="1570878247298" duration="2256000" />
-      <workItem from="1571054441625" duration="5464000" />
-    </task>
-    <task id="LOCAL-00043" summary="changed to int">
-      <created>1569522831090</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1569522831090</updated>
+      <workItem from="1571054441625" duration="6075000" />
+      <workItem from="1571288334747" duration="121000" />
     </task>
     <task id="LOCAL-00044" summary="changed to int">
       <created>1569522954308</created>
@@ -447,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571060462145</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="test radio">
+      <created>1571060565625</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1571060565625</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,16 +515,16 @@
     </state>
     <state x="474" y="190" width="1024" height="845" key="SettingsEditor/63.27.1857.1173@63.27.1857.1173" timestamp="1570773902772" />
     <state x="675" y="307" key="Vcs.Push.Dialog" timestamp="1569511992129" />
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1571060463141">
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2" timestamp="1571060566737">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
-    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1571060463141" />
+    <state x="1114" y="91" width="806" height="526" key="Vcs.Push.Dialog.v2/63.27.1857.1173@63.27.1857.1173" timestamp="1571060566737" />
     <state x="675" y="307" key="Vcs.Push.Dialog/1920.1200" timestamp="1569511992129" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1571054606506">
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog" timestamp="1571288449556">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
     <state x="653" y="427" key="com.intellij.ide.util.TipDialog/1920.1200" timestamp="1569511992129" />
-    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1571054606506" />
+    <state x="653" y="427" key="com.intellij.ide.util.TipDialog/63.27.1857.1173@63.27.1857.1173" timestamp="1571288449556" />
     <state x="960" y="175" width="916" height="705" key="find.popup" timestamp="1570131141663">
       <screen x="63" y="27" width="1857" height="1173" />
     </state>
