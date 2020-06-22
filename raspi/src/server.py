@@ -25,34 +25,34 @@ class Processor:
         self.config = conf
         self.codes = config['CODES']
 
-        logging.info("Initializing GPIO Controll")
-        self.gpio_controller = GpioController(config=config)
-
-        logging.info("Initializing Radio Controller")
+        logger.info("Initializing Radio Controller")
         # TODO: PIN 25 should not be hardcoded!!!
         self.radio_controller = RadioController(25)
 
-        logging.info("Initializing Database")
+        logger.info("Initializing GPIO Controll")
+        self.gpio_controller = GpioController(config=config)
+
+        logger.info("Initializing Database")
         self.initialize_database()
 
-        logging.info("Initializing BT Controll")
+        logger.info("Initializing BT Controll")
         self.bt_controller = BluetoothController(uuid=config['GENERAL']['UUID'])
 
     def run_main_loop(self):
-        logging.info("Starting regular logging...")
-        self.schedule_measurement_logging(config.getint('GENERAL', 'LOGGING_UPDATE_SEC'))
+        logger.info("Starting regular logger...")
+        self.schedule_measurement_logger(config.getint('GENERAL', 'LOGGING_UPDATE_SEC'))
 
-        logging.info("Starting connect_and_listen loop...")
+        logger.info("Starting connect_and_listen loop...")
         self.bt_controller.connect_and_listen(callback=self.process_message)
 
     def process_message_error_wrapper(self, msg, lock):
         try:
             self.process_message(msg, lock)
         except Exception as e:
-            logging.error(f'Error in "process_message: {e}', exc_info=True)
+            logger.error(f'Error in "process_message: {e}', exc_info=True)
 
     def process_message(self, msg, lock):
-        logging.debug(f'Received Message: {msg}')
+        logger.debug(f'Received Message: {msg}')
 
         msg_flag, msg_type, msg_details = msg.split('\u0003')
 
@@ -91,7 +91,7 @@ class Processor:
                         t = datetime.now()
                         self.send_power_measurements(lock)
                         SENDING_POWER_MEASUREMENTS = False
-                        logging.debug(f"Send Power Took: {(datetime.now() - t).total_seconds()}s")
+                        logger.debug(f"Send Power Took: {(datetime.now() - t).total_seconds()}s")
 
                 elif msg_details == self.codes['DATA_TEMPERATURE_MEASUREMENTS']:
                     global SENDING_TEMPERATURE_MEASUREMENTS
@@ -101,7 +101,7 @@ class Processor:
                         t = datetime.now()
                         self.send_temperature_measurements(lock)
                         SENDING_TEMPERATURE_MEASUREMENTS = False
-                        logging.debug(f"Send Temperature Took: {(datetime.now() - t).total_seconds()}s")
+                        logger.debug(f"Send Temperature Took: {(datetime.now() - t).total_seconds()}s")
 
                 elif msg_details == self.codes['DATA_SWITCH_STATUS']:
                     self.send_switch_status(lock)
@@ -111,7 +111,7 @@ class Processor:
                     self.send_measurement_history(since)
 
         elif msg_flag == self.codes['DATA_FLAG']:
-            logging.debug(f"{msg} is a DATA message")
+            logger.debug(f"{msg} is a DATA message")
             if msg_type == self.codes['DATA_INPUT_SPECS']:
                 specs = msg_details.split('\u0004')
                 #todo: try except
@@ -122,7 +122,7 @@ class Processor:
                     self.gpio_controller.temp_measurement_mapping[inp]['id'] = specs[1]
 
             elif msg_type == self.codes['DATA_RADIO']:
-                logging.debug(f'Should send "{msg_details}" to radio')
+                logger.debug(f'Should send "{msg_details}" to radio')
                 self.radio_controller._send_code(msg_details)
 
     def send_switch_status(self, lock):
@@ -140,7 +140,7 @@ class Processor:
             try:
                 I, U = self.gpio_controller.get_power_measurements(inp)
             except Exception as e:
-                logging.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
+                logger.error(f"Error when getting measurements for  Inut {inp}: {e}", exc_info=True)
                 I, U = (0, 0)
             s.extend([I, U])
         meas_string = '\u0004'.join("{0:.2f}".format(v) for v in s)
@@ -156,7 +156,7 @@ class Processor:
             try:
                 temp = self.gpio_controller.get_temperature_measurement(inp)
             except Exception as e:
-                logging.error(f"Error when getting measurements for  Input {inp}: {e}", exc_info=True)
+                logger.error(f"Error when getting measurements for  Input {inp}: {e}", exc_info=True)
                 temp = -100
             s.append(temp)
         meas_string = '\u0004'.join("{0:.2f}".format(v) for v in s)
@@ -195,12 +195,12 @@ class Processor:
             print('EXCEPTION IN LINE 177: e')
             print(f'history: {history}')
 
-    def schedule_measurement_logging(self, schedule_s):
-        t = threading.Thread(target=self._schedule_measurement_logging, args=(schedule_s,))
+    def schedule_measurement_logger(self, schedule_s):
+        t = threading.Thread(target=self._schedule_measurement_logger, args=(schedule_s,))
         t.setDaemon(True)
         t.start()
 
-    def _schedule_measurement_logging(self, schedule_s):
+    def _schedule_measurement_logger(self, schedule_s):
         db_connection = sqlite3.connect(self.config['GENERAL']['DB_NAME'])
         insert_measurements_sql = f"""INSERT INTO {config['GENERAL']['MEASUREMENT_TABLE']}
                                               (IN_1_A , IN_1_U, IN_2_A, IN_2_U, IN_3_A, IN_3_U, IN_4, IN_5)
@@ -284,6 +284,10 @@ if __name__ == '__main__':
     bt_logger = logging.getLogger('BluetoothController')
     bt_logger.setLevel(logging.DEBUG)
     bt_logger.handlers = [fileHandler, streamHandler]
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+    logger.handlers = [fileHandler, streamHandler]
 
     processor = Processor(config)
     processor.run_main_loop()

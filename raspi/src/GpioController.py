@@ -69,15 +69,19 @@ class GpioController:
         if adc_name_pos != adc_name_ref or adc_name_pre_shunt != adc_name_ref:
             raise TypeError('Cant read difference if adcs are not the same')
 
-        U = self._read_adc(adc_name_ref, int(channel_pos),
-                           channel_ref=int(channel_ref),
-                           gain=self.power_measurement_mapping[inp]['v_gain'],
-                           measurements=10) * self.power_measurement_mapping[inp]['v_per_bit']
-        I = self._read_adc(adc_name_ref, int(channel_pre_shunt),
-                           channel_ref=int(channel_ref),
-                           gain=self.power_measurement_mapping[inp]['a_gain'],
-                           measurements=30) * self.power_measurement_mapping[inp]['a_per_bit']
-
+        try:
+            U = self._read_adc(adc_name_ref, int(channel_pos),
+                               channel_ref=int(channel_ref),
+                               gain=self.power_measurement_mapping[inp]['v_gain'],
+                               measurements=10) * self.power_measurement_mapping[inp]['v_per_bit']
+            I = self._read_adc(adc_name_ref, int(channel_pre_shunt),
+                               channel_ref=int(channel_ref),
+                               gain=self.power_measurement_mapping[inp]['a_gain'],
+                               measurements=30) * self.power_measurement_mapping[inp]['a_per_bit']
+        except OSError:
+            logger.error(f'Could not read power measurements for input {inp}.')
+            I = -1000
+            U = -1000
 
         logger.debug(f"INPUT: {inp} // I: {I} // U: {U} ")
 

@@ -3,6 +3,10 @@ import sys
 
 
 class RadioController:
+    # TODO:
+    # include start of daemon process in shell script!!!
+    # sudo pigpiod
+
     mark_length_micro = 520
     # mark_length_micro = 536.5
     address = "1110001"
