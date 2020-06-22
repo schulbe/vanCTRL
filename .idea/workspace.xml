@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_radio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/layout/fragment_radio.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/GpioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/GpioController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/RadioController.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/RadioController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspi/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/src/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspi/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/raspi/start_server.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,13 +195,6 @@
       <workItem from="1592644722929" duration="11514000" />
       <workItem from="1592718818616" duration="5602000" />
       <workItem from="1592808456943" duration="5594000" />
-    </task>
-    <task id="LOCAL-00045" summary="changed Typo for second ADS">
-      <created>1569577440570</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1569577440570</updated>
     </task>
     <task id="LOCAL-00046" summary="changed behaviour to only use ads1115 (one per measurement)">
       <created>1569583651403</created>
@@ -542,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592818317952</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="test radio">
+      <created>1592819626604</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1592819626604</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,10 +594,10 @@
       <screen x="67" y="27" width="1853" height="1173" />
     </state>
     <state x="667" y="192" width="642" height="841" key="#GpioController/67.27.1853.1173/1920.0.1680.1050@67.27.1853.1173" timestamp="1592646038138" />
-    <state x="418" y="209" width="1140" height="807" key="CommitChangelistDialog2" timestamp="1592818317886">
+    <state x="418" y="209" width="1140" height="807" key="CommitChangelistDialog2" timestamp="1592819626531">
       <screen x="67" y="27" width="1853" height="1173" />
     </state>
-    <state x="418" y="209" width="1140" height="807" key="CommitChangelistDialog2/67.27.1853.1173/1920.0.1680.1050@67.27.1853.1173" timestamp="1592818317886" />
+    <state x="418" y="209" width="1140" height="807" key="CommitChangelistDialog2/67.27.1853.1173/1920.0.1680.1050@67.27.1853.1173" timestamp="1592819626531" />
     <state x="243" y="128" width="1482" height="968" key="DiffContextDialog" timestamp="1592818147774">
       <screen x="67" y="27" width="1853" height="1173" />
     </state>
@@ -629,10 +626,10 @@
       <screen x="67" y="27" width="1853" height="1173" />
     </state>
     <state x="476" y="190" width="1024" height="845" key="SettingsEditor/67.27.1853.1173/1920.0.1680.1050@67.27.1853.1173" timestamp="1592646022062" />
-    <state x="588" y="337" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1592818319024">
+    <state x="588" y="337" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1592819628294">
       <screen x="67" y="27" width="1853" height="1173" />
     </state>
-    <state x="588" y="337" width="800" height="551" key="Vcs.Push.Dialog.v2/67.27.1853.1173/1920.0.1680.1050@67.27.1853.1173" timestamp="1592818319024" />
+    <state x="588" y="337" width="800" height="551" key="Vcs.Push.Dialog.v2/67.27.1853.1173/1920.0.1680.1050@67.27.1853.1173" timestamp="1592819628294" />
     <state x="2416" y="351" key="com.intellij.ide.util.TipDialog" timestamp="1592808906629">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
