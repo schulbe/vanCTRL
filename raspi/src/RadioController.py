@@ -4,6 +4,7 @@ import sys
 
 class RadioController:
     mark_length_micro = 520
+    # mark_length_micro = 536.5
     address = "1110001"
     mute_1 = "0111000"
 
@@ -115,7 +116,7 @@ if __name__ == "__main__":
     if t == 'test':
         rc.test()
     else:
-        rc.send_code(str(t))
+        rc._send_code(str(t))
 
 
 # https://www.avforums.com/threads/jvc-stalk-adapter-diy.248455/page-2

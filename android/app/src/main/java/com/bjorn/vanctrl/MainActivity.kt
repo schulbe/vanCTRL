@@ -18,6 +18,7 @@ import androidx.navigation.Navigation
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.bjorn.vanctrl.Fragments.RadioFragment
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
 import kotlinx.coroutines.GlobalScope
@@ -28,7 +29,8 @@ import java.util.*
 class MainActivity : AppCompatActivity(),
     SwitchesFragment.OnSwitchChangedListener,
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
-    SettingsFragment.OnSettingChangedListener
+    SettingsFragment.OnSettingChangedListener,
+    RadioFragment.OnRadioButtonClickedListener
 {
     private lateinit var rasPi: BluetoothService
     private lateinit var navController: NavController
@@ -301,5 +303,11 @@ class MainActivity : AppCompatActivity(),
     override fun onSynchronizeClicked() {
         finish()
         startActivity(intent)
+    }
+
+    override fun onRadioButtonClicked(code: String) {
+//        TODO
+        println("Have to send" + code)
+        rasPi.sendData(RaspiCodes.DATA_RADIO, listOf(code))
     }
 }

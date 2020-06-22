@@ -14,6 +14,8 @@ import sqlite3
 from datetime import datetime
 from contextlib import suppress
 
+from RadioController import RadioController
+
 SENDING_POWER_MEASUREMENTS = False
 SENDING_TEMPERATURE_MEASUREMENTS = False
 
@@ -26,11 +28,15 @@ class Processor:
         logging.info("Initializing GPIO Controll")
         self.gpio_controller = GpioController(config=config)
 
-        logging.info("Initializing BT Controll")
-        self.bt_controller = BluetoothController(uuid=config['GENERAL']['UUID'])
+        logging.info("Initializing Radio Controller")
+        # TODO: PIN 25 should not be hardcoded!!!
+        self.radio_controller = RadioController(25)
 
         logging.info("Initializing Database")
         self.initialize_database()
+
+        logging.info("Initializing BT Controll")
+        self.bt_controller = BluetoothController(uuid=config['GENERAL']['UUID'])
 
     def run_main_loop(self):
         logging.info("Starting regular logging...")
@@ -115,6 +121,10 @@ class Processor:
                 elif inp in self.gpio_controller.temperature_inputs:
                     self.gpio_controller.temp_measurement_mapping[inp]['id'] = specs[1]
 
+            elif msg_type == self.codes['DATA_RADIO']:
+                logging.debug(f'Should send "{msg_details}" to radio')
+                self.radio_controller._send_code(msg_details)
+
     def send_switch_status(self, lock):
         s = {self.codes[switch_name]: int(status) for switch_name, status in self.gpio_controller.get_switch_status().items()}
         status_string = "\u0004".join([str(i[1]) for i in sorted(s.items())])
@@ -174,12 +184,16 @@ class Processor:
             c = con.cursor()
             c.execute(sql_last)
             history = c.fetchall()
-        meas_string = '\u0004'.join(history)
-        msg = f'\u0002{self.codes["DATA_FLAG"]}' \
-              f'\u0003{self.codes["DATA_MEASUREMENT_HISTORY"]}' \
-              f'\u0003{meas_string}\u0002'
-        # with self.bt_controller._lock:
-        self.bt_controller.send(msg)
+        try:
+            meas_string = '\u0004'.join(history)
+            msg = f'\u0002{self.codes["DATA_FLAG"]}' \
+                  f'\u0003{self.codes["DATA_MEASUREMENT_HISTORY"]}' \
+                  f'\u0003{meas_string}\u0002'
+            # with self.bt_controller._lock:
+            self.bt_controller.send(msg)
+        except Exception as e:
+            print('EXCEPTION IN LINE 177: e')
+            print(f'history: {history}')
 
     def schedule_measurement_logging(self, schedule_s):
         t = threading.Thread(target=self._schedule_measurement_logging, args=(schedule_s,))
