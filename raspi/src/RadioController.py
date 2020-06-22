@@ -3,7 +3,7 @@ import sys
 
 
 class RadioController:
-    mark_length_micro = 536.5
+    mark_length_micro = 520
     address = "1110001"
     mute_1 = "0111000"
 
@@ -33,12 +33,13 @@ class RadioController:
                 pulses.extend(self._zero())
             else:
                 raise TypeError(f"Encountered code '{num}'. Only 0 and 1 are allowed codes.")
+        return pulses
 
     def create_pulses(self, code):
-        pulse = self._agc()
+        pulse_start = self._agc()
 
         # start_bit
-        pulse.extend(self._one())
+        pulse = self._one()
 
         # adress
         pulse.extend(self._parse_code(self.address))
@@ -54,12 +55,12 @@ class RadioController:
 
         # repeat 3 time
         pulse.extend(2*pulse)
-
-        return pulse
+        pulse_start.extend(pulse)
+        return pulse_start
 
     def send_code(self, code):
         pulses = self.create_pulses(str(code))
-
+        print(pulses)
         self.pi.wave_add_generic(pulses)
 
         wid = self.pi.wave_create()
@@ -82,6 +83,9 @@ if __name__ == "__main__":
     t = sys.argv[1]
     if t == 'test':
         rc.test()
+    else:
+        print(t)
+        rc.send_code(str(t))
 
 
 
