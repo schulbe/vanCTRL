@@ -1,6 +1,7 @@
 import bluetooth as bt
 import logging
 import threading
+import time
 
 logger = logging.getLogger(__name__)
 # logger.addHandler(logging.NullHandler())
@@ -17,6 +18,7 @@ class BluetoothController:
         self._client_sock = None
 
         self._server_sock = bt.BluetoothSocket(bt.RFCOMM)
+        # self._port = 1
         self._port = bt.PORT_ANY
         self._server_sock.bind(("", self._port))
         self._server_sock.listen(1)
@@ -89,6 +91,7 @@ class BluetoothController:
         try:
             error_code = eval(str(e))[0]
             if error_code == 104:
+                pass
                 logger.error('Connection reset by peer. Closing Connection.')
                 with self._lock:
                     self.close_connection()
@@ -107,4 +110,5 @@ class BluetoothController:
 
 class ConnectionClosedError(Exception):
     pass
+
 
