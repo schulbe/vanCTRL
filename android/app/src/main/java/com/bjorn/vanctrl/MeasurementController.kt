@@ -19,56 +19,56 @@ class MeasurementController(private val activity: MainActivity) {
     }
 
     private fun setRealtimePowerMeasurementsToUi(measurements: Map<Settings, Map<String, Float>>) {
-        val overall_amp = measurements[Settings.IN_1]?.get("A")
-        val overall_volt = measurements[Settings.IN_1]?.get("V")
-        val mppt_solar_amp = measurements[Settings.IN_2]?.get("A")
-        val mppt_solar_volt = measurements[Settings.IN_2]?.get("V")
-        val mppt_load_amp = measurements[Settings.IN_3]?.get("A")
-        val mppt_load_volt = measurements[Settings.IN_3]?.get("V")
+        val in1_amp = measurements[Settings.IN_1]?.get("A")
+        val in1_volt = measurements[Settings.IN_1]?.get("V")
+        val in2_amp = measurements[Settings.IN_2]?.get("A")
+        val in2_volt = measurements[Settings.IN_2]?.get("V")
+        val in3_amp = measurements[Settings.IN_3]?.get("A")
+        val in3_volt = measurements[Settings.IN_3]?.get("V")
 
-        var load_amp = mppt_load_amp?.plus(mppt_solar_amp?:0f)
-        load_amp = overall_amp?.minus(load_amp?:0f)
-        load_amp = load_amp?.plus(mppt_load_amp?:0f)
+//        var load_amp = mppt_load_amp?.plus(mppt_solar_amp?:0f)
+//        load_amp = overall_amp?.minus(load_amp?:0f)
+//        load_amp = load_amp?.plus(mppt_load_amp?:0f)
 
 
-        var uiText = "%.2f V".format(mppt_load_volt)
+        var uiText = "%.2f V".format(in1_volt)
         activity.findViewById<TextView>(R.id.overviewInp1VoltageView)?.apply {
             text = uiText
         }
 
-        uiText = "%.2f A".format(mppt_load_volt)
+        uiText = "%.2f A".format(in1_amp)
         activity.findViewById<TextView>(R.id.overviewInp1AmpView)?.apply {
             text = uiText
         }
-        var power = load_amp?.times(mppt_load_volt?: 0f)
+        var power = in1_amp?.times(in1_volt?: 0f)
         uiText = "%.2f W".format((power))
         activity.findViewById<TextView>(R.id.overviewInp1PowerView)?.apply {
             text = uiText
         }
 
-        uiText = "%.2f V".format(mppt_solar_volt)
+        uiText = "%.2f V".format(in2_volt)
         activity.findViewById<TextView>(R.id.overviewInp2VoltageView)?.apply {
             text = uiText
         }
-        uiText = "%.2f A".format(mppt_solar_amp)
+        uiText = "%.2f A".format(in2_amp)
         activity.findViewById<TextView>(R.id.overviewInp2AmpView)?.apply {
             text = uiText
         }
-        power = mppt_solar_amp?.times(mppt_solar_volt?: 0f)
+        power = in2_amp?.times(in2_volt?: 0f)
         uiText = "%.2f W".format(power)
         activity.findViewById<TextView>(R.id.overviewInp2PowerView)?.apply {
             text = uiText
         }
 
-        uiText = "%.2f V".format(overall_volt)
+        uiText = "%.2f V".format(in3_volt)
         activity.findViewById<TextView>(R.id.overviewInp3VoltageView)?.apply {
             text = uiText
         }
-        uiText = "%.2f A".format(overall_amp)
+        uiText = "%.2f A".format(in3_amp)
         activity.findViewById<TextView>(R.id.overviewInp3AmpView)?.apply {
             text = uiText
         }
-        power = overall_amp?.times(overall_volt?: 0f)
+        power = in3_amp?.times(in3_volt?: 0f)
         uiText = "%.2f W".format(power)
         activity.findViewById<TextView>(R.id.overviewInp3PowerView)?.apply {
             text = uiText

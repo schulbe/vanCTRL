@@ -1,5 +1,7 @@
 package com.bjorn.vanctrl
 
+import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
@@ -84,14 +86,30 @@ class MainActivity : AppCompatActivity(),
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == rasPi.REQUEST_ENABLE_BT) {
+            if (resultCode == RESULT_OK) {
+                println("RESUlt ok")
+                onConnectBtButtonClick()
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                println("CANCELLED RESULT")
+            }
+        }
+    }
+
     override fun onPause() {
         super.onPause()
     }
 
     override fun onResume() {
         super.onResume()
-        onConnectBtButtonClick()
+//        onConnectBtButtonClick()
+    }
 
+    override fun onStart() {
+        super.onStart()
+        onConnectBtButtonClick()
     }
 
     override fun onSwitchClicked(switchId: Int) {
@@ -123,11 +141,15 @@ class MainActivity : AppCompatActivity(),
         val setInvisible = Runnable { findViewById<FrameLayout>(R.id.btConnectWidget)?.apply{ visibility = View.GONE } }
 
         GlobalScope.launch {
-            while (rasPi.isConnected().value != true) {
-                handler.post(setVisible)
-                rasPi.tryConnection(piMacAddress, piBtName, piUUID)
-                handler.post(setInvisible)
-            }
+            handler.post(setVisible)
+            rasPi.initiateConnectionRoutine(piMacAddress, piBtName, piUUID)
+            handler.post(setInvisible)
+
+//            while (rasPi.isConnected().value != true) {
+//                handler.post(setVisible)
+//                rasPi.tryConnection(piMacAddress, piBtName, piUUID)
+//                handler.post(setInvisible)
+//            }
         }
     }
 

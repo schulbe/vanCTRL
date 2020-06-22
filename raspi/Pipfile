@@ -5,9 +5,10 @@ name = "pypi"
 
 [packages]
 "RPi.GPIO" = "*"
-PyBluez = "*"
+PyBluez = "0.22"
 regex = "*"
 Adafruit-ADS1x15 = "*"
+numpy = "1.17.2"
 
 
 [dev-packages]

@@ -32,7 +32,13 @@ class BluetoothService(
 
     private lateinit var piBtDevice: BluetoothDevice
 
-    private val REQUEST_ENABLE_BT = 17
+    val REQUEST_ENABLE_BT = 17
+    private val STATUS_REQUESTED_ENABLE_BT = 18
+    private val STATUS_CONNECTION_SUCESSFUL = 19
+    private val STATUS_INITIAL_CONNECTION_ERROR = 20
+    private val STATUS_SOCKET_CONNECTION_ERROR = 21
+    private val STATUS_OPEN_READER_ERROR = 22
+
 
 
     fun sendCommand(cmd: RaspiCodes, details:RaspiCodes) {
@@ -43,27 +49,43 @@ class BluetoothService(
         write(messageProcessor.createDataMessage(data_type, details))
     }
 
-    fun tryConnection(deviceMac: String?, deviceDisplayName: String?, deviceUUID: UUID) {
+    fun initiateConnectionRoutine(piMacAddress: String?, piBtName: String?, piUUID: UUID) {
+        while (isConnected().value != true) {
+            val status = tryConnection(piMacAddress, piBtName, piUUID)
+            println("INITIALITION ROUTINE!! - status: $status")
+
+            if (status == STATUS_REQUESTED_ENABLE_BT) {
+                break
+            }
+            else if (status == STATUS_CONNECTION_SUCESSFUL) {
+                setIsConnected()
+                Thread.sleep(300)
+            }
+        }
+    }
+
+    fun tryConnection(deviceMac: String?, deviceDisplayName: String?, deviceUUID: UUID): Int {
+
         try {
-            initiateBluetoothConnection(deviceMac, deviceDisplayName, deviceUUID)
+            if (initiateBluetoothConnection(deviceMac, deviceDisplayName, deviceUUID) == STATUS_REQUESTED_ENABLE_BT) {
+                return STATUS_REQUESTED_ENABLE_BT
+            }
         } catch (e: Exception) {
             val txt = "Error in inital Connection Process: $e"
             println(txt)
             activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show() }
-            return
+            return STATUS_INITIAL_CONNECTION_ERROR
         }
 
         try {
-            if (bluetoothAdapter?.isEnabled?: false) {
-                openConnection() }
+            openConnection()
         } catch (e: Exception) {
-            val txt = "Could not connect to Pi..."
+            val txt = "Could not connect to Pi: $e"
             println(txt)
             activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show() }
-            return
+            return STATUS_SOCKET_CONNECTION_ERROR
         }
 
-        setIsConnected()
 
         try {
             openReader()
@@ -71,11 +93,13 @@ class BluetoothService(
             val txt = "Error in openReader(): $e"
             println(txt)
             activity.runOnUiThread { Toast.makeText(activity, txt, Toast.LENGTH_LONG).show()}
-            return
+            return STATUS_OPEN_READER_ERROR
         }
+
+        return STATUS_CONNECTION_SUCESSFUL
     }
 
-    private fun initiateBluetoothConnection(deviceMac: String?, deviceDisplayName: String?, deviceUUID: UUID) {
+    private fun initiateBluetoothConnection(deviceMac: String?, deviceDisplayName: String?, deviceUUID: UUID): Int {
         if (bluetoothAdapter == null) {
             throw BluetoothException("No Bluetooth Adapter Found in Device")
         }
@@ -85,6 +109,7 @@ class BluetoothService(
         if (!bluetoothAdapter.isEnabled) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(activity, enableBtIntent, REQUEST_ENABLE_BT, null)
+            return STATUS_REQUESTED_ENABLE_BT
         }
 
         val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter.bondedDevices
@@ -99,6 +124,8 @@ class BluetoothService(
             mmSocket = piBtDevice.createRfcommSocketToServiceRecord(deviceUUID)
             println("MMSOCKET: $mmSocket")
         }
+
+        return STATUS_CONNECTION_SUCESSFUL
 
     }
 
@@ -156,6 +183,7 @@ class BluetoothService(
 //            Toast.makeText(activity, "IOException in closeConnection()", Toast.LENGTH_LONG).show()
         }
     }
+
 
     private inner class ConnectedThread {
 
