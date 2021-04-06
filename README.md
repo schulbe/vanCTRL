@@ -51,10 +51,11 @@ At the moment, the app is in german language but by adjusting *vancontrol/androi
 
 ### Home Screen
 Opens when starting the app. If Bluetooth switched off, it asks to turn on Bluetooth:
-[Turn on Bluetooth?](resources/App%20Screenshots/turn_on_bt.jpg) 
+
+![Turn on Bluetooth?](resources/App%20Screenshots/turn_on_bt.jpg) 
 
 Then it tries to connect to the RaspberryPi (indicated by th Bluetooth Banner with the loading sphere on Top):
-[Connecting to Raspberry Pi](resources/App%20Screenshots/connecting_bt.jpg)
+![Connecting to Raspberry Pi](resources/App%20Screenshots/connecting_bt.jpg)
 
 When it is connected, the scrollable main screen shows up to 4 sections: 3 for different power measurements and one for different temperatures.
 Names and visibility can be adjusted in the *settings* section.
@@ -63,23 +64,23 @@ Names and visibility can be adjusted in the *settings* section.
 ### Switches Screen
 Here you can find Images representing different switches (just 4 at the moment but they are supposed to move to the settings section as well)
 When clicking a switch, the icon turns from greyscale to coloured indicating that the representative device is turned on.
-[All Switches OFF](resources/App%20Screenshots/switches_off.jpg)
-[Two Switches ON](resources/App%20Screenshots/switches_on.jpg)
+![All Switches OFF](resources/App%20Screenshots/switches_off.jpg)
+![Two Switches ON](resources/App%20Screenshots/switches_on.jpg)
 
 ### Radio Screen
 *Experimental* My old JVC Radio uses binary codes sent to it via a pulldown resistor towards their "remote" input.
 There is no official documentation but bits and pieces of information can be found in forums. I am in the process of
 figuring out the corrct codes to issue Volume up /down, Play, Stop, etc commands. To do so, i am using this input. Will be replaced by actual 
 play /stop /vol buttons when I found all the commands
-[Send Codes to Radio](resources/App%20Screenshots/radio.jpg)
+![Send Codes to Radio](resources/App%20Screenshots/radio.jpg)
 
 ### Settings Screen
 Some Basic settings need for the bluetooth connection to work (for dev purposes) under "Verbindungen"
-[Main Settings](resources/App%20Screenshots/basic_settings.jpg)
+![Main Settings](resources/App%20Screenshots/basic_settings.jpg)
 
 Adjusting the measurements (visibility, names, specification) on the Home Screen can be done under "Anschlüsse"
-[Adjust Power Settings](resources/App%20Screenshots/power_settings.jpg)
-[Adjust Temperature Sensor Settings](resources/App%20Screenshots/temp_settings.jpg)
+![Adjust Power Settings](resources/App%20Screenshots/power_settings.jpg)
+![Adjust Temperature Sensor Settings](resources/App%20Screenshots/temp_settings.jpg)
 
 -----------------------------
 ## Too technical for Readme.md

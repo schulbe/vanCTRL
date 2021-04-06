@@ -20,52 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="updated readme">
-      <change afterPath="$PROJECT_DIR$/resources/docs/CommunicationProtocol.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/docs/ConfigurationFiles.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/001-campervan.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/001-campervan.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/002-campervan-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/002-campervan-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/003-campervan-2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/003-campervan-2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/004-countertop.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/004-countertop.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/005-countertop-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/005-countertop-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/006-countertop-2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/006-countertop-2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/007-countertop-3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/007-countertop-3.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/008-ceiling-lamp.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/008-ceiling-lamp.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/009-ceiling-lamp-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/009-ceiling-lamp-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/010-lamp.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/010-lamp.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/011-lamp-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/011-lamp-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/012-lamp-2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/012-lamp-2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/013-lamp-3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/013-lamp-3.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/014-lamp-4.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/014-lamp-4.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/015-ceiling-lamp-2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/015-ceiling-lamp-2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/016-boombox.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/016-boombox.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/017-boombox-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/017-boombox-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/018-radio.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/018-radio.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/019-radio-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/019-radio-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/020-freezer.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/020-freezer.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/021-freezer-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/021-freezer-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/022-freezer-2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/022-freezer-2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/023-freezer-3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/023-freezer-3.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/024-settings.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/024-settings.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/025-settings-gears.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/025-settings-gears.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/026-speedometer.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/026-speedometer.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/027-timer.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/027-timer.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/028-speedometer-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/028-speedometer-1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/car-battery.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/car-battery.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/flash.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/flash.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fridge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/fridge.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ice-crystal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/ice-crystal.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lightbulb.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/lightbulb.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lisbon_background.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/lisbon_background.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/plug.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/plug.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/solar-panel.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/solar-panel.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/speaker.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/speaker.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/switch.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/switch.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/thermometer.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/thermometer.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/thermometer_cold.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/thermometer_cold.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/thermometer_hot.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/thermometer_hot.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/van.svg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/van.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/basic_settings.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/basic_settings.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/connecting_bt.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/connecting_bt.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/power_settings.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/power_settings.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/radio.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/radio.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/switches_off.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/switches_off.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/switches_on.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/switches_on.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/temp_settings.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/temp_settings.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/turn_on_bt.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/App Screenshots/turn_on_bt.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,13 +208,6 @@
       <workItem from="1592644722929" duration="11514000" />
       <workItem from="1592718818616" duration="5602000" />
       <workItem from="1592808456943" duration="5594000" />
-    </task>
-    <task id="LOCAL-00048" summary="added v_split_factor">
-      <created>1569584129236</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1569584129236</updated>
     </task>
     <task id="LOCAL-00049" summary="changed raspi controls">
       <created>1570132396923</created>
@@ -588,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617688511291</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="updated readme">
+      <created>1617694231659</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1617694231659</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,9 +602,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="updated readme" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2" timestamp="1617688512058">
+    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2" timestamp="1617694233879">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617688512058" />
+    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617694233879" />
   </component>
 </project>
