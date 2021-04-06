@@ -50,13 +50,10 @@ The Project contains 3 main parts:
 At the moment, the app is in german language but by adjusting *vancontrol/android/app/src/main/res/values/strings.xml* translation is simple.
 
 ### Home Screen
-Opens when starting the app. If Bluetooth switched off, it asks to turn on Bluetooth:
-
-![Turn on Bluetooth?](resources/App%20Screenshots/padded/turn_on_bt.png) 
-
+Opens when starting the app. If Bluetooth switched off, it asks to turn on Bluetooth
 Then it tries to connect to the RaspberryPi (indicated by the Bluetooth Banner with the loading sphere on Top):
 
-![Connecting to Raspberry Pi](resources/App%20Screenshots/connecting_bt.jpg)
+![Connecting to Raspberry Pi](resources/App%20Screenshots/homescreen_bt.png)
 
 When it is connected, the scrollable main screen shows up to 4 sections: 3 for different power measurements and one for different temperatures.
 Names and visibility can be adjusted in the *settings* section.
@@ -66,34 +63,26 @@ Names and visibility can be adjusted in the *settings* section.
 Here you can find Images representing different switches (just 4 at the moment but they are supposed to move to the settings section as well)
 When clicking a switch, the icon turns from greyscale to coloured indicating that the representative device is turned on.
 
-![All Switches OFF](resources/App%20Screenshots/switches_off.jpg)
-![Two Switches ON](resources/App%20Screenshots/switches_on.jpg)
+![Switches](resources/App%20Screenshots/switches.png)
 
 ### Radio Screen
 *Experimental* My old JVC Radio uses binary codes sent to it via a pulldown resistor towards their "remote" input.
 There is no official documentation but bits and pieces of information can be found in forums. I am in the process of
-figuring out the corrct codes to issue Volume up /down, Play, Stop, etc commands. To do so, i am using this input. Will be replaced by actual 
-play /stop /vol buttons when I found all the commands
+figuring out the correct codes to issue Volume up /down, Play, Stop, etc commands. To do so, i am using this input. Will be replaced by actual 
+play / stop / vol buttons when I found all the commands
 
-![Send Codes to Radio](resources/App%20Screenshots/radio.jpg)
+![Send Codes to Radio](resources/App%20Screenshots/radio.png)
 
 ### Settings Screen
-Some Basic settings need for the bluetooth connection to work (for dev purposes) under "Verbindungen"
-
-![Main Settings](resources/App%20Screenshots/basic_settings.jpg)
-
+Some Basic settings need for the bluetooth connection to work (mainly for DEV purposes) under "Verbindungen".
 Adjusting the measurements (visibility, names, specification) on the Home Screen can be done under "Anschlüsse"
 
-![Adjust Power Settings](resources/App%20Screenshots/power_settings.jpg)
-![Adjust Temperature Sensor Settings](resources/App%20Screenshots/temp_settings.jpg)
+![Adjust Settings](resources/App%20Screenshots/settings.png)
 
 -----------------------------
-## Too technical for Readme.md
+## Further Reading (If you want to get more technical)
+[Some general remarks](resources/docs/GeneralRemarks.md)
 
-Raspi should be configured to start serving script on startup. I used `sudo crontab -e` for this purpose.
-
-## Config Files
-
-## Further Reading
 [Specification of Bluetooth Messages passed between RasPi and Android App](resources/docs/CommunicationProtocol.md)
+
 [Explanation of Configuration Files](resources/docs/ConfigurationFiles.md)

@@ -20,7 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c363a4-9dea-4596-b785-6dd7dcb55b5a" name="Default Changelist" comment="updated readme">
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/homescreen_bt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/radio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 07.39.51.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 07.40.09.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 07.52.35.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 07.56.39.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 07.56.48.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 09.18.41.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 09.19.04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/raw/2021-04-06 09.19.38.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/settings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/App Screenshots/switches.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/docs/GeneralRemarks.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/padded/turn_on_bt.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/padded/turn_on_bt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/power_settings.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/radio.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/switches_off.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/switches_on.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/App Screenshots/temp_settings.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,13 +220,6 @@
       <workItem from="1592644722929" duration="11514000" />
       <workItem from="1592718818616" duration="5602000" />
       <workItem from="1592808456943" duration="5594000" />
-    </task>
-    <task id="LOCAL-00058" summary="no real threadding - minor but important mistake!">
-      <created>1570169648747</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1570169648747</updated>
     </task>
     <task id="LOCAL-00059" summary="added wiring for hardware">
       <created>1570171673916</created>
@@ -543,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617697427411</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="updated readme">
+      <created>1617698080364</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1617698080364</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,9 +614,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="updated readme" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2" timestamp="1617697428530">
+    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2" timestamp="1617698081448">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617697428530" />
+    <state x="278" y="86" width="800" height="548" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617698081448" />
   </component>
 </project>
