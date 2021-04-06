@@ -54,7 +54,7 @@ Opens when starting the app. If Bluetooth switched off, it asks to turn on Bluet
 
 ![Turn on Bluetooth?](resources/App%20Screenshots/padded/turn_on_bt.jpg) 
 
-Then it tries to connect to the RaspberryPi (indicated by th Bluetooth Banner with the loading sphere on Top):
+Then it tries to connect to the RaspberryPi (indicated by the Bluetooth Banner with the loading sphere on Top):
 
 ![Connecting to Raspberry Pi](resources/App%20Screenshots/connecting_bt.jpg)
 
