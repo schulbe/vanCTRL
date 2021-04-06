@@ -51,10 +51,10 @@ At the moment, the app is in german language but by adjusting *vancontrol/androi
 
 ### Home Screen
 Opens when starting the app. If Bluetooth switched off, it asks to turn on Bluetooth:
-**IMG**
+[Turn on Bluetooth?](resources/App%20Screenshots/turn_on_bt.jpg) 
 
 Then it tries to connect to the RaspberryPi (indicated by th Bluetooth Banner with the loading sphere on Top):
-**IMG**
+[Connecting to Raspberry Pi](resources/App%20Screenshots/connecting_bt.jpg)
 
 When it is connected, the scrollable main screen shows up to 4 sections: 3 for different power measurements and one for different temperatures.
 Names and visibility can be adjusted in the *settings* section.
@@ -63,21 +63,23 @@ Names and visibility can be adjusted in the *settings* section.
 ### Switches Screen
 Here you can find Images representing different switches (just 4 at the moment but they are supposed to move to the settings section as well)
 When clicking a switch, the icon turns from greyscale to coloured indicating that the representative device is turned on.
-**IMG off** **IMG on**
+[All Switches OFF](resources/App%20Screenshots/switches_off.jpg)
+[Two Switches ON](resources/App%20Screenshots/switches_on.jpg)
 
 ### Radio Screen
-*Experimental* My old JVC Radio uses binary codes sent to it via a pulldown resistance towards their "remote" input.
+*Experimental* My old JVC Radio uses binary codes sent to it via a pulldown resistor towards their "remote" input.
 There is no official documentation but bits and pieces of information can be found in forums. I am in the process of
 figuring out the corrct codes to issue Volume up /down, Play, Stop, etc commands. To do so, i am using this input. Will be replaced by actual 
 play /stop /vol buttons when I found all the commands
-**IMG**
+[Send Codes to Radio](resources/App%20Screenshots/radio.jpg)
 
 ### Settings Screen
 Some Basic settings need for the bluetooth connection to work (for dev purposes) under "Verbindungen"
-**IMG**
+[Main Settings](resources/App%20Screenshots/basic_settings.jpg)
 
 Adjusting the measurements (visibility, names, specification) on the Home Screen can be done under "Anschlüsse"
-**IMG** ->*click* -> **IMG**, **IMG**
+[Adjust Power Settings](resources/App%20Screenshots/power_settings.jpg)
+[Adjust Temperature Sensor Settings](resources/App%20Screenshots/temp_settings.jpg)
 
 -----------------------------
 ## Too technical for Readme.md
@@ -86,43 +88,6 @@ Raspi should be configured to start serving script on startup. I used `sudo cron
 
 ## Config Files
 
-## Communication Interface
-
-### General
-Every Message sent starts with an indicator of what the message contains (in numerical Code):
-- COMMAND_FLAG: Followed by further instructions of what to do 
-- DATA_FLAG: Followed by Information
-
-### COMMAND
-A Full command looks like this:
-
-\u0002COMMAND_FLAG\u0003COMMAND\u003[{details if needed}]\u0002
-
-#### COMMAND = CMD_SWITCH_ON
-details=SWITCH_NUMBER (get from config screen later, now from config file)
-SWITCH_NUMBER is between 1 and 8
-
-#### COMMAND = CMD_SWITCH_OFF
-details=SWITCH_NUMBER (get from config screen later, now from config file)
-SWITCH_NUMBER is between 1 and 8
-
-#### COMMAND = CMD_SWITCH_TOGGLE
-details=SWITCH_NUMBER (get from config screen later, now from config file)
-SWITCH_NUMBER is between 1 and 8
-
-#### COMMAND = CMD_SEND_DATA
-details=DATA_TYPE
-DATA_TYPE is one of (POWER_MEASUREMENT, TEMPERATURE_MEASUREMENT, SWITCH_STATUS)
-
-### DATA
-\u0002DATA_FLAG\u0003DATA_TYPE\u0003DATA\u0002
-
-#### DATA_TYPE = POWER_MEASUREMENT
-DATA = IN_1_AMPERE\u0004IN_1_VOLT\u0004IN_2_AMPERE\u0004IN_2_VOLT\u0004IN_3_AMPERE\u0004IN_3_VOLT\u0004
-
-#### DATA_TYPE = TEMPERATURE_MEASUREMENT
-
-#### DATA_TYPE = SWITCH_STATUS
-DATA = STATUS_SWITCH_1\u0004STATUS_SWITCH_2\u0004....\u0004STATUS_SWITCH_8
-
-### Read Measurements
+## Further Reading
+[Specification of Bluetooth Messages passed between RasPi and Android App](resources/docs/CommunicationProtocol.md)
+[Explanation of Configuration Files](resources/docs/ConfigurationFiles.md)
