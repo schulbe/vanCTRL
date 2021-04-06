@@ -14,29 +14,28 @@ RaspberryPi that I had lying around.
 ## General Remarks
 * The solution I chose is highly specific and will most likely not be useable "as is" for anyone else,
  but it might present some ideas to get someone with similar intentions started.
-* It is a work in progress that I did not have too much time to work on during the past year or so. 
-It will probably never be fully finished.
+* It is a work in progress that I haven't had too much time to work on recently.
 * While I am used to working with Python, I also needed skills in app programming (Kotlin) and
 the design and actual soldering of electric circuits which I didn't have. I tought myself as I went along wth this project,
 thus I guess there is a lot of room for improvement here - it does work though and I got better step by step.
 * To keep it cheap I chose to solder building blocks from cheap components myself instead of buying "out-of-the-box" 
-solutions, where it made sense. This CAN be done simpler but I guess not much cheaper. 
+solutions, where it made sense. This CAN be done simpler but I guess not for a similarly low price. 
 The overall cost without the Pi do not exceed an estimated 30€.
 
 ## Basic Functionality
-* A RaspberryPi (Version 3 for me but could probably be done with a Zero as well) serves as control unit for actual
+* A **RaspberryPi** (Version 3 for me but could probably be done with a Zero as well) serves as control unit for actual
 physical measuring and switching. It is therefore connected to
-    * A switchboard of 8 Relais that can be turned on and off individually to control up to 8 12V devices.
-    * up to 3 units measuring Voltage drop across so called "shunts". This makes it possible to measure voltage and current across 3 different wires.
-    * up to 3 temperature sensors
-* An Android Device communicates with the RasPi via Bluetooth and can
-    * Receive current and voltage measurements, display them and calculate overall power consumption (or gain from a solar panel)
-    * Receive and display Temperature measurements
-    * Receive status of switches (on or off) and send commands to actually switch them
-    * Enable a user to change display names, shunt sizes or calculations using a settings tab.
-    * {in the future} Enable the user to determine custom rules, for example
+    * A **switchboard of 8 Relais** that can be turned on and off individually to control up to 8 12V devices.
+    * up to **3 units measuring voltage drop** across so called "shunts". This makes it possible to measure voltage and current across 3 different wires.
+    * up to **3 temperature sensors**
+* An **Android Device** communicates with the RasPi via Bluetooth and can
+    * Receive **current and voltage measurements**, display them and calculate overall power consumption (or gain from a solar panel)
+    * Receive and display **Temperature measurements**
+    * Receive **status of switches (on or off)** and send commands to **actually switch** them
+    * Enable a **user to change display names, shunt sizes or calculations** using a settings tab.
+    * *future feature*: Enable the user to determine **custom rules**, for example
     "If Temperature1(Inside fridge) rises above 6°C turn on Switch3(Fridge)" and "If Temperature1(Inside fridge) falls below 3°C turn off Switch3(Fridge)"
-    * {in the future} Interact with the car radio
+    * *future feature*: Interact with the **vans stereo**
     
 The interface can be found further down.
 
@@ -44,7 +43,7 @@ The interface can be found further down.
 The Project contains 3 main parts:
 * *android* contains the gradle project for the Android App written in Kotlin
 * *hardware* contains explanations and pictures for the single building blocks of hardware
-* *raspi* contains the Code used for the control station.
+* *raspi* contains the code used for the control station.
 
 ## APP UI
 At the moment, the app is in german language but by adjusting *vancontrol/android/app/src/main/res/values/strings.xml* translation is simple.
@@ -85,4 +84,4 @@ Adjusting the measurements (visibility, names, specification) on the Home Screen
 
 [Specification of Bluetooth Messages passed between RasPi and Android App](resources/docs/CommunicationProtocol.md)
 
-[Explanation of Configuration Files](resources/docs/ConfigurationFiles.md)
+[Explanation of Raspi Contents](raspi/README.md)
