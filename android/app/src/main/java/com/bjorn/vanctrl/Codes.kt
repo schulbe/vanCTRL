@@ -15,6 +15,8 @@ enum class RaspiCodes(val code: String) {
     DATA_TEMPERATURE_MEASUREMENTS("D2"),
     DATA_SWITCH_STATUS("D3"),
     DATA_INPUT_SPECS("D4"),
+    DATA_MEASUREMENT_HISTORY("D5"),
+    DATA_RADIO("D6"),
 
     SWITCH_1("S1"),
     SWITCH_2("S2"),

@@ -1,5 +1,7 @@
 package com.bjorn.vanctrl
 
+import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +18,7 @@ import androidx.navigation.Navigation
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.bjorn.vanctrl.Fragments.RadioFragment
 import com.bjorn.vanctrl.Fragments.SettingsFragment
 import com.bjorn.vanctrl.Fragments.SwitchesFragment
 import kotlinx.coroutines.GlobalScope
@@ -26,7 +29,8 @@ import java.util.*
 class MainActivity : AppCompatActivity(),
     SwitchesFragment.OnSwitchChangedListener,
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
-    SettingsFragment.OnSettingChangedListener
+    SettingsFragment.OnSettingChangedListener,
+    RadioFragment.OnRadioButtonClickedListener
 {
     private lateinit var rasPi: BluetoothService
     private lateinit var navController: NavController
@@ -35,8 +39,6 @@ class MainActivity : AppCompatActivity(),
     private lateinit var switchController: SwitchController
 
     private val handler: Handler = Handler()
-
-    private var mIsInForeground: Boolean = true
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -86,14 +88,30 @@ class MainActivity : AppCompatActivity(),
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == rasPi.REQUEST_ENABLE_BT) {
+            if (resultCode == RESULT_OK) {
+                println("RESUlt ok")
+                onConnectBtButtonClick()
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                println("CANCELLED RESULT")
+            }
+        }
+    }
+
     override fun onPause() {
         super.onPause()
-        mIsInForeground = false
     }
 
     override fun onResume() {
         super.onResume()
-        mIsInForeground = true
+//        onConnectBtButtonClick()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        onConnectBtButtonClick()
     }
 
     override fun onSwitchClicked(switchId: Int) {
@@ -120,13 +138,20 @@ class MainActivity : AppCompatActivity(),
         val piMacAddress = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_mac_address), "")
         val piBtName = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_raspi_name), "")
         val piUUID = UUID.fromString(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.key_pref_uuid), ""))
-        val setVisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.VISIBLE } }
-        val setInvisible = Runnable { findViewById<FrameLayout>(R.id.workingOverlay)?.apply{ visibility = View.GONE } }
+
+        val setVisible = Runnable { findViewById<FrameLayout>(R.id.btConnectWidget)?.apply{ visibility = View.VISIBLE } }
+        val setInvisible = Runnable { findViewById<FrameLayout>(R.id.btConnectWidget)?.apply{ visibility = View.GONE } }
 
         GlobalScope.launch {
             handler.post(setVisible)
-            rasPi.tryConnection(piMacAddress, piBtName, piUUID)
+            rasPi.initiateConnectionRoutine(piMacAddress, piBtName, piUUID)
             handler.post(setInvisible)
+
+//            while (rasPi.isConnected().value != true) {
+//                handler.post(setVisible)
+//                rasPi.tryConnection(piMacAddress, piBtName, piUUID)
+//                handler.post(setInvisible)
+//            }
         }
     }
 
@@ -278,5 +303,11 @@ class MainActivity : AppCompatActivity(),
     override fun onSynchronizeClicked() {
         finish()
         startActivity(intent)
+    }
+
+    override fun onRadioButtonClicked(code: String) {
+//        TODO
+        println("Have to send" + code)
+        rasPi.sendData(RaspiCodes.DATA_RADIO, listOf(code))
     }
 }

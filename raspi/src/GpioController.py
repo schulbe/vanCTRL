@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import Adafruit_ADS1x15
 
 import logging
+
+import numpy as np
 import regex as re
 import time
 
@@ -66,29 +68,30 @@ class GpioController:
         adc_name_ref, channel_ref = self.power_measurement_mapping[inp]['addr_negative_ref']
         if adc_name_pos != adc_name_ref or adc_name_pre_shunt != adc_name_ref:
             raise TypeError('Cant read difference if adcs are not the same')
-        Us = list()
-        Is = list()
 
-        for i in range(3):
-            Us.append((self._read_adc(adc_name_ref, int(channel_pos),
-                                      channel_ref=int(channel_ref),
-                                      gain=self.power_measurement_mapping[inp]['v_gain'])
-                       * self.power_measurement_mapping[inp]['v_per_bit']))
-            Is.append((self._read_adc(adc_name_ref, int(channel_pre_shunt),
-                                      channel_ref=int(channel_ref),
-                                      gain=self.power_measurement_mapping[inp]['a_gain'])
-                       * self.power_measurement_mapping[inp]['a_per_bit']))
-            time.sleep(0.1)
-
-        U = sum(Us)/3
-
-        I = sum(Is)/3
+        try:
+            U = self._read_adc(adc_name_ref, int(channel_pos),
+                               channel_ref=int(channel_ref),
+                               gain=self.power_measurement_mapping[inp]['v_gain'],
+                               measurements=10) * self.power_measurement_mapping[inp]['v_per_bit']
+            I = self._read_adc(adc_name_ref, int(channel_pre_shunt),
+                               channel_ref=int(channel_ref),
+                               gain=self.power_measurement_mapping[inp]['a_gain'],
+                               measurements=30) * self.power_measurement_mapping[inp]['a_per_bit']
+        except OSError:
+            logger.error(f'Could not read power measurements for input {inp}.')
+            I = -1000
+            U = -1000
 
         logger.debug(f"INPUT: {inp} // I: {I} // U: {U} ")
 
+        # Correction for small measurements (measurement errors)
+        if (U == 0) or (abs(I) < 0.1):
+            logger.debug(f"INPUT: {inp} // I={I} corrected to I=0 ")
+            I = 0.
         return I, U
 
-    def _read_adc(self, name, channel, channel_ref=None, gain=16):
+    def _read_adc(self, name, channel, channel_ref=None, gain=16, measurements=1):
         def sign(perm, base):
             if perm == base:
                 return 1
@@ -115,13 +118,18 @@ class GpioController:
                 ADS = self.ads_3
             else:
                 raise TypeError()
+
+            meas = list()
             if channel_ref is not None:
                 dif_channel, factor = map_channel(channel, channel_ref)
-                dif = ADS.read_adc_difference(dif_channel, gain=gain) * factor
-                return dif
+                for i in range(measurements):
+                    meas.append(ADS.read_adc_difference(dif_channel, gain=gain) * factor)
 
             else:
-                return ADS.read_adc(channel, gain=gain)
+                for i in range(measurements):
+                    meas.append(ADS.read_adc(channel, gain=gain))
+
+            return np.median(meas)
 
     def get_switch_status(self):
         return {switch: self.switch_is_on(switch) for switch in self.pins.keys() if switch.startswith('SWITCH_')}
@@ -133,6 +141,8 @@ class GpioController:
         return False
 
     def update_power_measurement_mapping_entry(self, inp, a_shunt, mv_shunt, max_volt):
+        logger.debug(f'UPDATE!!!!!! {inp} / {a_shunt} / {mv_shunt} / {max_volt}')
+
         def v_per_bit(gain):
             return 4.096/gain/(2**15)
 
@@ -171,6 +181,7 @@ class GpioController:
             _, gain = sorted(possible_gains)[0]
         except IndexError:
             # TODO produce Errors!
+            logger.debug('INDEX ERROR!')
             return 2/3
 
         return gain
@@ -179,12 +190,17 @@ class GpioController:
         name = self.temp_measurement_mapping[inp]['id']
         path = f'/sys/bus/w1/devices/{name}/w1_slave'
 
-        with open(path, 'r') as f:
-            line = f.readline()
-            if re.match(r"([0-9a-f]{2} ){9}: crc=[0-9a-f]{2} YES", line):
+        try:
+            with open(path, 'r') as f:
                 line = f.readline()
-                m = re.match(r"([0-9a-f]{2} ){9}t=([+-]?[0-9]+)", line)
-                if m:
-                    value = float(m.group(2)) / 1000.0
+                if re.match(r"([0-9a-f]{2} ){9}: crc=[0-9a-f]{2} YES", line):
+                    line = f.readline()
+                    m = re.match(r"([0-9a-f]{2} ){9}t=([+-]?[0-9]+)", line)
+                    if m:
+                        value = float(m.group(2)) / 1000.0
+        except FileNotFoundError:
+            # TODO ERRORS!
+            logger.info(f'Temperature Sensor with name {name} not found...')
+            return 0.
 
         return value
